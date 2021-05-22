@@ -1,0 +1,37 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+html, body, #map {
+    height: 100%;
+    width: 100%;
+}
+
+.sidebar-content ul {
+    list-style: none;
+    padding: 0%;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+}
+
+.sidebar-content li {
+    padding: 2% 0% 2% 2%;
+}
+
+.sidebar-content li input {
+    float: left;
+    margin-right: 5%;
+}
+
+.sidebar-content li label {
+    display: block;
+}
+
+.sidebar-content li:nth-child(even) {
+    background-color: dimgray;
+}
+
+.leaflet-container {
+    background: #738aaf;
+}

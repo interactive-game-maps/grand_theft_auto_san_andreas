@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Interactive map of Grand Theft Auto: San Andreas</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Leaflet's CSS -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"
+		integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+		crossorigin="" />
+
+	<!-- Make sure you put this AFTER Leaflet's CSS -->
+	<script src="https://unpkg.com/leaflet/dist/leaflet.js"
+		integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+		crossorigin=""></script>
+
+	<!-- Grouping markers to cluster -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css"
+		integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV" crossorigin="" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css"
+		integrity="sha384-wgw+aLYNQ7dlhK47ZPK7FRACiq7ROZwgFNg0m04avm4CaXS+Z9Y7nMu8yNjBKYC+" crossorigin="" />
+	<script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"
+		integrity="sha384-89yDmbSkL9reFc77m10ZbqLaUMf1sp7FAJs2oAD/rczNnY7I+17yN9KML6tpYpCk" crossorigin=""></script>
+
+	<!-- Extra markers -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css"
+		integrity="sha384-gBrrv+fQkNjTlZCHwzjy6e7ttZCK9oTteUtfus6jYAx4dAenJqpiYVSe+s52Knt2" crossorigin="" />
+	<script src="https://unpkg.com/leaflet-extra-markers/dist/js/leaflet.extra-markers.min.js"
+		integrity="sha384-52nOfmht2+K0tnoy0QURbS1mVIYMfpuOFrlhDu7wIKmSo3GGXES6OYa0vmhiGCzR" crossorigin=""></script>
+
+	<!-- Addittional icons -->
+	<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/fontawesome.min.css" rel="stylesheet"
+		crossorigin="" />
+	<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/solid.min.css" rel="stylesheet"
+		crossorigin="" />
+	<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/brands.min.css" rel="stylesheet"
+		crossorigin="" />
+
+	<!-- Sidebar -->
+	<link rel="stylesheet" href="https://unpkg.com/sidebar-v2/css/leaflet-sidebar.css" crossorigin=""
+		integrity="sha384-b68KvTjKpJwlQRlxISplH7QAsMsQWBzOVJYuQHj4HsXoywpttuARaD821SXHHa0D" />
+	<script src="https://unpkg.com/sidebar-v2/js/leaflet-sidebar.min.js" crossorigin=""
+		integrity="sha384-kTJ9J+izI4JaeI7BLd5s9xEXgbUJn8iGnSav3DTfPWLgYexxsJdj4rLoQuEIDWQj"></script>
+
+	<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+	<div id="sidebar" class="sidebar collapsed">
+		<!-- Nav tabs -->
+		<div class="sidebar-tabs">
+			<ul role="tablist">
+				<li><a href="#tags" role="tab"><i class="fas fa-spray-can"></i></a></li>
+				<li><a href="#snapshots" role="tab"><i class="fas fa-camera"></i></a></li>
+				<li><a href="#horseshoes" role="tab"><i class="fas fa-horse"></i></a></li>
+				<li><a href="#oysters" role="tab">🦪</i></a></li>
+				<li><a href="#stunt_jumps" role="tab"><i class="fas fa-car"></i></a></li>
+				<li><a href="#cop_bribes" role="tab">⭐</a></li>
+			</ul>
+
+			<ul role="tablist">
+				<li><a href="#settings" role="tab"><i class="fas fa-cogs"></i></a></li>
+				<li><a href="#edit" role="tab"><i class="fas fa-map-marked"></i></a></li>
+				<li><a href="https://github.com/interactive-game-maps/grand_theft_auto_san_andreas" role="tab"
+						target="_blank">
+						<i class="fab fa-github"></i></a></li>
+				<li><a href="https://interactive-game-maps.github.io/" role="tab"><i class="fas fa-arrow-left"></i></a>
+				</li>
+			</ul>
+		</div>
+
+		<!-- Tab panes -->
+		<div class="sidebar-content">
+			<div class="sidebar-pane" id="tags">
+				<h1 class="sidebar-header">Tags<span class="sidebar-close"><i class="fas fa-caret-left"></i></span>
+				</h1>
+
+				<!-- Checkboxes will get added here from js -->
+			</div>
+
+			<div class="sidebar-pane" id="snapshots">
+				<h1 class="sidebar-header">Snapshots<span class="sidebar-close"><i class="fas fa-caret-left"></i></span>
+				</h1>
+
+				<!-- Checkboxes will get added here from js -->
+			</div>
+
+			<div class="sidebar-pane" id="horseshoes">
+				<h1 class="sidebar-header">Horseshoes<span class="sidebar-close"><i
+							class="fas fa-caret-left"></i></span>
+				</h1>
+
+				<!-- Checkboxes will get added here from js -->
+			</div>
+
+			<div class="sidebar-pane" id="oysters">
+				<h1 class="sidebar-header">Oysters<span class="sidebar-close"><i class="fas fa-caret-left"></i></span>
+				</h1>
+
+				<!-- Checkboxes will get added here from js -->
+			</div>
+
+			<div class="sidebar-pane" id="stunt_jumps">
+				<h1 class="sidebar-header">Stunt Jumps<span class="sidebar-close"><i
+							class="fas fa-caret-left"></i></span>
+				</h1>
+
+				<!-- Checkboxes will get added here from js -->
+			</div>
+
+			<div class="sidebar-pane" id="cop_bribes">
+				<h1 class="sidebar-header">
+					Cop Bribes
+					<span class="sidebar-close"><i class="fas fa-caret-left"></i></span>
+				</h1>
+
+				<!-- Checkboxes will get added here from js -->
+			</div>
+
+			<div class="sidebar-pane" id="settings">
+				<h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+				</h1>
+
+				<button type="reset" id="storage_reset">Reset collectibles</button>
+			</div>
+
+			<div class="sidebar-pane" id="edit">
+				<h1 class="sidebar-header">Add or edit marker<span class="sidebar-close"><i
+							class="fas fa-caret-left"></i></span></h1>
+
+				<label class="switch"><input type="checkbox" id="add_marker_toggle"></span> Enable/Disable coordinate
+					finder</label>
+
+				<ol>
+					<li>Help marking locations by enabling the draggable marker above and by dragging it to the desired
+						location.</li>
+					<li>A popup should appear with a simple geoJson point representing the current marker location.</li>
+					<li>Create a pull request on GitHub in which you've added or edited the point(s). They're located in
+						the folder "marker".</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+
+	<div id="map" class="sidebar-map"></div>
+
+	<!-- include markers from file -->
+	<script src="./marker/busted_warps.js" type="text/javascript"></script>
+	<script src="./marker/cop_bribes.js" type="text/javascript"></script>
+	<script src="./marker/death_warps.js" type="text/javascript"></script>
+	<script src="./marker/horseshoes.js" type="text/javascript"></script>
+	<script src="./marker/oysters.js" type="text/javascript"></script>
+	<script src="./marker/snapshots.js" type="text/javascript"></script>
+	<!-- <script src="./marker/stunt_jumps.js" type="text/javascript"></script> -->
+	<script src="./marker/tags.js" type="text/javascript"></script>
+
+	<!-- include coordinate finder -->
+	<script src="./coordinate_finder.js" type="text/javascript"></script>
+
+	<!-- include map base layers -->
+	<script src="./map_layers.js" type="text/javascript"></script>
+
+	<!-- include map marker logic -->
+	<script src="./map_logic.js" type="text/javascript"></script>
+</body>
+
+</html>
