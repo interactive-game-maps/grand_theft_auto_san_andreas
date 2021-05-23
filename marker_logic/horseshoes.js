@@ -3,9 +3,12 @@ var horseshoes_list = document.createElement('ul');
 horseshoes_list.className = 'collectibles_list';
 
 // Create marker group
-var horseshoes_cluster = L.markerClusterGroup({
+var horseshoes_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
+
+// save all marker in a map so we can access them later
+var horseshoes_map = new Map();
 
 L.geoJSON(horseshoes, {
     pointToLayer: function (feature, latlng) {
@@ -21,13 +24,18 @@ L.geoJSON(horseshoes, {
             interactive: false
         });
 
-        // Add marker to list
-        if (!add_checkbox_for_marker(feature, marker, horseshoes_list, "horseshoes", horseshoes_cluster)) {
+        // Add marker to lists
+        horseshoes_map.set(feature.properties.id.toString(), marker);
+        if (!add_checkbox_for_marker(feature, marker, horseshoes_list, "horseshoes", horseshoes_group)) {
             return null;
         }
         return marker;
     }
-}).addTo(horseshoes_cluster);
+}).addTo(horseshoes_group);
+horseshoes_map.set("group", horseshoes_group);
+
+// save local list in global list of lists
+marker.set("horseshoes", horseshoes_map);
 
 // Add list to sidebar
 sidebar.addPanel({

@@ -16,17 +16,16 @@ html, body, #map {
 }
 
 .collectibles_list li {
-    padding: 2% 0% 2% 2%;
-}
-
-.collectibles_list li input {
-    float: left;
-    margin-right: 5%;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
 }
 
 .collectibles_list li button {
-    display: block;
-    float: right;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
 }
 
 .collectibles_list li:nth-child(even) {

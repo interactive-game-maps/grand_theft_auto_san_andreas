@@ -3,9 +3,12 @@ var oysters_list = document.createElement('ul');
 oysters_list.className = 'collectibles_list';
 
 // Create marekr group
-var oyster_cluster = L.markerClusterGroup({
+var oyster_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
+
+// save all marker in a map so we can access them later
+var oysters_map = new Map();
 
 L.geoJSON(oysters, {
     pointToLayer: function (feature, latlng) {
@@ -21,13 +24,18 @@ L.geoJSON(oysters, {
             interactive: false
         });
 
-        // Add collectibles to list
-        if (!add_checkbox_for_marker(feature, marker, oysters_list, "oysters", oyster_cluster)) {
+        // Add collectibles to lists
+        oysters_map.set(feature.properties.id.toString(), marker);
+        if (!add_checkbox_for_marker(feature, marker, oysters_list, "oysters", oyster_group)) {
             return null;
         }
         return marker;
     }
-}).addTo(oyster_cluster);
+}).addTo(oyster_group);
+oysters_map.set("group", oysters_cluster);
+
+// save local list in global list of lists
+marker.set("oysters", oysters_map);
 
 // Add list to sidebar
 sidebar.addPanel({

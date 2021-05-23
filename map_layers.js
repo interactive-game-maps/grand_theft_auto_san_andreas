@@ -1,7 +1,7 @@
 var map = L.map('map', {
     crs: L.CRS.Simple,
     // minZoom: 0,
-    maxZoom: 10,
+    maxZoom: 8,
     zoom: 3
 });
 
@@ -76,4 +76,12 @@ tiled_map.addTo(map);
         position: 'bottom',
         button: 'https://interactive-game-maps.github.io/'
     });
+
+    // make group visible on pane opening
+    sidebar.on('content', (event) => {
+        map.addLayer(marker.get(event.id).get('group'));
+    });
 }
+
+// global list to access marker later on
+var marker = new Map();

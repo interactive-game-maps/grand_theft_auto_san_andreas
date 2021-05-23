@@ -3,9 +3,12 @@ var tags_list = document.createElement('ul');
 tags_list.className = 'collectibles_list';
 
 // Create marker group
-var tags_cluster = L.markerClusterGroup({
+var tags_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
+
+// save all marker in a map so we can access them later
+var tags_map = new Map();
 
 L.geoJSON(tags, {
     pointToLayer: function (feature, latlng) {
@@ -21,13 +24,18 @@ L.geoJSON(tags, {
             interactive: false
         });
 
-        // Add marker to list
-        if (!add_checkbox_for_marker(feature, marker, tags_list, "tags", tags_cluster)) {
+        // Add marker to lists
+        tags_map.set(feature.properties.id.toString(), marker);
+        if (!add_checkbox_for_marker(feature, marker, tags_list, "tags", tags_group)) {
             return null;
         }
         return marker;
     }
-}).addTo(tags_cluster);
+}).addTo(tags_group);
+tags_map.set("group", tags_group);
+
+// save local list in global list of lists
+marker.set("tags", tags_map);
 
 // Add list to sidebar
 sidebar.addPanel({
