@@ -40,112 +40,22 @@
 		crossorigin="" />
 
 	<!-- Sidebar -->
-	<link rel="stylesheet" href="https://unpkg.com/sidebar-v2/css/leaflet-sidebar.css" crossorigin=""
-		integrity="sha384-b68KvTjKpJwlQRlxISplH7QAsMsQWBzOVJYuQHj4HsXoywpttuARaD821SXHHa0D" />
-	<script src="https://unpkg.com/sidebar-v2/js/leaflet-sidebar.min.js" crossorigin=""
-		integrity="sha384-kTJ9J+izI4JaeI7BLd5s9xEXgbUJn8iGnSav3DTfPWLgYexxsJdj4rLoQuEIDWQj"></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-sidebar-v2/css/leaflet-sidebar.css" crossorigin=""
+		integrity="sha384-jLSjuIlJ1wZfdRBJGRNKCz4sF4W3+MpdJPUHsaBHKWLWZ0VqwGtqea4LCQi7xvLg" />
+	<script src="https://unpkg.com/leaflet-sidebar-v2/js/leaflet-sidebar.min.js" crossorigin=""
+		integrity="sha384-1mlFznIy2PzA2RVgWh+qrp6n5d/elATt92rUQyEEC7xg/2JAKzq+mpraM/4phLAG"></script>
 
 	<link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-	<div id="sidebar" class="sidebar collapsed">
-		<!-- Nav tabs -->
-		<div class="sidebar-tabs">
-			<ul role="tablist">
-				<li><a href="#tags" role="tab"><i class="fas fa-spray-can"></i></a></li>
-				<li><a href="#snapshots" role="tab"><i class="fas fa-camera"></i></a></li>
-				<li><a href="#horseshoes" role="tab"><i class="fas fa-horse"></i></a></li>
-				<li><a href="#oysters" role="tab">🦪</i></a></li>
-				<li><a href="#stunt_jumps" role="tab"><i class="fas fa-car"></i></a></li>
-				<li><a href="#cop_bribes" role="tab">⭐</a></li>
-			</ul>
+	<div id="map"></div>
 
-			<ul role="tablist">
-				<li><a href="#settings" role="tab"><i class="fas fa-cogs"></i></a></li>
-				<li><a href="#edit" role="tab"><i class="fas fa-map-marked"></i></a></li>
-				<li><a href="https://github.com/interactive-game-maps/grand_theft_auto_san_andreas" role="tab"
-						target="_blank">
-						<i class="fab fa-github"></i></a></li>
-				<li><a href="https://interactive-game-maps.github.io/" role="tab"><i class="fas fa-arrow-left"></i></a>
-				</li>
-			</ul>
-		</div>
+	<!-- include map base layers -->
+	<script src="./map_layers.js" type="text/javascript"></script>
 
-		<!-- Tab panes -->
-		<div class="sidebar-content">
-			<div class="sidebar-pane" id="tags">
-				<h1 class="sidebar-header">Tags<span class="sidebar-close"><i class="fas fa-caret-left"></i></span>
-				</h1>
-
-				<!-- Checkboxes will get added here from js -->
-			</div>
-
-			<div class="sidebar-pane" id="snapshots">
-				<h1 class="sidebar-header">Snapshots<span class="sidebar-close"><i class="fas fa-caret-left"></i></span>
-				</h1>
-
-				<!-- Checkboxes will get added here from js -->
-			</div>
-
-			<div class="sidebar-pane" id="horseshoes">
-				<h1 class="sidebar-header">Horseshoes<span class="sidebar-close"><i
-							class="fas fa-caret-left"></i></span>
-				</h1>
-
-				<!-- Checkboxes will get added here from js -->
-			</div>
-
-			<div class="sidebar-pane" id="oysters">
-				<h1 class="sidebar-header">Oysters<span class="sidebar-close"><i class="fas fa-caret-left"></i></span>
-				</h1>
-
-				<!-- Checkboxes will get added here from js -->
-			</div>
-
-			<div class="sidebar-pane" id="stunt_jumps">
-				<h1 class="sidebar-header">Stunt Jumps<span class="sidebar-close"><i
-							class="fas fa-caret-left"></i></span>
-				</h1>
-
-				<!-- Checkboxes will get added here from js -->
-			</div>
-
-			<div class="sidebar-pane" id="cop_bribes">
-				<h1 class="sidebar-header">
-					Cop Bribes
-					<span class="sidebar-close"><i class="fas fa-caret-left"></i></span>
-				</h1>
-
-				<!-- Checkboxes will get added here from js -->
-			</div>
-
-			<div class="sidebar-pane" id="settings">
-				<h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
-				</h1>
-
-				<button type="reset" id="storage_reset">Reset collectibles</button>
-			</div>
-
-			<div class="sidebar-pane" id="edit">
-				<h1 class="sidebar-header">Add or edit marker<span class="sidebar-close"><i
-							class="fas fa-caret-left"></i></span></h1>
-
-				<label class="switch"><input type="checkbox" id="add_marker_toggle"></span> Enable/Disable coordinate
-					finder</label>
-
-				<ol>
-					<li>Help marking locations by enabling the draggable marker above and by dragging it to the desired
-						location.</li>
-					<li>A popup should appear with a simple geoJson point representing the current marker location.</li>
-					<li>Create a pull request on GitHub in which you've added or edited the point(s). They're located in
-						the folder "marker".</li>
-				</ol>
-			</div>
-		</div>
-	</div>
-
-	<div id="map" class="sidebar-map"></div>
+	<!-- include map marker logic -->
+	<script src="./map_utils.js" type="text/javascript"></script>
 
 	<!-- include markers from file -->
 	<script src="./marker/busted_warps.js" type="text/javascript"></script>
@@ -154,17 +64,22 @@
 	<script src="./marker/horseshoes.js" type="text/javascript"></script>
 	<script src="./marker/oysters.js" type="text/javascript"></script>
 	<script src="./marker/snapshots.js" type="text/javascript"></script>
-	<!-- <script src="./marker/stunt_jumps.js" type="text/javascript"></script> -->
 	<script src="./marker/tags.js" type="text/javascript"></script>
+
+	<!-- include marker logic -->
+	<script src="./marker_logic/busted_warps.js" type="text/javascript"></script>
+	<script src="./marker_logic/death_warps.js" type="text/javascript"></script>
+	<script src="./marker_logic/tags.js" type="text/javascript"></script>
+	<script src="./marker_logic/snapshots.js" type="text/javascript"></script>
+	<script src="./marker_logic/horseshoes.js" type="text/javascript"></script>
+	<script src="./marker_logic/oysters.js" type="text/javascript"></script>
+	<script src="./marker_logic/cop_bribes.js" type="text/javascript"></script>
 
 	<!-- include coordinate finder -->
 	<script src="./coordinate_finder.js" type="text/javascript"></script>
 
-	<!-- include map base layers -->
-	<script src="./map_layers.js" type="text/javascript"></script>
-
-	<!-- include map marker logic -->
-	<script src="./map_logic.js" type="text/javascript"></script>
+	<!-- include map control -->
+	<script src="./map_controls.js" type="text/javascript"></script>
 </body>
 
 </html>

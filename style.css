@@ -8,27 +8,28 @@ html, body, #map {
     width: 100%;
 }
 
-.sidebar-content ul {
+.collectibles_list {
     list-style: none;
     padding: 0%;
     display: grid;
     grid-template-columns: repeat(3, auto);
 }
 
-.sidebar-content li {
+.collectibles_list li {
     padding: 2% 0% 2% 2%;
 }
 
-.sidebar-content li input {
+.collectibles_list li input {
     float: left;
     margin-right: 5%;
 }
 
-.sidebar-content li label {
+.collectibles_list li button {
     display: block;
+    float: right;
 }
 
-.sidebar-content li:nth-child(even) {
+.collectibles_list li:nth-child(even) {
     background-color: dimgray;
 }
 

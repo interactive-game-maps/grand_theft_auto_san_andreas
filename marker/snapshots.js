@@ -25,8 +25,8 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    15.5625,
-                    -117.6875
+                    8.875,
+                    -106.125
                 ]
             }
         },
