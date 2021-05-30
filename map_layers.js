@@ -80,14 +80,10 @@ map.pm.setGlobalOptions({
         position: 'bottom',
         button: () => {
             if (!edit_mode) {
-                // coordinate_finder.addTo(map);
-                // coordinate_finder.setLatLng(map.getCenter());
-                // coordinate_finder.bindPopup('Coordinate Finder').openPopup();
                 edit_layer.addTo(map);
                 // edit_layer.pm.enable();
                 edit_mode = true;
             } else {
-                // map.removeLayer(coordinate_finder);
                 edit_layer.removeFrom(map);
                 // edit_layer.pm.disable();
                 edit_mode = false;
