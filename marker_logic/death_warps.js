@@ -1,7 +1,7 @@
 var death_warps_group = L.layerGroup();
 
 var deaths_geoJson = L.geoJSON(death_warps, {
-    pointToLayer: function (feature, latlng) {
+    pointToLayer: (feature, latlng) => {
         if (feature.properties.radius) {
             return L.circle(latlng, feature.properties.radius, {
                 color: "#00ff00"
@@ -21,7 +21,7 @@ var deaths_geoJson = L.geoJSON(death_warps, {
             });
         }
     },
-    onEachFeature: function (feature, layer) {
+    onEachFeature: (feature, layer) => {
         if (feature.geometry.type == "Point") {
             return;
         }

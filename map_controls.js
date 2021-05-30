@@ -3,17 +3,18 @@ var overlayMaps = {
     "Spray Tags": tags_group,
     "Snapshots": snapshots_group,
     "Horseshoes": horseshoes_group,
-    "Oysters": oyster_group,
+    "Oysters": oysters_group,
     "Cob Bribes": cop_bribes_group,
     "Busted Warps": busted_warps_group,
-    "Death Warps": death_warps_group
+    "Death Warps": death_warps_group,
+    "Race Tournaments": race_tournaments_group
 };
 
 // Make overlay layer visible by default
 map.addLayer(tags_group);
 map.addLayer(snapshots_group);
 map.addLayer(horseshoes_group);
-map.addLayer(oyster_group);
+map.addLayer(oysters_group);
 
 // Center view over map
 map.fitBounds([[0, 0], [-192, 192]]);
@@ -38,7 +39,24 @@ if (urlParams.has('list')) {
         const id = urlParams.get('id');
         if (marker.has(list) && marker.get(list).has(id)) {
             // center and zoom id
-            map.fitBounds(L.latLngBounds([marker.get(list).get(id).getLatLng()]));
+            map.fitBounds(L.latLngBounds([marker.get(list).get(id)[0].getLatLng()]));
         }
     }
 }
+
+// hide all previously checked marker
+// iterate over all lists
+marker.forEach((v, k) => {
+    // iterate over all IDs
+    v.forEach((value, key) => {
+        if (key == "group") return;
+
+        // iterate over all features with that ID
+        value.forEach(item => {
+            // Remove if checked
+            if (localStorage.getItem(k + ":" + key)) {
+                v.get("group").removeLayer(item);
+            }
+        });
+    });
+});

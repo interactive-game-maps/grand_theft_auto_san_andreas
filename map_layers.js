@@ -25,6 +25,34 @@ var baseMaps = {
 // Make one base layer visible by default
 tiled_map.addTo(map);
 
+// Disable general editing
+// L.PM.setOptIn(true);
+var edit_layer = L.featureGroup(null, {
+    pmIgnore: false
+});
+// edit_layer.pm.applyOptionsToAllChilds({
+//     allowEditing: true
+// });
+map.pm.Toolbar.createCustomControl({
+    name: 'export',
+    block: 'custom',
+    title: 'Export',
+    toggle: false,
+    onClick: () => {
+        console.log(edit_layer.toGeoJSON());
+        window.prompt("Copy to clipboard: Ctrl+C, Enter", JSON.stringify(edit_layer.toGeoJSON(), null, '    '));
+    }
+});
+map.pm.addControls({
+    position: 'bottomright',
+    drawCircleMarker: false,
+    oneBlock: true
+});
+map.pm.toggleControls(); // hide as default
+map.pm.setGlobalOptions({
+    layerGroup: edit_layer
+});
+
 {// Add sidebar to map
     var sidebar = L.control.sidebar({
         autopan: true,
@@ -52,14 +80,19 @@ tiled_map.addTo(map);
         position: 'bottom',
         button: () => {
             if (!edit_mode) {
-                coordinate_finder.addTo(map);
-                coordinate_finder.setLatLng(map.getCenter());
-                coordinate_finder.bindPopup('Coordinate Finder').openPopup();
+                // coordinate_finder.addTo(map);
+                // coordinate_finder.setLatLng(map.getCenter());
+                // coordinate_finder.bindPopup('Coordinate Finder').openPopup();
+                edit_layer.addTo(map);
+                // edit_layer.pm.enable();
                 edit_mode = true;
             } else {
-                map.removeLayer(coordinate_finder);
+                // map.removeLayer(coordinate_finder);
+                edit_layer.removeFrom(map);
+                // edit_layer.pm.disable();
                 edit_mode = false;
             }
+            map.pm.toggleControls();
         }
     });
 
@@ -80,6 +113,7 @@ tiled_map.addTo(map);
     // make group visible on pane opening
     sidebar.on('content', (event) => {
         map.addLayer(marker.get(event.id).get('group'));
+        history.replaceState({}, "", "index.html?list=" + event.id);
     });
 }
 
