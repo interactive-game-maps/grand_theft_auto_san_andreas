@@ -108,5 +108,7 @@ function resetHighlight(e) {
 }
 
 function zoomToFeature(e) {
-    map.fitBounds(e.target.getBounds());
+    if (e.target.feature.geometry.type != "Point") {
+        map.fitBounds(e.target.getBounds());
+    }
 }
