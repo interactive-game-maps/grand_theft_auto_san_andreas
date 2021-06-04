@@ -25,33 +25,51 @@ var baseMaps = {
 // Make one base layer visible by default
 tiled_map.addTo(map);
 
-// Disable general editing
-// L.PM.setOptIn(true);
-var edit_layer = L.featureGroup(null, {
-    pmIgnore: false
-});
-// edit_layer.pm.applyOptionsToAllChilds({
-//     allowEditing: true
-// });
-map.pm.Toolbar.createCustomControl({
-    name: 'export',
-    block: 'custom',
-    title: 'Export',
-    toggle: false,
-    onClick: () => {
-        console.log(edit_layer.toGeoJSON());
-        window.prompt("Copy to clipboard: Ctrl+C, Enter", JSON.stringify(edit_layer.toGeoJSON(), null, '    '));
+{ // Edit toolbar
+    // Disable general editing
+    // L.PM.setOptIn(true);
+
+    var edit_layer;
+    // read saved edit layer if available
+    if (localStorage.getItem("edit")) {
+        edit_layer = L.geoJSON(JSON.parse(localStorage.getItem("edit")), {
+            pmIgnore: false
+        });
+    } else {
+        edit_layer = L.featureGroup(null, {
+            pmIgnore: false
+        });
     }
-});
-map.pm.addControls({
-    position: 'bottomright',
-    drawCircleMarker: false,
-    oneBlock: true
-});
-map.pm.toggleControls(); // hide as default
-map.pm.setGlobalOptions({
-    layerGroup: edit_layer
-});
+
+    // edit_layer.pm.applyOptionsToAllChilds({
+    //     allowEditing: true
+    // });
+    map.pm.Toolbar.createCustomControl({
+        name: 'export',
+        block: 'custom',
+        title: 'Export',
+        toggle: false,
+        onClick: () => {
+            console.log(edit_layer.toGeoJSON());
+            window.prompt("Copy to clipboard: Ctrl+C, Enter", JSON.stringify(edit_layer.toGeoJSON(), null, '    '));
+        }
+    });
+    map.pm.addControls({
+        position: 'bottomright',
+        drawCircleMarker: false,
+        oneBlock: true
+    });
+    map.pm.toggleControls(); // hide as default
+    map.pm.setGlobalOptions({
+        layerGroup: edit_layer
+    });
+
+    // Save manual edits before leaving
+    window.onbeforeunload = () => {
+        localStorage.setItem("edit", JSON.stringify(edit_layer.toGeoJSON()));
+    };
+    // TODO: allow deleting edits
+}
 
 {// Add sidebar to map
     var sidebar = L.control.sidebar({
