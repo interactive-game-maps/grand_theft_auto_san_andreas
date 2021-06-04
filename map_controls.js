@@ -50,6 +50,7 @@ if (urlParams.has('list')) {
     }
     if (!urlParams.has('id')) {
         // if no id open sidebar
+        map.fitBounds(marker.get(list).get('group').getBounds());
         sidebar.open(list);
     }
     else {
