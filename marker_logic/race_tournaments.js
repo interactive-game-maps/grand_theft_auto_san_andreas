@@ -16,18 +16,19 @@ var race_tournaments_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
 
+var race_tournaments_icon = L.Icon.extend({
+    options: {
+        iconAnchor: [15, 15],
+        iconSize: [30, 30],
+        iconUrl: 'marker/race_tournaments.png',
+        tooltipAnchor: [0, 15]
+    }
+})
+
 var los_santos_races_geojson = L.geoJSON(los_santos_races, {
     pointToLayer: (feature, latlng) => {
-        // custom marker
         return L.marker(latlng, {
-            // Simple symbols and text/numbers on markers: https://github.com/coryasilva/Leaflet.ExtraMarkers
-            icon: L.ExtraMarkers.icon({
-                prefix: 'fas',
-                icon: 'fa-car',
-                // innerHTML: '🏁',
-                shape: 'penta',
-                markerColor: 'black'
-            })
+            icon: new race_tournaments_icon
         });
     },
     onEachFeature: (feature, layer) => {
@@ -47,6 +48,13 @@ var los_santos_races_geojson = L.geoJSON(los_santos_races, {
                 history.replaceState({}, "", "index.html?list=" + "race_tournaments" + "&id=" + e.target.feature.properties.id);
             }
         });
+
+        if (feature.geometry.type == "Point") {
+            layer.bindTooltip(feature.properties.id, {
+                permanent: true,
+                direction: 'bottom'
+            });
+        }
     },
     style: feature => {
         return {
@@ -59,16 +67,8 @@ var los_santos_races_geojson = L.geoJSON(los_santos_races, {
 
 var san_fierro_races_geojson = L.geoJSON(san_fierro_races, {
     pointToLayer: (feature, latlng) => {
-        // custom marker
         return L.marker(latlng, {
-            // Simple symbols and text/numbers on markers: https://github.com/coryasilva/Leaflet.ExtraMarkers
-            icon: L.ExtraMarkers.icon({
-                prefix: 'fas',
-                icon: 'fa-car',
-                // innerHTML: '<br>🏁',
-                shape: 'penta',
-                markerColor: 'black'
-            })
+            icon: new race_tournaments_icon
         });
     },
     onEachFeature: (feature, layer) => {
@@ -88,6 +88,13 @@ var san_fierro_races_geojson = L.geoJSON(san_fierro_races, {
                 history.replaceState({}, "", "index.html?list=" + "race_tournaments" + "&id=" + e.target.feature.properties.id);
             }
         });
+
+        if (feature.geometry.type == "Point") {
+            layer.bindTooltip(feature.properties.id, {
+                permanent: true,
+                direction: 'bottom'
+            });
+        }
     },
     style: feature => {
         return {
@@ -100,16 +107,8 @@ var san_fierro_races_geojson = L.geoJSON(san_fierro_races, {
 
 var las_venturas_races_geojson = L.geoJSON(las_venturas_races, {
     pointToLayer: (feature, latlng) => {
-        // custom marker
         return L.marker(latlng, {
-            // Simple symbols and text/numbers on markers: https://github.com/coryasilva/Leaflet.ExtraMarkers
-            icon: L.ExtraMarkers.icon({
-                prefix: 'fas',
-                icon: 'fa-car',
-                // innerHTML: '<br>🏁',
-                shape: 'penta',
-                markerColor: 'black'
-            })
+            icon: new race_tournaments_icon
         });
     },
     onEachFeature: (feature, layer) => {
@@ -129,6 +128,13 @@ var las_venturas_races_geojson = L.geoJSON(las_venturas_races, {
                 history.replaceState({}, "", "index.html?list=" + "race_tournaments" + "&id=" + e.target.feature.properties.id);
             }
         });
+
+        if (feature.geometry.type == "Point") {
+            layer.bindTooltip(feature.properties.id, {
+                permanent: true,
+                direction: 'bottom'
+            });
+        }
     },
     style: feature => {
         return {
@@ -141,16 +147,8 @@ var las_venturas_races_geojson = L.geoJSON(las_venturas_races, {
 
 var air_races_geojson = L.geoJSON(air_races, {
     pointToLayer: (feature, latlng) => {
-        // custom marker
         return L.marker(latlng, {
-            // Simple symbols and text/numbers on markers: https://github.com/coryasilva/Leaflet.ExtraMarkers
-            icon: L.ExtraMarkers.icon({
-                prefix: 'fas',
-                icon: 'fa-car',
-                // innerHTML: '<br>🏁',
-                shape: 'penta',
-                markerColor: 'black'
-            })
+            icon: new race_tournaments_icon
         });
     },
     onEachFeature: (feature, layer) => {
@@ -170,6 +168,13 @@ var air_races_geojson = L.geoJSON(air_races, {
                 history.replaceState({}, "", "index.html?list=" + "race_tournaments" + "&id=" + e.target.feature.properties.id);
             }
         });
+
+        if (feature.geometry.type == "Point") {
+            layer.bindTooltip(feature.properties.id, {
+                permanent: true,
+                direction: 'bottom'
+            });
+        }
     },
     style: feature => {
         return {
