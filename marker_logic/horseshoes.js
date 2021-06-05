@@ -20,10 +20,10 @@ L.geoJSON(horseshoes, {
     pointToLayer: (feature, latlng) => {
         return L.marker(latlng, {
             icon: L.divIcon({
-                className: 'marker-horseshoes',
+                className: 'marker-custom marker-horseshoes',
                 html: feature.properties.id,
-                iconAnchor: new L.point(12.5, 15),
-                iconSize: new L.point(25, 30)
+                iconAnchor: new L.point(20, 20),
+                iconSize: new L.point(40, 40)
             }),
             interactive: false
         });
