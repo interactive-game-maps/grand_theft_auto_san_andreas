@@ -35,3 +35,12 @@ html, body, #map {
 .leaflet-container {
     background: #738aaf;
 }
+
+.marker-horseshoes {
+    background-image: url(marker/horseshoes.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    text-align: center;
+    line-height: 30px;
+    font-size: 14px;
+}

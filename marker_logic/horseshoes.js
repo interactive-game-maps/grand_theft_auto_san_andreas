@@ -18,14 +18,12 @@ var horseshoes_group = L.markerClusterGroup({
 
 L.geoJSON(horseshoes, {
     pointToLayer: (feature, latlng) => {
-        // custom marker
         return L.marker(latlng, {
-            // Simple symbols and text/numbers on markers: https://github.com/coryasilva/Leaflet.ExtraMarkers
-            icon: L.ExtraMarkers.icon({
-                icon: 'fa-number',
-                number: feature.properties.id,
-                shape: 'square',
-                markerColor: 'black'
+            icon: L.divIcon({
+                className: 'marker-horseshoes',
+                html: feature.properties.id,
+                iconAnchor: new L.point(12.5, 15),
+                iconSize: new L.point(25, 30)
             }),
             interactive: false
         });
