@@ -34,53 +34,138 @@ function add_checkbox(feature, list, list_name) {
     }
 }
 
-function onEachFeature(feature, layer, layer_group, list, list_name, create_checkbox) {
+// function onEachFeature(feature, layer, layer_group, list, list_name, create_checkbox) {
+function onEachFeature(feature, layer, args = {}) {
+    var defaults = {
+        create_checkbox: false
+    };
+    var params = { ...defaults, ...args } // right-most object overwrites
+
     // only bind for markers
     if (feature.geometry.type == "Point") {
-        if (feature.properties.video_id) {
-            // popup with video and description
-            layer.bindPopup("<iframe width=\"500\" height=\"281\" src=\"https://www.youtube-nocookie.com/embed/" + feature.properties.video_id + "\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>" + (feature.properties.description ? feature.properties.description : ""), { maxWidth: 500 });
+        const POPUP_WIDTH = 500;
+        var html = document.createElement('div');
+
+        var title = document.createElement('h2');
+        title.className = 'popup-title';
+        title.innerHTML = feature.properties.id;
+        html.appendChild(title);
+
+        if (feature.properties.image_id) {
+            var image_link = document.createElement('a');
+            image_link.className = 'popup-media';
+            image_link.href = 'https://domain.com/' + feature.properties.image_id + '.png';
+
+            var image = document.createElement('img');
+            image.src = 'https://domain.com/' + feature.properties.image_id + '.png';
+            image.width = POPUP_WIDTH;
+
+            image_link.appendChild(image);
+            html.appendChild(image_link);
+        } else if (feature.properties.video_id) {
+            var video = document.createElement('iframe');
+            video.className = 'popup-media';
+            video.width = POPUP_WIDTH;
+            video.height = POPUP_WIDTH / 16 * 9;
+            video.src = 'https://www.youtube-nocookie.com/embed/' + feature.properties.video_id;
+            video.title = 'YouTube video player';
+            video.frameborder = 0;
+            // video.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; allowfullscreen'
+
+            html.appendChild(video);
         }
 
-        // if (feature.properties.image_id) {
-        //     // popup with image and description
-        //     layer.bindPopup("<a href='https://media.gtanet.com/gta4/images/flying-rats/" + feature.properties.image_id + ".jpg'><img src='https://media.gtanet.com/gta4/images/flying-rats/" + feature.properties.number + ".jpg' width='500/' /></a>" + feature.properties.description, { maxWidth: 500 });
-        // }
+        if (feature.properties.description) {
+            var description = document.createElement('p');
+            description.className = 'popup-description';
+            description.appendChild(document.createTextNode(feature.properties.description));
 
-        if (feature.properties.video_id
-            // || feature.properties.image_id
-        ) {
-            // rewrite url for easy copy pasta
-            layer.on('popupopen', (event) => {
-                history.replaceState({}, "", "index.html?list=" + list_name + "&id=" + feature.properties.id);
-            });
+            html.appendChild(description);
         }
-    }
 
-    if (create_checkbox) {
-        add_checkbox(feature, list, list_name);
+        if (params.create_checkbox) {
+            add_checkbox(feature, params.list, params.list_name);
 
-        if (document.getElementById(list_name + ':' + feature.properties.id) != null) {
-            // if not a marker try to assign to the same checkbox as the corresponding marker
-            document.getElementById(list_name + ':' + feature.properties.id).addEventListener('change', (element) => {
+            var label = document.createElement('label');
+            label.className = 'popup-checkbox is-fullwidth';
+
+            var label_text = document.createTextNode('Hide this marker');
+
+            var checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+
+            if (localStorage.getItem(params.list_name + ":" + feature.properties.id)) {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', element => {
                 if (element.target.checked) {
-                    layer_group.removeLayer(layer);
+                    // check global checkbox
+                    document.getElementById(params.list_name + ':' + feature.properties.id).checked = true;
                     // save to localStorage
-                    localStorage.setItem(list_name + ":" + feature.properties.id, true);
+                    localStorage.setItem(params.list_name + ":" + feature.properties.id, true);
+                    // remove all with ID from map
+                    marker.get(params.list_name).get(feature.properties.id).forEach(e => {
+                        params.layer_group.removeLayer(e);
+                    });
                 } else {
-                    layer.addTo(layer_group);
+                    // uncheck global checkbox
+                    document.getElementById(params.list_name + ':' + feature.properties.id).checked = false;
                     // remove from localStorage
-                    localStorage.removeItem(list_name + ":" + feature.properties.id);
+                    localStorage.removeItem(params.list_name + ":" + feature.properties.id);
+                    // add all with ID to map
+                    marker.get(params.list_name).get(feature.properties.id).forEach(e => {
+                        e.addTo(params.layer_group);
+                    });
                 }
             });
+
+            // Also watch global checkbox
+            if (document.getElementById(params.list_name + ':' + feature.properties.id) != null) {
+                // if not a marker try to assign to the same checkbox as the corresponding marker
+                document.getElementById(params.list_name + ':' + feature.properties.id).addEventListener('change', (element) => {
+                    if (element.target.checked) {
+                        // check popup checkbox
+                        checkbox.checked = true;
+                        // save to localStorage
+                        localStorage.setItem(params.list_name + ":" + feature.properties.id, true);
+                        // remove all with ID from map
+                        marker.get(params.list_name).get(feature.properties.id).forEach(e => {
+                            params.layer_group.removeLayer(e);
+                        });
+                    } else {
+                        // uncheck popup checkbox
+                        checkbox.checked = false;
+                        // remove from localStorage
+                        localStorage.removeItem(params.list_name + ":" + feature.properties.id);
+                        // add all with ID to map
+                        marker.get(params.list_name).get(feature.properties.id).forEach(e => {
+                            e.addTo(params.layer_group);
+                        });
+                    }
+                });
+            }
+
+            // rewrite url for easy copy pasta
+            layer.on('popupopen', (event) => {
+                history.replaceState({}, "", "index.html?list=" + params.list_name + "&id=" + feature.properties.id);
+            });
+
+            label.appendChild(checkbox);
+            label.appendChild(label_text);
+            html.appendChild(label);
         }
+
+        layer.bindPopup(html, {
+            maxWidth: POPUP_WIDTH
+        });
     }
 
     // save all marker in a map so we can access them later
-    if (!marker.has(list_name)) {
-        marker.set(list_name, new Map());
+    if (!marker.has(params.list_name)) {
+        marker.set(params.list_name, new Map());
     }
-    var list_map = marker.get(list_name);
+    var list_map = marker.get(params.list_name);
 
     if (!list_map.has(feature.properties.id)) {
         list_map.set(feature.properties.id, new Array());

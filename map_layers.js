@@ -29,6 +29,7 @@ tiled_map.addTo(map);
     // Disable general editing
     // L.PM.setOptIn(true);
 
+    // TODO: allow multiple layers
     var edit_layer;
     // read saved edit layer if available
     if (localStorage.getItem("edit")) {

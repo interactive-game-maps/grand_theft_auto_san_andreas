@@ -16,20 +16,28 @@ var cop_bribes_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
 
+var cop_bribes_icon = L.Icon.Default.extend({
+    options: {
+        imagePath: './',
+        iconUrl: 'marker/cop_bribes.png',
+        shadowUrl: 'marker/shadow.png'
+    }
+});
+
 L.geoJSON(cop_bribes, {
     pointToLayer: (feature, latlng) => {
         return L.marker(latlng, {
-            icon: L.divIcon({
-                className: 'marker-custom marker-cop_bribes',
-                html: feature.properties.id,
-                iconAnchor: new L.point(20, 20),
-                iconSize: new L.point(40, 40)
-            }),
-            interactive: false
+            icon: new cop_bribes_icon,
+            riseOnHover: true
         });
     },
     onEachFeature: (feature, layer) => {
-        onEachFeature(feature, layer, cop_bribes_group, cop_bribes_list, "cop_bribes", true);
+        onEachFeature(feature, layer, {
+            layer_group: cop_bribes_group,
+            list: cop_bribes_list,
+            list_name: "cop_bribes",
+            create_checkbox: true
+        });
     }
 }).addTo(cop_bribes_group);
 marker.get("cop_bribes").set("group", cop_bribes_group);

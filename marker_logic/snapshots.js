@@ -16,20 +16,28 @@ var snapshots_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
 
+var snapshots_icon = L.Icon.Default.extend({
+    options: {
+        imagePath: './',
+        iconUrl: 'marker/snapshots.png',
+        shadowUrl: 'marker/shadow.png'
+    }
+});
+
 L.geoJSON(snapshots, {
     pointToLayer: (feature, latlng) => {
         return L.marker(latlng, {
-            icon: L.divIcon({
-                className: 'marker-custom marker-snapshots',
-                html: feature.properties.id,
-                iconAnchor: new L.point(20, 20),
-                iconSize: new L.point(40, 40)
-            }),
-            interactive: false
+            icon: new snapshots_icon,
+            riseOnHover: true
         });
     },
     onEachFeature: (feature, layer) => {
-        onEachFeature(feature, layer, snapshots_group, snapshots_list, "snapshots", true);
+        onEachFeature(feature, layer, {
+            layer_group: snapshots_group,
+            list: snapshots_list,
+            list_name: "snapshots",
+            create_checkbox: true
+        });
     }
 }).addTo(snapshots_group);
 marker.get("snapshots").set("group", snapshots_group);

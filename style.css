@@ -36,40 +36,26 @@ html, body, #map {
     background: #738aaf;
 }
 
-.marker-custom {
-    background-size: contain;
-    background-repeat: no-repeat;
-    font-size: 14px;
-    color: white;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+.is-fullwidth {
+    display: flex;
+    width: 100%;
 }
 
-.marker-tags {
-    background-image: url(marker/tags.png);
+.popup-checkbox {
+    border-width: 1px;
+    padding: calc(0.5em - 1px) 0;
+    white-space: nowrap;
+    justify-content: center;
     text-align: center;
-    line-height: 40px;
+    appearance: none;
+    align-items: center;
+    border-radius: 4px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-color: #b5b5b5;
+    cursor: pointer;
 }
 
-.marker-snapshots {
-    background-image: url(marker/snapshots.png);
+.popup-title {
     text-align: center;
-    line-height: 40px;
-}
-
-.marker-horseshoes {
-    background-image: url(marker/horseshoes.png);
-    text-align: center;
-    line-height: 40px;
-}
-
-.marker-oysters {
-    background-image: url(marker/oysters.png);
-    text-align: center;
-    line-height: 40px;
-}
-
-.marker-cop_bribes {
-    background-image: url(marker/cop_bribes.png);
-    text-align: center;
-    line-height: 45px;
 }

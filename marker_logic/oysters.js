@@ -16,20 +16,28 @@ var oysters_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
 
+var oysters_icon = L.Icon.Default.extend({
+    options: {
+        imagePath: './',
+        iconUrl: 'marker/oysters.png',
+        shadowUrl: 'marker/shadow.png'
+    }
+});
+
 L.geoJSON(oysters, {
     pointToLayer: (feature, latlng) => {
         return L.marker(latlng, {
-            icon: L.divIcon({
-                className: 'marker-custom marker-oysters',
-                html: feature.properties.id,
-                iconAnchor: new L.point(20, 20),
-                iconSize: new L.point(40, 40)
-            }),
-            interactive: false
+            icon: new oysters_icon,
+            riseOnHover: true
         });
     },
     onEachFeature: (feature, layer) => {
-        onEachFeature(feature, layer, oysters_group, oysters_list, "oysters", true);
+        onEachFeature(feature, layer, {
+            layer_group: oysters_group,
+            list: oysters_list,
+            list_name: "oysters",
+            create_checkbox: true
+        });
     }
 }).addTo(oysters_group);
 marker.get("oysters").set("group", oysters_group);

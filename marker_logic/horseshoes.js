@@ -16,20 +16,28 @@ var horseshoes_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
 
+var horseshoes_icon = L.Icon.Default.extend({
+    options: {
+        imagePath: './',
+        iconUrl: 'marker/horseshoes.png',
+        shadowUrl: 'marker/shadow.png'
+    }
+});
+
 L.geoJSON(horseshoes, {
     pointToLayer: (feature, latlng) => {
         return L.marker(latlng, {
-            icon: L.divIcon({
-                className: 'marker-custom marker-horseshoes',
-                html: feature.properties.id,
-                iconAnchor: new L.point(20, 20),
-                iconSize: new L.point(40, 40)
-            }),
-            interactive: false
+            icon: new horseshoes_icon,
+            riseOnHover: true
         });
     },
     onEachFeature: (feature, layer) => {
-        onEachFeature(feature, layer, horseshoes_group, horseshoes_list, "horseshoes", true);
+        onEachFeature(feature, layer, {
+            layer_group: horseshoes_group,
+            list: horseshoes_list,
+            list_name: "horseshoes",
+            create_checkbox: true
+        });
     }
 }).addTo(horseshoes_group);
 marker.get("horseshoes").set("group", horseshoes_group);

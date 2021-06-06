@@ -16,20 +16,28 @@ var tags_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
 
+var tags_icon = L.Icon.Default.extend({
+    options: {
+        imagePath: './',
+        iconUrl: 'marker/tags.png',
+        shadowUrl: 'marker/shadow.png'
+    }
+});
+
 L.geoJSON(tags, {
     pointToLayer: (feature, latlng) => {
         return L.marker(latlng, {
-            icon: L.divIcon({
-                className: 'marker-custom marker-tags',
-                html: feature.properties.id,
-                iconAnchor: new L.point(20, 20),
-                iconSize: new L.point(40, 40)
-            }),
-            interactive: false
+            icon: new tags_icon,
+            riseOnHover: true
         });
     },
     onEachFeature: (feature, layer) => {
-        onEachFeature(feature, layer, tags_group, tags_list, "tags", true);
+        onEachFeature(feature, layer, {
+            layer_group: tags_group,
+            list: tags_list,
+            list_name: "tags",
+            create_checkbox: true
+        });
     }
 }).addTo(tags_group);
 marker.get("tags").set("group", tags_group);

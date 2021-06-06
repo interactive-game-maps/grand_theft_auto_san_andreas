@@ -32,7 +32,12 @@ var los_santos_races_geojson = L.geoJSON(los_santos_races, {
         });
     },
     onEachFeature: (feature, layer) => {
-        onEachFeature(feature, layer, race_tournaments_group, race_tournaments_list, "race_tournaments", true);
+        onEachFeature(feature, layer, {
+            layer_group: race_tournaments_group,
+            list: race_tournaments_list,
+            list_name: "race_tournaments",
+            create_checkbox: true
+        });
 
         layer.on({
             mouseover: (e) => {
@@ -72,7 +77,12 @@ var san_fierro_races_geojson = L.geoJSON(san_fierro_races, {
         });
     },
     onEachFeature: (feature, layer) => {
-        onEachFeature(feature, layer, race_tournaments_group, race_tournaments_list, "race_tournaments", true);
+        onEachFeature(feature, layer, {
+            layer_group: race_tournaments_group,
+            list: race_tournaments_list,
+            list_name: "race_tournaments",
+            create_checkbox: true
+        });
 
         layer.on({
             mouseover: (e) => {
@@ -112,7 +122,12 @@ var las_venturas_races_geojson = L.geoJSON(las_venturas_races, {
         });
     },
     onEachFeature: (feature, layer) => {
-        onEachFeature(feature, layer, race_tournaments_group, race_tournaments_list, "race_tournaments", true);
+        onEachFeature(feature, layer, {
+            layer_group: race_tournaments_group,
+            list: race_tournaments_list,
+            list_name: "race_tournaments",
+            create_checkbox: true
+        });
 
         layer.on({
             mouseover: (e) => {
@@ -152,7 +167,12 @@ var air_races_geojson = L.geoJSON(air_races, {
         });
     },
     onEachFeature: (feature, layer) => {
-        onEachFeature(feature, layer, race_tournaments_group, race_tournaments_list, "race_tournaments", true);
+        onEachFeature(feature, layer, {
+            layer_group: race_tournaments_group,
+            list: race_tournaments_list,
+            list_name: "race_tournaments",
+            create_checkbox: true
+        });
 
         layer.on({
             mouseover: (e) => {
