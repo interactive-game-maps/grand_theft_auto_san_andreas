@@ -34,7 +34,6 @@ function add_checkbox(feature, list, list_name) {
     }
 }
 
-// function onEachFeature(feature, layer, layer_group, list, list_name, create_checkbox) {
 function onEachFeature(feature, layer, args = {}) {
     var defaults = {
         create_checkbox: false
