@@ -53,7 +53,11 @@ function onEachFeature(feature, layer, args = {}) {
         if (feature.properties.image_id) {
             var image_link = document.createElement('a');
             image_link.className = 'popup-media';
-            image_link.href = 'https://gta.fandom.com/wiki/' + feature.properties.image_link;
+            if (feature.properties.image_link) {
+                image_link.href = 'https://gta.fandom.com/wiki/' + feature.properties.image_link;
+            } else {
+                image_link.href = 'https://static.wikia.nocookie.net/gtawiki/images/' + feature.properties.image_id + '.jpg';
+            }
 
             var image = document.createElement('img');
             image.src = 'https://static.wikia.nocookie.net/gtawiki/images/' + feature.properties.image_id + '.jpg';

@@ -7,7 +7,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "1"
+                "id": "1",
+                "image_id": "7/74/Snapshots_GTASA_Location_007"
             },
             "geometry": {
                 "type": "Point",
@@ -20,7 +21,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "2"
+                "id": "2",
+                "image_id": "7/77/Snapshots_GTASA_Location_009"
             },
             "geometry": {
                 "type": "Point",
@@ -33,7 +35,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "3"
+                "id": "3",
+                "image_id": "a/ab/Snapshots_GTASA_Location_002"
             },
             "geometry": {
                 "type": "Point",
@@ -46,7 +49,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "4"
+                "id": "4",
+                "image_id": "7/72/Snapshots_GTASA_Location_034"
             },
             "geometry": {
                 "type": "Point",
@@ -59,7 +63,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "5"
+                "id": "5",
+                "image_id": "d/d8/Snapshots_GTASA_Location_033"
             },
             "geometry": {
                 "type": "Point",
@@ -72,7 +77,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "6"
+                "id": "6",
+                "image_id": "b/b3/Snapshots_GTASA_Location_049"
             },
             "geometry": {
                 "type": "Point",
@@ -85,7 +91,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "7"
+                "id": "7",
+                "image_id": "4/45/Snapshots_GTASA_Location_047"
             },
             "geometry": {
                 "type": "Point",
@@ -98,7 +105,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "8"
+                "id": "8",
+                "image_id": "e/ed/Snapshots_GTASA_Location_010"
             },
             "geometry": {
                 "type": "Point",
@@ -111,7 +119,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "9"
+                "id": "9",
+                "image_id": "1/10/Snapshots_GTASA_Location_021"
             },
             "geometry": {
                 "type": "Point",
@@ -124,7 +133,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "10"
+                "id": "10",
+                "image_id": "9/9b/Snapshots_GTASA_Location_022"
             },
             "geometry": {
                 "type": "Point",
@@ -137,7 +147,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "11"
+                "id": "11",
+                "image_id": "a/ac/Snapshots_GTASA_Location_028"
             },
             "geometry": {
                 "type": "Point",
@@ -150,7 +161,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "12"
+                "id": "12",
+                "image_id": "3/33/Snapshots_GTASA_Location_029"
             },
             "geometry": {
                 "type": "Point",
@@ -163,7 +175,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "13"
+                "id": "13",
+                "image_id": "d/d3/Snapshots_GTASA_Location_030"
             },
             "geometry": {
                 "type": "Point",
@@ -176,7 +189,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "14"
+                "id": "14",
+                "image_id": "0/08/Snapshots_GTASA_Location_035"
             },
             "geometry": {
                 "type": "Point",
@@ -189,7 +203,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "15"
+                "id": "15",
+                "image_id": "6/6b/Snapshots_GTASA_Location_050"
             },
             "geometry": {
                 "type": "Point",
@@ -202,7 +217,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "16"
+                "id": "16",
+                "image_id": "7/77/Snapshots_GTASA_Location_046"
             },
             "geometry": {
                 "type": "Point",
@@ -215,7 +231,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "17"
+                "id": "17",
+                "image_id": "f/f7/Snapshots_GTASA_Location_044"
             },
             "geometry": {
                 "type": "Point",
@@ -228,7 +245,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "18"
+                "id": "18",
+                "image_id": "f/fe/Snapshots_GTASA_Location_025"
             },
             "geometry": {
                 "type": "Point",
@@ -241,7 +259,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "19"
+                "id": "19",
+                "image_id": "7/78/Snapshots_GTASA_Location_043"
             },
             "geometry": {
                 "type": "Point",
@@ -254,7 +273,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "20"
+                "id": "20",
+                "image_id": "b/b2/Snapshots_GTASA_Location_041"
             },
             "geometry": {
                 "type": "Point",
@@ -267,7 +287,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "21"
+                "id": "21",
+                "image_id": "a/a6/Snapshots_GTASA_Location_039"
             },
             "geometry": {
                 "type": "Point",
@@ -280,7 +301,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "22"
+                "id": "22",
+                "image_id": "3/3f/Snapshots_GTASA_Location_027"
             },
             "geometry": {
                 "type": "Point",
@@ -293,7 +315,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "23"
+                "id": "23",
+                "image_id": "c/ca/Snapshots_GTASA_Location_038"
             },
             "geometry": {
                 "type": "Point",
@@ -306,7 +329,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "24"
+                "id": "24",
+                "image_id": "8/85/Snapshots_GTASA_Location_036"
             },
             "geometry": {
                 "type": "Point",
@@ -319,7 +343,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "25"
+                "id": "25",
+                "image_id": "8/81/Snapshots_GTASA_Location_040"
             },
             "geometry": {
                 "type": "Point",
@@ -332,7 +357,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "26"
+                "id": "26",
+                "image_id": "d/d8/Snapshots_GTASA_Location_037"
             },
             "geometry": {
                 "type": "Point",
@@ -345,7 +371,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "27"
+                "id": "27",
+                "image_id": "b/bd/Snapshots_GTASA_Location_031"
             },
             "geometry": {
                 "type": "Point",
@@ -358,7 +385,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "28"
+                "id": "28",
+                "image_id": "1/12/Snapshots_GTASA_Location_024"
             },
             "geometry": {
                 "type": "Point",
@@ -371,7 +399,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "29"
+                "id": "29",
+                "image_id": "f/f2/Snapshots_GTASA_Location_023"
             },
             "geometry": {
                 "type": "Point",
@@ -384,7 +413,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "30"
+                "id": "30",
+                "image_id": "c/c1/Snapshots_GTASA_Location_020"
             },
             "geometry": {
                 "type": "Point",
@@ -397,7 +427,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "31"
+                "id": "31",
+                "image_id": "a/a5/Snapshots_GTASA_Location_008"
             },
             "geometry": {
                 "type": "Point",
@@ -410,7 +441,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "32"
+                "id": "32",
+                "image_id": "9/90/Snapshots_GTASA_Location_006"
             },
             "geometry": {
                 "type": "Point",
@@ -423,7 +455,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "33"
+                "id": "33",
+                "image_id": "e/e3/Snapshots_GTASA_Location_005"
             },
             "geometry": {
                 "type": "Point",
@@ -436,7 +469,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "34"
+                "id": "34",
+                "image_id": "b/b5/Snapshots_GTASA_Location_001"
             },
             "geometry": {
                 "type": "Point",
@@ -449,7 +483,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "35"
+                "id": "35",
+                "image_id": "a/ad/Snapshots_GTASA_Location_048"
             },
             "geometry": {
                 "type": "Point",
@@ -462,7 +497,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "36"
+                "id": "36",
+                "image_id": "7/74/Snapshots_GTASA_Location_045"
             },
             "geometry": {
                 "type": "Point",
@@ -475,7 +511,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "37"
+                "id": "37",
+                "image_id": "2/22/Snapshots_GTASA_Location_018"
             },
             "geometry": {
                 "type": "Point",
@@ -488,7 +525,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "38"
+                "id": "38",
+                "image_id": "7/74/Snapshots_GTASA_Location_026"
             },
             "geometry": {
                 "type": "Point",
@@ -501,7 +539,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "39"
+                "id": "39",
+                "image_id": "0/07/Snapshots_GTASA_Location_019"
             },
             "geometry": {
                 "type": "Point",
@@ -514,7 +553,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "40"
+                "id": "40",
+                "image_id": "1/12/Snapshots_GTASA_Location_003"
             },
             "geometry": {
                 "type": "Point",
@@ -527,7 +567,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "41"
+                "id": "41",
+                "image_id": "9/9e/Snapshots_GTASA_Location_004"
             },
             "geometry": {
                 "type": "Point",
@@ -540,7 +581,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "42"
+                "id": "42",
+                "image_id": "a/aa/Snapshots_GTASA_Location_014"
             },
             "geometry": {
                 "type": "Point",
@@ -553,7 +595,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "43"
+                "id": "43",
+                "image_id": "5/5f/Snapshots_GTASA_Location_016"
             },
             "geometry": {
                 "type": "Point",
@@ -566,7 +609,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "44"
+                "id": "44",
+                "image_id": "7/73/Snapshots_GTASA_Location_012"
             },
             "geometry": {
                 "type": "Point",
@@ -579,7 +623,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "45"
+                "id": "45",
+                "image_id": "0/0e/Snapshots_GTASA_Location_011"
             },
             "geometry": {
                 "type": "Point",
@@ -592,7 +637,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "46"
+                "id": "46",
+                "image_id": "e/e8/Snapshots_GTASA_Location_013"
             },
             "geometry": {
                 "type": "Point",
@@ -605,7 +651,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "47"
+                "id": "47",
+                "image_id": "f/f6/Snapshots_GTASA_Location_032"
             },
             "geometry": {
                 "type": "Point",
@@ -618,7 +665,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "48"
+                "id": "48",
+                "image_id": "9/9f/Snapshots_GTASA_Location_017"
             },
             "geometry": {
                 "type": "Point",
@@ -631,7 +679,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "49"
+                "id": "49",
+                "image_id": "2/24/Snapshots_GTASA_Location_015"
             },
             "geometry": {
                 "type": "Point",
@@ -644,7 +693,8 @@ var snapshots = {
         {
             "type": "Feature",
             "properties": {
-                "id": "50"
+                "id": "50",
+                "image_id": "9/9d/Snapshots_GTASA_Location_042"
             },
             "geometry": {
                 "type": "Point",
