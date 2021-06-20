@@ -53,7 +53,8 @@ function onEachFeature(feature, layer, args = {}) {
         if (feature.properties.image_id) {
             var prefix = 'https://static.wikia.nocookie.net/gtawiki/images/';
             var suffix = '.jpg';
-            if (params.list_name == "horseshoes") {
+            if (params.list_name == "horseshoes"
+                || params.list_name == "oysters") {
                 prefix = 'https://static.wikigta.org/en/images/';
                 suffix = '.JPG'
             }
@@ -61,7 +62,20 @@ function onEachFeature(feature, layer, args = {}) {
             var image_link = document.createElement('a');
             image_link.className = 'popup-media';
             if (feature.properties.image_link) {
-                image_link.href = 'https://gta.fandom.com/wiki/' + feature.properties.image_link;
+                switch (params.list_name) {
+                    case 'tags':
+                        image_link.href = 'https://gta.fandom.com/wiki/' + feature.properties.image_link;
+                        break;
+
+                    case 'horseshoes':
+                    case 'oysters':
+                        image_link.href = 'http://en.wikigta.org/wiki/' + feature.properties.image_link;
+                        break;
+
+                    default:
+                        image_link.href = prefix + feature.properties.image_id + suffix;
+                        break;
+                }
             } else {
                 image_link.href = prefix + feature.properties.image_id + suffix;
             }
