@@ -4,6 +4,7 @@ var overlayMaps = {
     "Snapshots": snapshots_group,
     "Horseshoes": horseshoes_group,
     "Oysters": oysters_group,
+    "Unique Stunt Jumps": stunt_jumps_group,
     "Cob Bribes": cop_bribes_group,
     "Busted Warps": busted_warps_group,
     "Death Warps": death_warps_group,

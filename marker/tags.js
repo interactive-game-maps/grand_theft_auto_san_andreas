@@ -53,7 +53,7 @@ var tags = {
             "type": "Feature",
             "properties": {
                 "id": "4",
-                "image_id": "b/b0/Tag18FrontYardBallas8",
+                "image_id": "b/b0/Tag18FrontYardBallas",
                 "image_link": "Tags/Locations#Tag_.2318"
             },
             "geometry": {
@@ -475,7 +475,7 @@ var tags = {
             "type": "Feature",
             "properties": {
                 "id": "32",
-                "image_id": "1/1c/Tag86LosSantosVagos7",
+                "image_id": "1/1c/Tag86LosSantosVagos",
                 "image_link": "Tags/Locations#Tag_.2386"
             },
             "geometry": {
@@ -535,7 +535,7 @@ var tags = {
             "type": "Feature",
             "properties": {
                 "id": "36",
-                "image_id": "3/38/Tag87LosSantosVagos7",
+                "image_id": "3/38/Tag87LosSantosVagos",
                 "image_link": "Tags/Locations#Tag_.2387"
             },
             "geometry": {
