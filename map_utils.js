@@ -41,6 +41,10 @@ function onEachFeature(feature, layer, args = {}) {
     var params = { ...defaults, ...args } // right-most object overwrites
     const POPUP_WIDTH = 500;
 
+    if (feature.geometry.type == "Point" && params.create_checkbox) {
+        add_checkbox(feature, params.list, params.list_name);
+    }
+
     layer.bindPopup(() => {
         // only bind for markers
         if (feature.geometry.type == "Point") {
