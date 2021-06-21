@@ -13,7 +13,7 @@ var map = L.map('map', {
 var tiled_map = new L.tileLayer('map_tiles/{z}/{x}/{y}.png', {
     minNativeZoom: 2,
     maxNativeZoom: 5,
-    attribution: '<a href="https://old.reddit.com/r/sanandreas/comments/9856u1/high_resolution_map_for_grand_theft_auto_san/">Map from TheCynicalAutist</a>, <a href="https://ehgames.com/gta/maplist/">Markers from ehgames.com</a>',
+    attribution: '<a href="https://old.reddit.com/r/sanandreas/comments/9856u1/high_resolution_map_for_grand_theft_auto_san/">Map from TheCynicalAutist</a>, <a href="https://ehgames.com/gta/maplist/">Marker locations from ehgames.com</a>',
     noWrap: true,
     detectRetina: true
 });
@@ -29,47 +29,99 @@ tiled_map.addTo(map);
     // Disable general editing
     // L.PM.setOptIn(true);
 
-    // TODO: allow multiple layers
-    var edit_layer;
-    // read saved edit layer if available
-    if (localStorage.getItem("edit")) {
-        edit_layer = L.geoJSON(JSON.parse(localStorage.getItem("edit")), {
-            pmIgnore: false
-        });
-    } else {
-        edit_layer = L.featureGroup(null, {
-            pmIgnore: false
-        });
-    }
-
     // edit_layer.pm.applyOptionsToAllChilds({
     //     allowEditing: true
     // });
+
     map.pm.Toolbar.createCustomControl({
-        name: 'export',
+        name: 'add_layer',
         block: 'custom',
-        title: 'Export',
+        title: 'Add custom layer',
+        className: 'fas fa-plus',
         toggle: false,
         onClick: () => {
-            console.log(edit_layer.toGeoJSON());
-            window.prompt("Copy to clipboard: Ctrl+C, Enter", JSON.stringify(edit_layer.toGeoJSON(), null, '    '));
+            if (!create_custom_layer()) {
+                return;
+            }
+
+            var active_custom_layers = custom_layer_controls.getOverlays({
+                only_active: true
+            });
+
+            var active_custom_layer = custom_layers[Object.keys(active_custom_layers)[0]]
+
+            // Disable current active layer
+            map.removeLayer(active_custom_layer);
+        }
+    });
+    map.pm.Toolbar.createCustomControl({
+        name: 'remove_layer',
+        block: 'custom',
+        title: 'Remove custom layer',
+        className: 'fas fa-trash',
+        toggle: false,
+        onClick: () => {
+            if (!confirm('Really delete the current custom marker layer?')) {
+                return;
+            }
+
+            // should be only one because we're in edit mode
+            var active_custom_layers = custom_layer_controls.getOverlays({
+                only_active: true
+            });
+            var active_custom_layer = custom_layers[Object.keys(active_custom_layers)[0]]
+
+            localStorage.removeItem(Object.keys(active_custom_layers)[0]);
+            custom_layer_controls.removeLayer(active_custom_layer);
+            map.removeLayer(active_custom_layer);
+            delete custom_layers[Object.keys(active_custom_layers)[0]];
+
+            // Remove layer from controls
+            show_custom_layer_controls();
+            edit_mode = false;
+            map.pm.toggleControls();
+        }
+    });
+    map.pm.Toolbar.createCustomControl({
+        name: 'export_layer',
+        block: 'custom',
+        title: 'Export custom layer',
+        className: 'fas fa-file-download',
+        toggle: false,
+        onClick: () => {
+            var active_custom_layers = custom_layer_controls.getOverlays({
+                only_active: true
+            });
+
+            var active_custom_layer = custom_layers[Object.keys(active_custom_layers)[0]]
+
+            console.log(active_custom_layer.toGeoJSON());
+            window.prompt("Copy to clipboard: Ctrl+C, Enter", JSON.stringify(active_custom_layer.toGeoJSON()));
         }
     });
     map.pm.addControls({
         position: 'bottomright',
         drawCircleMarker: false,
-        oneBlock: true
+        oneBlock: false
     });
     map.pm.toggleControls(); // hide as default
-    map.pm.setGlobalOptions({
-        layerGroup: edit_layer
-    });
 
     // Save manual edits before leaving
     window.onbeforeunload = () => {
-        localStorage.setItem("edit", JSON.stringify(edit_layer.toGeoJSON()));
+        var array = [];
+
+        if (Object.keys(custom_layers).length < 1) {
+            localStorage.removeItem('custom_layers');
+            return;
+        }
+
+        Object.keys(custom_layers).forEach(key => {
+            localStorage.setItem(key, JSON.stringify(custom_layers[key].toGeoJSON()));
+            array.push(key);
+        });
+
+        localStorage.setItem('custom_layers', JSON.stringify(array));
     };
-    // TODO: allow deleting edits
 }
 
 {// Add sidebar to map
@@ -86,6 +138,11 @@ tiled_map.addTo(map);
         tab: '<i class="fas fa-trash"></i>',
         position: 'bottom',
         button: () => {
+            if (!confirm('Really delete all marked locations and all custom marker layers?')) {
+                return;
+            }
+
+            custom_layers = {};
             localStorage.clear();
             location.reload();
         }
@@ -99,13 +156,34 @@ tiled_map.addTo(map);
         position: 'bottom',
         button: () => {
             if (!edit_mode) {
-                edit_layer.addTo(map);
-                // edit_layer.pm.enable();
+                var active_custom_layers = custom_layer_controls.getOverlays({
+                    only_active: true
+                });
+
+                if (Object.keys(active_custom_layers).length < 1) {
+                    if (!create_custom_layer()) {
+                        return;
+                    }
+                } else if (Object.keys(active_custom_layers).length > 1) {
+                    alert('Please select only one custom layer to edit');
+                    return;
+                }
+
+                active_custom_layers = custom_layer_controls.getOverlays({
+                    only_active: true
+                });
+
+                var active_custom_layer = custom_layers[Object.keys(active_custom_layers)[0]];
+
+                map.pm.setGlobalOptions({
+                    layerGroup: active_custom_layer
+                });
+
                 edit_mode = true;
+                hide_custom_layer_controls();
             } else {
-                edit_layer.removeFrom(map);
-                // edit_layer.pm.disable();
                 edit_mode = false;
+                show_custom_layer_controls();
             }
             map.pm.toggleControls();
         }

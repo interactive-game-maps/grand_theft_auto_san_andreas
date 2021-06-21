@@ -227,3 +227,41 @@ function zoomToFeature(e) {
         map.fitBounds(e.target.getBounds());
     }
 }
+
+function hide_custom_layer_controls() {
+    map.removeControl(custom_layer_controls);
+}
+
+function show_custom_layer_controls() {
+    if (Object.keys(custom_layers).length > 0) {
+        // Don't know why I have to create a new control but adding the old one is giving me an exeption
+        custom_layer_controls = new L.control.layers(null, custom_layers, {
+            collapsed: false
+        });
+        map.addControl(custom_layer_controls);
+    }
+}
+
+function create_custom_layer() {
+    // Create new layer
+    var layer_id = prompt("Unique new layer name");
+
+    if (layer_id == null || layer_id == '' || layer_id in custom_layers) {
+        return false;
+    }
+    custom_layers[layer_id] = L.featureGroup(null, {
+        pmIgnore: false
+    });
+
+    // Refresh layer to controls
+    custom_layer_controls.addOverlay(custom_layers[layer_id], layer_id);
+
+    // Display new layer and active
+    custom_layers[layer_id].addTo(map);
+
+    map.pm.setGlobalOptions({
+        layerGroup: custom_layers[layer_id]
+    });
+
+    return true;
+}
