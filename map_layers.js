@@ -179,6 +179,12 @@ tiled_map.addTo(map);
                     layerGroup: active_custom_layer
                 });
 
+                map.on('pm:create', e => {
+                    active_custom_layer.eachLayer(layer => {
+                        create_editable_popup(layer);
+                    });
+                });
+
                 edit_mode = true;
                 hide_custom_layer_controls();
             } else {

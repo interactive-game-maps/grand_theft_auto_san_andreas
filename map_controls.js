@@ -70,6 +70,9 @@ L.control.layers(baseMaps, overlayMaps, {
             }
 
             var custom_layer = L.geoJSON(JSON.parse(localStorage.getItem(element)), {
+                onEachFeature: (feature, layer) => {
+                    create_editable_popup(layer);
+                },
                 pmIgnore: false
             });
             custom_layers[element] = custom_layer;
@@ -77,6 +80,9 @@ L.control.layers(baseMaps, overlayMaps, {
     }
 
     var custom_layer_controls;
+    custom_layer_controls = new L.control.layers(null, custom_layers, {
+        collapsed: false
+    });
     show_custom_layer_controls();
 }
 

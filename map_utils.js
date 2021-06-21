@@ -265,3 +265,130 @@ function create_custom_layer() {
 
     return true;
 }
+
+function create_editable_popup(layer) {
+    layer.bindPopup(() => {
+        var html = document.createElement('div');
+
+        var id_p = document.createElement('p');
+
+        var id_input = document.createElement('input');
+        id_input.setAttribute('type', 'text');
+        id_input.id = layer._leaflet_id + ':id';
+
+        var id_label = document.createElement('label');
+        id_label.htmlFor = id_input.id;
+        id_label.innerHTML = 'ID: ';
+
+        if (!layer.feature) {
+            layer.feature = {};
+            layer.feature.type = 'Feature';
+        }
+
+        if (!layer.feature.properties) {
+            layer.feature.properties = {};
+        }
+
+        if (layer.feature.properties.id) {
+            id_input.value = layer.feature.properties.id;
+        }
+
+        id_input.addEventListener('change', e => {
+            layer.feature.properties.id = e.target.value;
+        });
+
+        id_p.appendChild(id_label);
+        id_p.appendChild(id_input);
+        html.appendChild(id_p);
+
+        var image_id_p = document.createElement('p');
+
+        var image_id_input = document.createElement('input');
+        image_id_input.setAttribute('type', 'text');
+        image_id_input.id = layer._leaflet_id + ':image_id';
+
+        var image_id_label = document.createElement('label');
+        image_id_label.htmlFor = image_id_input.id;
+        image_id_label.innerHTML = 'Image ID: ';
+
+        if (layer.feature.properties.image_id) {
+            image_id_input.value = layer.feature.properties.image_id;
+        }
+
+        image_id_input.addEventListener('change', e => {
+            layer.feature.properties.image_id = e.target.value;
+        });
+
+        image_id_p.appendChild(image_id_label);
+        image_id_p.appendChild(image_id_input);
+        html.appendChild(image_id_p);
+
+        var image_url_p = document.createElement('p');
+
+        var image_url_input = document.createElement('input');
+        image_url_input.setAttribute('type', 'text');
+        image_url_input.id = layer._leaflet_id + ':image_url';
+
+        var image_url_label = document.createElement('label');
+        image_url_label.htmlFor = image_url_input.id;
+        image_url_label.innerHTML = 'Image link: ';
+
+        if (layer.feature.properties.image_link) {
+            image_url_input.value = layer.feature.properties.image_link;
+        }
+
+        image_url_input.addEventListener('change', e => {
+            layer.feature.properties.image_link = e.target.value;
+        });
+
+        image_url_p.appendChild(image_url_label);
+        image_url_p.appendChild(image_url_input);
+        html.appendChild(image_url_p);
+
+        var video_id_p = document.createElement('p');
+
+        var video_id_input = document.createElement('input');
+        video_id_input.setAttribute('type', 'text');
+        video_id_input.id = layer._leaflet_id + ':video_id';
+
+        var video_id_label = document.createElement('label');
+        video_id_label.htmlFor = video_id_input.id;
+        video_id_label.innerHTML = 'Image ID: ';
+
+        if (layer.feature.properties.video_id) {
+            video_id_input.value = layer.feature.properties.video_id;
+        }
+
+        video_id_input.addEventListener('change', e => {
+            layer.feature.properties.video_id = e.target.value;
+        });
+
+        video_id_p.appendChild(video_id_label);
+        video_id_p.appendChild(video_id_input);
+        html.appendChild(video_id_p);
+
+        var description_p = document.createElement('p');
+
+        var description_input = document.createElement('input');
+        description_input.setAttribute('type', 'text');
+        description_input.id = layer._leaflet_id + ':description';
+
+        var description_label = document.createElement('label');
+        description_label.htmlFor = description_input.id;
+        description_label.innerHTML = 'Description: ';
+
+        if (layer.feature.properties.description) {
+            description_input.value = layer.feature.properties.description;
+        }
+
+        description_input.addEventListener('change', e => {
+            layer.feature.properties.description = e.target.value;
+        });
+
+        description_p.appendChild(description_label);
+        description_p.appendChild(description_input);
+        html.appendChild(description_p);
+
+        return html;
+    });
+}
