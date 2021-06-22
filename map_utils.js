@@ -175,15 +175,15 @@ function onEachFeature(feature, layer, args = {}) {
                     });
                 }
 
-                // rewrite url for easy copy pasta
-                layer.on('popupopen', (event) => {
-                    history.replaceState({}, "", "index.html?list=" + params.list_name + "&id=" + feature.properties.id);
-                });
-
                 label.appendChild(checkbox);
                 label.appendChild(label_text);
                 html.appendChild(label);
             }
+
+            // rewrite url for easy copy pasta
+            layer.on('popupopen', (event) => {
+                history.replaceState({}, "", "index.html?list=" + params.list_name + "&id=" + feature.properties.id);
+            });
 
             return html;
         }
