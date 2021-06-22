@@ -79,6 +79,15 @@ tiled_map.addTo(map);
             // Remove layer from controls
             show_custom_layer_controls();
             edit_mode = false;
+
+            // make sure editing is disabled
+            map.pm.disableDraw();
+            map.pm.disableGlobalEditMode();
+            map.pm.disableGlobalDragMode();
+            map.pm.disableGlobalRemovalMode();
+            map.pm.disableGlobalCutMode();
+            map.pm.disableGlobalRotateMode();
+
             map.pm.toggleControls();
         }
     });
@@ -189,6 +198,14 @@ tiled_map.addTo(map);
                 edit_mode = true;
                 hide_custom_layer_controls();
             } else {
+                // make sure editing is disabled
+                map.pm.disableDraw();
+                map.pm.disableGlobalEditMode();
+                map.pm.disableGlobalDragMode();
+                map.pm.disableGlobalRemovalMode();
+                map.pm.disableGlobalCutMode();
+                map.pm.disableGlobalRotateMode();
+
                 edit_mode = false;
                 show_custom_layer_controls();
             }
