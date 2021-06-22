@@ -353,7 +353,7 @@ function create_editable_popup(layer) {
 
         var video_id_label = document.createElement('label');
         video_id_label.htmlFor = video_id_input.id;
-        video_id_label.innerHTML = 'Image ID: ';
+        video_id_label.innerHTML = 'Video ID: ';
 
         if (layer.feature.properties.video_id) {
             video_id_input.value = layer.feature.properties.video_id;
