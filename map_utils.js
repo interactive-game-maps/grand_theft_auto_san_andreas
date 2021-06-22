@@ -41,13 +41,13 @@ function onEachFeature(feature, layer, args = {}) {
     var params = { ...defaults, ...args } // right-most object overwrites
     const POPUP_WIDTH = 500;
 
-    if (feature.geometry.type == "Point" && params.create_checkbox) {
-        add_checkbox(feature, params.list, params.list_name);
-    }
+    // only bind for markers
+    if (feature.geometry.type == "Point") {
+        if (params.create_checkbox) {
+            add_checkbox(feature, params.list, params.list_name);
+        }
 
-    layer.bindPopup(() => {
-        // only bind for markers
-        if (feature.geometry.type == "Point") {
+        layer.bindPopup(() => {
             var html = document.createElement('div');
 
             var title = document.createElement('h2');
@@ -186,10 +186,10 @@ function onEachFeature(feature, layer, args = {}) {
             });
 
             return html;
-        }
-    }, {
-        maxWidth: POPUP_WIDTH
-    });
+        }, {
+            maxWidth: POPUP_WIDTH
+        });
+    }
 
     // save all marker in a map so we can access them later
     if (!marker.has(params.list_name)) {
