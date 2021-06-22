@@ -89,6 +89,7 @@ tiled_map.addTo(map);
         className: 'fas fa-file-download',
         toggle: false,
         onClick: () => {
+            // should be only one because we're in edit mode
             var active_custom_layers = custom_layer_controls.getOverlays({
                 only_active: true
             });
@@ -96,7 +97,7 @@ tiled_map.addTo(map);
             var active_custom_layer = custom_layers[Object.keys(active_custom_layers)[0]]
 
             console.log(active_custom_layer.toGeoJSON());
-            window.prompt("Copy to clipboard: Ctrl+C, Enter", JSON.stringify(active_custom_layer.toGeoJSON()));
+            download(Object.keys(active_custom_layers)[0] + '.json', JSON.stringify(active_custom_layer.toGeoJSON(), null, '    '));
         }
     });
     map.pm.addControls({
