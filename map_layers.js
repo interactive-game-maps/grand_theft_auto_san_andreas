@@ -79,6 +79,7 @@ tiled_map.addTo(map);
             // Remove layer from controls
             show_custom_layer_controls();
             edit_mode = false;
+            map.pm.toggleControls();
 
             // make sure editing is disabled
             map.pm.disableDraw();
@@ -87,8 +88,6 @@ tiled_map.addTo(map);
             map.pm.disableGlobalRemovalMode();
             map.pm.disableGlobalCutMode();
             map.pm.disableGlobalRotateMode();
-
-            map.pm.toggleControls();
         }
     });
     map.pm.Toolbar.createCustomControl({
@@ -247,6 +246,10 @@ tiled_map.addTo(map);
         map.addLayer(marker.get(event.id).get('group'));
         history.replaceState({}, "", "index.html?list=" + event.id);
     });
+
+    sidebar.on('closing', () => {
+        history.replaceState({}, "", "index.html");
+    })
 }
 
 // global list to access marker later on

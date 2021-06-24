@@ -3,10 +3,11 @@ var tags_list = document.createElement('ul');
 tags_list.className = 'collectibles_list';
 
 // Add list to sidebar
+var tags_group_name = 'Spray Tags';
 sidebar.addPanel({
     id: 'tags',
     tab: '<i class="fas fa-spray-can"></i>',
-    title: 'Spray Tags',
+    title: tags_group_name,
     pane: '<p></p>' // placeholder to get a proper pane
 });
 document.getElementById('tags').appendChild(tags_list);
@@ -40,4 +41,5 @@ L.geoJSON(tags, {
         });
     }
 }).addTo(tags_group);
-marker.get("tags").set("group", tags_group);
+marker.get('tags').set('group', tags_group);
+marker.get('tags').set('name', tags_group_name);

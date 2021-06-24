@@ -3,10 +3,11 @@ var snapshots_list = document.createElement('ul');
 snapshots_list.className = 'collectibles_list';
 
 // Add list to sidebar
+var snapshots_group_name = 'Snapshots';
 sidebar.addPanel({
     id: 'snapshots',
     tab: '<i class="fas fa-camera"></i>',
-    title: 'Snapshots',
+    title: snapshots_group_name,
     pane: '<p></p>' // placeholder to get a proper pane
 });
 document.getElementById('snapshots').appendChild(snapshots_list);
@@ -40,4 +41,5 @@ L.geoJSON(snapshots, {
         });
     }
 }).addTo(snapshots_group);
-marker.get("snapshots").set("group", snapshots_group);
+marker.get('snapshots').set('group', snapshots_group);
+marker.get('snapshots').set('name', snapshots_group_name);

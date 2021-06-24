@@ -1,4 +1,5 @@
 var busted_warps_group = L.layerGroup();
+var busted_warps_group_name = 'Busted Warps';
 
 var busted_geoJson = L.geoJSON(busted_warps, {
     pointToLayer: (feature, latlng) => {
@@ -27,3 +28,9 @@ var busted_geoJson = L.geoJSON(busted_warps, {
     }
 });
 busted_geoJson.addTo(busted_warps_group)
+
+if (!marker.has('busted_warps')) {
+    marker.set('busted_warps', new Map());
+}
+marker.get('busted_warps').set('group', busted_warps_group);
+marker.get('busted_warps').set('name', busted_warps_group_name);

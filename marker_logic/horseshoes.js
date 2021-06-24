@@ -3,10 +3,11 @@ var horseshoes_list = document.createElement('ul');
 horseshoes_list.className = 'collectibles_list';
 
 // Add list to sidebar
+var horseshoes_group_name = 'Horseshoes';
 sidebar.addPanel({
     id: 'horseshoes',
     tab: '<i class="fas fa-horse"></i>',
-    title: 'Horseshoes',
+    title: horseshoes_group_name,
     pane: '<p></p>' // placeholder to get a proper pane
 });
 document.getElementById('horseshoes').appendChild(horseshoes_list);
@@ -40,4 +41,5 @@ L.geoJSON(horseshoes, {
         });
     }
 }).addTo(horseshoes_group);
-marker.get("horseshoes").set("group", horseshoes_group);
+marker.get('horseshoes').set('group', horseshoes_group);
+marker.get('horseshoes').set('name', horseshoes_group_name);

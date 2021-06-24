@@ -3,10 +3,11 @@ var cop_bribes_list = document.createElement('ul');
 cop_bribes_list.className = 'collectibles_list';
 
 // Add list to sidebar
+var cop_bribes_group_name = 'Cop Bribes';
 sidebar.addPanel({
     id: 'cop_bribes',
     tab: '⭐',
-    title: 'Cop Bribes',
+    title: cop_bribes_group_name,
     pane: '<p></p>' // placeholder to get a proper pane
 });
 document.getElementById('cop_bribes').appendChild(cop_bribes_list);
@@ -40,4 +41,5 @@ L.geoJSON(cop_bribes, {
         });
     }
 }).addTo(cop_bribes_group);
-marker.get("cop_bribes").set("group", cop_bribes_group);
+marker.get('cop_bribes').set('group', cop_bribes_group);
+marker.get('cop_bribes').set('name', cop_bribes_group_name);

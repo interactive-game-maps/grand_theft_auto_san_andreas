@@ -185,6 +185,10 @@ function onEachFeature(feature, layer, args = {}) {
                 history.replaceState({}, "", "index.html?list=" + params.list_name + "&id=" + feature.properties.id);
             });
 
+            layer.on('popupclose', (event) => {
+                history.replaceState({}, "", "index.html");
+            });
+
             return html;
         }, {
             maxWidth: POPUP_WIDTH

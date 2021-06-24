@@ -3,10 +3,11 @@ var oysters_list = document.createElement('ul');
 oysters_list.className = 'collectibles_list';
 
 // Add list to sidebar
+var oysters_group_name = 'Oysters';
 sidebar.addPanel({
     id: 'oysters',
     tab: '🦪',
-    title: 'Oysters',
+    title: oysters_group_name,
     pane: '<p></p>' // placeholder to get a proper pane
 });
 document.getElementById('oysters').appendChild(oysters_list);
@@ -40,4 +41,5 @@ L.geoJSON(oysters, {
         });
     }
 }).addTo(oysters_group);
-marker.get("oysters").set("group", oysters_group);
+marker.get('oysters').set('group', oysters_group);
+marker.get('oysters').set('name', oysters_group_name);

@@ -3,10 +3,11 @@ var stunt_jumps_list = document.createElement('ul');
 stunt_jumps_list.className = 'collectibles_list';
 
 // Add list to sidebar
+var stunt_jumps_group_name = 'Unique Stunt Jumps';
 sidebar.addPanel({
     id: 'stunt_jumps',
     tab: '<i class="fas fa-car"></i>',
-    title: 'Unique Stunt Jumps',
+    title: stunt_jumps_group_name,
     pane: '<p></p>' // placeholder to get a proper pane
 });
 document.getElementById('stunt_jumps').appendChild(stunt_jumps_list);
@@ -40,4 +41,5 @@ L.geoJSON(stunt_jumps, {
         });
     }
 }).addTo(stunt_jumps_group);
-marker.get("stunt_jumps").set("group", stunt_jumps_group);
+marker.get('stunt_jumps').set('group', stunt_jumps_group);
+marker.get('stunt_jumps').set('name', stunt_jumps_group_name);

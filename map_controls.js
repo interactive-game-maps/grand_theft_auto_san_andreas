@@ -1,21 +1,8 @@
 // Defining overlay maps - markers
-var overlayMaps = {
-    "Spray Tags": tags_group,
-    "Snapshots": snapshots_group,
-    "Horseshoes": horseshoes_group,
-    "Oysters": oysters_group,
-    "Unique Stunt Jumps": stunt_jumps_group,
-    "Cob Bribes": cop_bribes_group,
-    "Busted Warps": busted_warps_group,
-    "Death Warps": death_warps_group,
-    "Race Tournaments": race_tournaments_group
-};
-
-// Make overlay layer visible by default
-map.addLayer(tags_group);
-map.addLayer(snapshots_group);
-map.addLayer(horseshoes_group);
-map.addLayer(oysters_group);
+var overlayMaps = {};
+marker.forEach((value, key) => {
+    overlayMaps[value.get('name')] = value.get('group');
+});
 
 // Center view over map
 map.fitBounds([[0, 0], [-192, 192]]);
@@ -84,14 +71,53 @@ L.control.layers(baseMaps, overlayMaps, {
         collapsed: false
     });
     show_custom_layer_controls();
+
+    map.on('overlayadd', e => {
+        if (!user_layers.includes(e.name)) {
+            user_layers.push(e.name);
+        }
+
+        localStorage.setItem('user_layers', JSON.stringify(user_layers));
+    });
+    map.on('overlayremove ', e => {
+        user_layers = user_layers.filter((value, index, array) => {
+            return value != e.name;
+        });
+
+        localStorage.setItem('user_layers', JSON.stringify(user_layers));
+    });
 }
+
+// Show remembered layers
+var user_layers = JSON.parse(localStorage.getItem('user_layers'));
+if (!user_layers) {
+    user_layers = [
+        tags_group_name,
+        snapshots_group_name,
+        horseshoes_group_name,
+        oysters_group_name
+    ];
+}
+// iterate over all lists
+marker.forEach((value, key) => {
+    // iterate over all IDs
+    if (user_layers.includes(value.get('name'))) {
+        map.addLayer(value.get('group'));
+    }
+});
+Object.keys(custom_layers).forEach(element => {
+    if (user_layers.includes(element)) {
+        map.addLayer(custom_layers[element]);
+    }
+});
 
 // hide all previously checked marker
 // iterate over all lists
 marker.forEach((v, k) => {
     // iterate over all IDs
     v.forEach((value, key) => {
-        if (key == "group") return;
+        if (key == 'group' ||
+            key == 'name') return;
 
         // iterate over all features with that ID
         value.forEach(item => {

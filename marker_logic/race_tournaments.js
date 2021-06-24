@@ -3,10 +3,11 @@ var race_tournaments_list = document.createElement('ul');
 race_tournaments_list.className = 'collectibles_list';
 
 // Add list to sidebar
+var race_tournaments_group_name = 'Race Tournaments';
 sidebar.addPanel({
     id: "race_tournaments",
     tab: '🏁',
-    title: 'Race Tournaments',
+    title: race_tournaments_group_name,
     pane: '<p></p>' // placeholder to get a proper pane
 });
 document.getElementById("race_tournaments").appendChild(race_tournaments_list);
@@ -205,4 +206,5 @@ var air_races_geojson = L.geoJSON(air_races, {
     }
 }).addTo(race_tournaments_group);
 
-marker.get("race_tournaments").set("group", race_tournaments_group);
+marker.get('race_tournaments').set('group', race_tournaments_group);
+marker.get('race_tournaments').set('name', race_tournaments_group_name);

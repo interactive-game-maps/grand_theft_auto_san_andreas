@@ -1,4 +1,5 @@
 var death_warps_group = L.layerGroup();
+var death_warps_group_name = 'Death Warps';
 
 var deaths_geoJson = L.geoJSON(death_warps, {
     pointToLayer: (feature, latlng) => {
@@ -34,3 +35,9 @@ var deaths_geoJson = L.geoJSON(death_warps, {
     }
 });
 deaths_geoJson.addTo(death_warps_group);
+
+if (!marker.has('death_warps')) {
+    marker.set('death_warps', new Map());
+}
+marker.get('death_warps').set('group', death_warps_group);
+marker.get('death_warps').set('name', death_warps_group_name);
