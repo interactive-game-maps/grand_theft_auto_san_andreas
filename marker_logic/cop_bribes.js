@@ -1,18 +1,9 @@
-// Create list
-var cop_bribes_list = document.createElement('ul');
-cop_bribes_list.className = 'collectibles_list';
-
-// Add list to sidebar
 var cop_bribes_group_name = 'Cop Bribes';
-sidebar.addPanel({
-    id: 'cop_bribes',
-    tab: '⭐',
-    title: cop_bribes_group_name,
-    pane: '<p></p>' // placeholder to get a proper pane
-});
-document.getElementById('cop_bribes').appendChild(cop_bribes_list);
+var cop_bribes_group_id = 'cop_bribes';
+var cop_bribes_create_checkbox = true;
 
-// Create marker group
+var cop_bribes_list = createSidebarTab(cop_bribes_group_id, cop_bribes_group_name, '⭐');
+
 var cop_bribes_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
@@ -33,13 +24,20 @@ L.geoJSON(cop_bribes, {
         });
     },
     onEachFeature: (feature, layer) => {
-        onEachFeature(feature, layer, {
+        addPopup(feature, layer, {
             layer_group: cop_bribes_group,
             list: cop_bribes_list,
-            list_name: "cop_bribes",
-            create_checkbox: true
+            list_id: cop_bribes_group_id,
+            create_checkbox: cop_bribes_create_checkbox
+        });
+        saveMarker(feature, layer, {
+            list_id: cop_bribes_group_id
         });
     }
 }).addTo(cop_bribes_group);
-marker.get('cop_bribes').set('group', cop_bribes_group);
-marker.get('cop_bribes').set('name', cop_bribes_group_name);
+marker.get(cop_bribes_group_id).set('group', cop_bribes_group);
+marker.get(cop_bribes_group_id).set('name', cop_bribes_group_name);
+
+if (cop_bribes_create_checkbox) {
+    setColumnCount(marker.get(cop_bribes_group_id), cop_bribes_list);
+}

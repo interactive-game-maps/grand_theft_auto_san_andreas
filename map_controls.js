@@ -1,11 +1,11 @@
+// Center view over map
+map.fitBounds(getOuterBoundsMap());
+
 // Defining overlay maps - markers
 var overlayMaps = {};
 marker.forEach((value, key) => {
     overlayMaps[value.get('name')] = value.get('group');
 });
-
-// Center view over map
-map.fitBounds([[0, 0], [-192, 192]]);
 
 // Add user selection to map
 L.control.layers(baseMaps, overlayMaps, {
@@ -13,7 +13,6 @@ L.control.layers(baseMaps, overlayMaps, {
 }).addTo(map);
 
 {// Add custom layers to map
-
     // https://stackoverflow.com/a/51484131
     // Add method to layer control class
     L.Control.Layers.include({
@@ -91,12 +90,7 @@ L.control.layers(baseMaps, overlayMaps, {
 // Show remembered layers
 var user_layers = JSON.parse(localStorage.getItem('user_layers'));
 if (!user_layers) {
-    user_layers = [
-        tags_group_name,
-        snapshots_group_name,
-        horseshoes_group_name,
-        oysters_group_name
-    ];
+    user_layers = default_layers;
 }
 // iterate over all lists
 marker.forEach((value, key) => {
@@ -134,41 +128,50 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 if (urlParams.has('list')) {
     const list = urlParams.get('list');
+
+    // make group visible
     if (marker.get(list).has('group')) {
-        // make group visible
         map.addLayer(marker.get(list).get('group'));
     }
+
     if (!urlParams.has('id')) {
-        // if no id open sidebar
         map.fitBounds(marker.get(list).get('group').getBounds());
-        sidebar.open(list);
-    }
-    else {
+
+        // if no id open sidebar
+        sidebar._tabitems.every(element => {
+            if (element._id == list) {
+                sidebar.open(list);
+                return false;
+            }
+            return true;
+        });
+    } else {
         const id = urlParams.get('id');
         if (marker.has(list) && marker.get(list).has(id)) {
-            // center and zoom id
-            var bounds = [];
-            marker.get(list).get(id).forEach(element => {
-                if (element._latlngs) {
-                    // Polygons
-                    element._latlngs.forEach(latlng => {
-                        bounds.push(latlng);
-                    });
-                    element.setStyle({
+            zoomToFeature(list, id);
+
+            marker.get(list).get(id).forEach(item => {
+                if (item._latlngs) {
+                    item.setStyle({
                         color: 'blue',
                         opacity: 1.0
                     });
-                } else {
-                    // Marker
-                    bounds.push(element._latlng);
                 }
-            });
-
-            map.fitBounds(L.latLngBounds(bounds), {
-                maxZoom: 6
             });
         }
 
         // TODO: unhide?
     }
 }
+
+// Update popup locations after image loading
+// https://github.com/Leaflet/Leaflet/issues/5484#issuecomment-299949921
+document.querySelector(".leaflet-popup-pane").addEventListener("load", function (event) {
+    var tagName = event.target.tagName,
+        popup = map._popup; // Last open Popup.
+
+    if (tagName === "IMG" && popup && !popup._updated) {
+        popup._updated = true; // Assumes only 1 image per Popup.
+        popup.update();
+    }
+}, true); // Capture the load event, because it does not bubble.

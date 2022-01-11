@@ -7,7 +7,9 @@ var death_warps = {
     "features": [
         {
             "type": "Feature",
-            "properties": {},
+            "properties": {
+                "id": "1"
+            },
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [[
@@ -31,7 +33,9 @@ var death_warps = {
         },
         {
             "type": "Feature",
-            "properties": {},
+            "properties": {
+                "id": "2"
+            },
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [[
@@ -80,7 +84,9 @@ var death_warps = {
         },
         {
             "type": "Feature",
-            "properties": {},
+            "properties": {
+                "id": "3"
+            },
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [[
@@ -105,7 +111,9 @@ var death_warps = {
         },
         {
             "type": "Feature",
-            "properties": {},
+            "properties": {
+                "id": "4"
+            },
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [[
@@ -138,7 +146,9 @@ var death_warps = {
         },
         {
             "type": "Feature",
-            "properties": {},
+            "properties": {
+                "id": "5"
+            },
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [[
@@ -165,7 +175,9 @@ var death_warps = {
         },
         {
             "type": "Feature",
-            "properties": {},
+            "properties": {
+                "id": "6"
+            },
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [[
@@ -200,7 +212,9 @@ var death_warps = {
         },
         {
             "type": "Feature",
-            "properties": {},
+            "properties": {
+                "id": "7"
+            },
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [[
@@ -226,7 +240,9 @@ var death_warps = {
         },
         {
             "type": "Feature",
-            "properties": {},
+            "properties": {
+                "id": "8"
+            },
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [[

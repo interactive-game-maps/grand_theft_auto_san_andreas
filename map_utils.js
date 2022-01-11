@@ -1,15 +1,18 @@
 // Helper functions
-function add_checkbox(feature, list, list_name) {
-    if (!document.getElementById(list_name + ':' + feature.properties.id)) {
+function add_checkbox(feature, list, list_id, layer_group) {
+    if (!document.getElementById(list_id + ':' + feature.properties.id)) {
         var list_entry = document.createElement('li');
+        list_entry.className = 'flex-grow-1';
 
         var checkbox = document.createElement('input');
         checkbox.type = "checkbox";
-        checkbox.id = list_name + ':' + feature.properties.id;
+        checkbox.id = list_id + ':' + feature.properties.id;
+        checkbox.className = 'flex-grow-0';
 
         var label = document.createElement('label')
         label.appendChild(document.createTextNode(feature.properties.id + ' '));
         label.htmlFor = checkbox.id;
+        label.className = 'flex-grow-1';
 
         var icon = document.createElement('i');
         icon.className = 'fas fa-crosshairs fa-xs';
@@ -17,10 +20,11 @@ function add_checkbox(feature, list, list_name) {
         var locate_button = document.createElement('button');
         locate_button.innerHTML = icon.outerHTML;
         locate_button.addEventListener('click', () => {
-            map.setView(marker.get(list_name).get(feature.properties.id)[0].getLatLng());
+            map.setView(marker.get(list_id).get(feature.properties.id)[0].getLatLng());
             // rewrite url for easy copy pasta
-            history.replaceState({}, "", "index.html?list=" + list_name + "&id=" + feature.properties.id);
+            history.replaceState({}, "", "index.html?list=" + list_id + "&id=" + feature.properties.id);
         });
+        locate_button.className = 'flex-grow-0';
 
         list_entry.appendChild(checkbox);
         list_entry.appendChild(label);
@@ -28,13 +32,39 @@ function add_checkbox(feature, list, list_name) {
         list.appendChild(list_entry);
 
         // hide if checked previously
-        if (localStorage.getItem(list_name + ":" + feature.properties.id)) {
+        if (localStorage.getItem(list_id + ":" + feature.properties.id)) {
             checkbox.checked = true;
+        }
+
+        // watch global checkbox
+        if (document.getElementById(list_id + ':' + feature.properties.id) != null) {
+            // if not a marker try to assign to the same checkbox as the corresponding marker
+            document.getElementById(list_id + ':' + feature.properties.id).addEventListener('change', (element) => {
+                if (element.target.checked) {
+                    // check popup checkbox
+                    checkbox.checked = true;
+                    // save to localStorage
+                    localStorage.setItem(list_id + ":" + feature.properties.id, true);
+                    // remove all with ID from map
+                    marker.get(list_id).get(feature.properties.id).forEach(e => {
+                        layer_group.removeLayer(e);
+                    });
+                } else {
+                    // uncheck popup checkbox
+                    checkbox.checked = false;
+                    // remove from localStorage
+                    localStorage.removeItem(list_id + ":" + feature.properties.id);
+                    // add all with ID to map
+                    marker.get(list_id).get(feature.properties.id).forEach(e => {
+                        e.addTo(layer_group);
+                    });
+                }
+            });
         }
     }
 }
 
-function onEachFeature(feature, layer, args = {}) {
+function addPopup(feature, layer, args = {}) {
     var defaults = {
         create_checkbox: false
     };
@@ -44,7 +74,7 @@ function onEachFeature(feature, layer, args = {}) {
     // only bind for markers
     if (feature.geometry.type == "Point") {
         if (params.create_checkbox) {
-            add_checkbox(feature, params.list, params.list_name);
+            add_checkbox(feature, params.list, params.list_id, params.layer_group);
         }
 
         layer.bindPopup(() => {
@@ -58,8 +88,8 @@ function onEachFeature(feature, layer, args = {}) {
             if (feature.properties.image_id) {
                 var prefix = 'https://static.wikia.nocookie.net/gtawiki/images/';
                 var suffix = '.jpg';
-                if (params.list_name == "horseshoes"
-                    || params.list_name == "oysters") {
+                if (params.list_id == "horseshoes"
+                    || params.list_id == "oysters") {
                     prefix = 'https://static.wikigta.org/en/images/';
                     suffix = '.JPG'
                 }
@@ -67,7 +97,7 @@ function onEachFeature(feature, layer, args = {}) {
                 var image_link = document.createElement('a');
                 image_link.className = 'popup-media';
                 if (feature.properties.image_link) {
-                    switch (params.list_name) {
+                    switch (params.list_id) {
                         case 'tags':
                             image_link.href = 'https://gta.fandom.com/wiki/' + feature.properties.image_link;
                             break;
@@ -113,8 +143,6 @@ function onEachFeature(feature, layer, args = {}) {
             }
 
             if (params.create_checkbox) {
-                add_checkbox(feature, params.list, params.list_name);
-
                 var label = document.createElement('label');
                 label.className = 'popup-checkbox is-fullwidth';
 
@@ -123,66 +151,40 @@ function onEachFeature(feature, layer, args = {}) {
                 var checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
 
-                if (localStorage.getItem(params.list_name + ":" + feature.properties.id)) {
+                if (localStorage.getItem(params.list_id + ":" + feature.properties.id)) {
                     checkbox.checked = true;
                 }
 
                 checkbox.addEventListener('change', element => {
                     if (element.target.checked) {
                         // check global checkbox
-                        document.getElementById(params.list_name + ':' + feature.properties.id).checked = true;
+                        document.getElementById(params.list_id + ':' + feature.properties.id).checked = true;
                         // save to localStorage
-                        localStorage.setItem(params.list_name + ":" + feature.properties.id, true);
+                        localStorage.setItem(params.list_id + ":" + feature.properties.id, true);
                         // remove all with ID from map
-                        marker.get(params.list_name).get(feature.properties.id).forEach(e => {
+                        marker.get(params.list_id).get(feature.properties.id).forEach(e => {
                             params.layer_group.removeLayer(e);
                         });
                     } else {
                         // uncheck global checkbox
-                        document.getElementById(params.list_name + ':' + feature.properties.id).checked = false;
+                        document.getElementById(params.list_id + ':' + feature.properties.id).checked = false;
                         // remove from localStorage
-                        localStorage.removeItem(params.list_name + ":" + feature.properties.id);
+                        localStorage.removeItem(params.list_id + ":" + feature.properties.id);
                         // add all with ID to map
-                        marker.get(params.list_name).get(feature.properties.id).forEach(e => {
+                        marker.get(params.list_id).get(feature.properties.id).forEach(e => {
                             e.addTo(params.layer_group);
                         });
                     }
                 });
-
-                // Also watch global checkbox
-                if (document.getElementById(params.list_name + ':' + feature.properties.id) != null) {
-                    // if not a marker try to assign to the same checkbox as the corresponding marker
-                    document.getElementById(params.list_name + ':' + feature.properties.id).addEventListener('change', (element) => {
-                        if (element.target.checked) {
-                            // check popup checkbox
-                            checkbox.checked = true;
-                            // save to localStorage
-                            localStorage.setItem(params.list_name + ":" + feature.properties.id, true);
-                            // remove all with ID from map
-                            marker.get(params.list_name).get(feature.properties.id).forEach(e => {
-                                params.layer_group.removeLayer(e);
-                            });
-                        } else {
-                            // uncheck popup checkbox
-                            checkbox.checked = false;
-                            // remove from localStorage
-                            localStorage.removeItem(params.list_name + ":" + feature.properties.id);
-                            // add all with ID to map
-                            marker.get(params.list_name).get(feature.properties.id).forEach(e => {
-                                e.addTo(params.layer_group);
-                            });
-                        }
-                    });
-                }
 
                 label.appendChild(checkbox);
                 label.appendChild(label_text);
                 html.appendChild(label);
             }
 
-            // rewrite url for easy copy pasta
             layer.on('popupopen', (event) => {
-                history.replaceState({}, "", "index.html?list=" + params.list_name + "&id=" + feature.properties.id);
+                // rewrite url for easy copy pasta
+                history.replaceState({}, "", "index.html?list=" + params.list_id + "&id=" + feature.properties.id);
             });
 
             layer.on('popupclose', (event) => {
@@ -191,15 +193,20 @@ function onEachFeature(feature, layer, args = {}) {
 
             return html;
         }, {
-            maxWidth: POPUP_WIDTH
+            maxWidth: "auto"
         });
     }
+}
 
-    // save all marker in a map so we can access them later
-    if (!marker.has(params.list_name)) {
-        marker.set(params.list_name, new Map());
+// save all marker in a map so we can access them later
+function saveMarker(feature, layer, args = {}) {
+    var defaults = {};
+    var params = { ...defaults, ...args } // right-most object overwrites
+
+    if (!marker.has(params.list_id)) {
+        marker.set(params.list_id, new Map());
     }
-    var list_map = marker.get(params.list_name);
+    var list_map = marker.get(params.list_id);
 
     if (!list_map.has(feature.properties.id)) {
         list_map.set(feature.properties.id, new Array());
@@ -212,6 +219,7 @@ function highlightFeature(e) {
     var layer = e.target;
 
     layer.setStyle({
+        color: 'blue',
         opacity: 1.0,
         fillOpacity: 0.7
     });
@@ -221,15 +229,8 @@ function highlightFeature(e) {
     }
 }
 
-function resetHighlight(e) {
-    busted_geoJson.resetStyle(e.target);
-    deaths_geoJson.resetStyle(e.target);
-}
-
-function zoomToFeature(e) {
-    if (e.target.feature.geometry.type != "Point") {
-        map.fitBounds(e.target.getBounds());
-    }
+function zoomToFeature(list, id) {
+    map.fitBounds(getOuterBounds(list, id));
 }
 
 function hide_custom_layer_controls() {
@@ -238,7 +239,7 @@ function hide_custom_layer_controls() {
 
 function show_custom_layer_controls() {
     if (Object.keys(custom_layers).length > 0) {
-        // Don't know why I have to create a new control but adding the old one is giving me an exeption
+        // Don't know why I have to create a new control but adding the old one is giving me an exception
         custom_layer_controls = new L.control.layers(null, custom_layers, {
             collapsed: false
         });
@@ -409,4 +410,79 @@ function download(filename, text) {
     element.click();
 
     document.body.removeChild(element);
+}
+
+function createSidebarTab(group_id, group_name, tab_image) {
+    var list = document.createElement('ul');
+    list.className = 'collectibles_list';
+
+    // Add list to sidebar
+    sidebar.addPanel({
+        id: group_id,
+        tab: tab_image,
+        title: group_name,
+        pane: '<p></p>' // placeholder to get a proper pane
+    });
+    document.getElementById(group_id).appendChild(list);
+
+    return list;
+}
+
+function getOuterBounds(list, id) {
+    var bounds = [];
+
+    marker.get(list).get(id).forEach(element => {
+        if (element._latlngs) {
+            // Polygons
+            element._latlngs.forEach(latlng => {
+                bounds.push(latlng);
+            });
+        } else {
+            // Marker
+            bounds.push(element._latlng);
+        }
+    });
+
+    return bounds;
+}
+
+function getOuterBoundsMap() {
+    var bounds = [];
+
+    // iterate over all lists
+    marker.forEach((v, k) => {
+        // iterate over all IDs
+        v.forEach((value, key) => {
+            if (key == 'group' ||
+                key == 'name') return;
+
+            bounds.push(getOuterBounds(k, key));
+        });
+    });
+
+    return bounds;
+}
+
+// work around grid not able to calculate the column count by itself
+function setColumnCount(group, list) {
+    var max_length = 4;
+    var columns = 1;
+
+    // iterate over all IDs
+    group.forEach((value, key) => {
+        if (key == 'group' ||
+            key == 'name') return;
+
+        if (key.length > max_length) {
+            max_length = key.length;
+        }
+    });
+
+    if (max_length < 5) {
+        columns = 3;
+    } else if (max_length < 15) {
+        columns = 2;
+    }
+
+    list.setAttribute('style', `grid-template-columns: repeat(${columns}, auto)`);
 }

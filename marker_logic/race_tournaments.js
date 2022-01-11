@@ -1,18 +1,9 @@
-// Create list
-var race_tournaments_list = document.createElement('ul');
-race_tournaments_list.className = 'collectibles_list';
-
-// Add list to sidebar
 var race_tournaments_group_name = 'Race Tournaments';
-sidebar.addPanel({
-    id: "race_tournaments",
-    tab: '🏁',
-    title: race_tournaments_group_name,
-    pane: '<p></p>' // placeholder to get a proper pane
-});
-document.getElementById("race_tournaments").appendChild(race_tournaments_list);
+var race_tournaments_group_id = 'race_tournaments';
+var race_tournaments_create_checkbox = true;
 
-// Create marker group
+var race_tournaments_list = createSidebarTab(race_tournaments_group_id, race_tournaments_group_name, '🏁');
+
 var race_tournaments_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
@@ -33,11 +24,14 @@ var los_santos_races_geojson = L.geoJSON(los_santos_races, {
         });
     },
     onEachFeature: (feature, layer) => {
-        onEachFeature(feature, layer, {
+        addPopup(feature, layer, {
             layer_group: race_tournaments_group,
             list: race_tournaments_list,
-            list_name: "race_tournaments",
-            create_checkbox: true
+            list_id: race_tournaments_group_id,
+            create_checkbox: race_tournaments_create_checkbox
+        });
+        saveMarker(feature, layer, {
+            list_id: race_tournaments_group_id
         });
 
         layer.on({
@@ -50,8 +44,8 @@ var los_santos_races_geojson = L.geoJSON(los_santos_races, {
                 los_santos_races_geojson.resetStyle(e.target);
             },
             click: (e) => {
-                zoomToFeature(e);
-                history.replaceState({}, "", "index.html?list=" + "race_tournaments" + "&id=" + e.target.feature.properties.id);
+                zoomToFeature(race_tournaments_group_id, e.target.feature.properties.id);
+                history.replaceState({}, "", "index.html?list=" + race_tournaments_group_id + "&id=" + e.target.feature.properties.id);
             }
         });
 
@@ -64,7 +58,7 @@ var los_santos_races_geojson = L.geoJSON(los_santos_races, {
     },
     style: feature => {
         return {
-            color: 'yellow',
+            color: 'green',
             weight: 7,
             opacity: 0.5
         };
@@ -78,11 +72,14 @@ var san_fierro_races_geojson = L.geoJSON(san_fierro_races, {
         });
     },
     onEachFeature: (feature, layer) => {
-        onEachFeature(feature, layer, {
+        addPopup(feature, layer, {
             layer_group: race_tournaments_group,
             list: race_tournaments_list,
-            list_name: "race_tournaments",
-            create_checkbox: true
+            list_id: race_tournaments_group_id,
+            create_checkbox: race_tournaments_create_checkbox
+        });
+        saveMarker(feature, layer, {
+            list_id: race_tournaments_group_id
         });
 
         layer.on({
@@ -95,8 +92,8 @@ var san_fierro_races_geojson = L.geoJSON(san_fierro_races, {
                 san_fierro_races_geojson.resetStyle(e.target);
             },
             click: (e) => {
-                zoomToFeature(e);
-                history.replaceState({}, "", "index.html?list=" + "race_tournaments" + "&id=" + e.target.feature.properties.id);
+                zoomToFeature(race_tournaments_group_id, e.target.feature.properties.id);
+                history.replaceState({}, "", "index.html?list=" + race_tournaments_group_id + "&id=" + e.target.feature.properties.id);
             }
         });
 
@@ -109,7 +106,7 @@ var san_fierro_races_geojson = L.geoJSON(san_fierro_races, {
     },
     style: feature => {
         return {
-            color: 'yellow',
+            color: 'gray',
             weight: 7,
             opacity: 0.5
         };
@@ -123,11 +120,14 @@ var las_venturas_races_geojson = L.geoJSON(las_venturas_races, {
         });
     },
     onEachFeature: (feature, layer) => {
-        onEachFeature(feature, layer, {
+        addPopup(feature, layer, {
             layer_group: race_tournaments_group,
             list: race_tournaments_list,
-            list_name: "race_tournaments",
-            create_checkbox: true
+            list_id: race_tournaments_group_id,
+            create_checkbox: race_tournaments_create_checkbox
+        });
+        saveMarker(feature, layer, {
+            list_id: race_tournaments_group_id
         });
 
         layer.on({
@@ -140,8 +140,8 @@ var las_venturas_races_geojson = L.geoJSON(las_venturas_races, {
                 las_venturas_races_geojson.resetStyle(e.target);
             },
             click: (e) => {
-                zoomToFeature(e);
-                history.replaceState({}, "", "index.html?list=" + "race_tournaments" + "&id=" + e.target.feature.properties.id);
+                zoomToFeature(race_tournaments_group_id, e.target.feature.properties.id);
+                history.replaceState({}, "", "index.html?list=" + race_tournaments_group_id + "&id=" + e.target.feature.properties.id);
             }
         });
 
@@ -154,7 +154,7 @@ var las_venturas_races_geojson = L.geoJSON(las_venturas_races, {
     },
     style: feature => {
         return {
-            color: 'yellow',
+            color: 'red',
             weight: 7,
             opacity: 0.5
         };
@@ -168,11 +168,14 @@ var air_races_geojson = L.geoJSON(air_races, {
         });
     },
     onEachFeature: (feature, layer) => {
-        onEachFeature(feature, layer, {
+        addPopup(feature, layer, {
             layer_group: race_tournaments_group,
             list: race_tournaments_list,
-            list_name: "race_tournaments",
-            create_checkbox: true
+            list_id: race_tournaments_group_id,
+            create_checkbox: race_tournaments_create_checkbox
+        });
+        saveMarker(feature, layer, {
+            list_id: race_tournaments_group_id
         });
 
         layer.on({
@@ -185,8 +188,8 @@ var air_races_geojson = L.geoJSON(air_races, {
                 air_races_geojson.resetStyle(e.target);
             },
             click: (e) => {
-                zoomToFeature(e);
-                history.replaceState({}, "", "index.html?list=" + "race_tournaments" + "&id=" + e.target.feature.properties.id);
+                zoomToFeature(race_tournaments_group_id, e.target.feature.properties.id);
+                history.replaceState({}, "", "index.html?list=" + race_tournaments_group_id + "&id=" + e.target.feature.properties.id);
             }
         });
 
@@ -206,5 +209,9 @@ var air_races_geojson = L.geoJSON(air_races, {
     }
 }).addTo(race_tournaments_group);
 
-marker.get('race_tournaments').set('group', race_tournaments_group);
-marker.get('race_tournaments').set('name', race_tournaments_group_name);
+marker.get(race_tournaments_group_id).set('group', race_tournaments_group);
+marker.get(race_tournaments_group_id).set('name', race_tournaments_group_name);
+
+if (race_tournaments_create_checkbox) {
+    setColumnCount(marker.get(race_tournaments_group_id), race_tournaments_list);
+}

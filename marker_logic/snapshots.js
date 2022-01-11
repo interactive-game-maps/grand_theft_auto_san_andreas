@@ -1,18 +1,9 @@
-// Create list
-var snapshots_list = document.createElement('ul');
-snapshots_list.className = 'collectibles_list';
-
-// Add list to sidebar
 var snapshots_group_name = 'Snapshots';
-sidebar.addPanel({
-    id: 'snapshots',
-    tab: '<i class="fas fa-camera"></i>',
-    title: snapshots_group_name,
-    pane: '<p></p>' // placeholder to get a proper pane
-});
-document.getElementById('snapshots').appendChild(snapshots_list);
+var snapshots_group_id = 'snapshots';
+var snapshots_create_checkbox = true;
 
-// Create list
+var snapshots_list = createSidebarTab(snapshots_group_id, snapshots_group_name, '<i class="fas fa-camera"></i>');
+
 var snapshots_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
@@ -33,13 +24,24 @@ L.geoJSON(snapshots, {
         });
     },
     onEachFeature: (feature, layer) => {
-        onEachFeature(feature, layer, {
+        addPopup(feature, layer, {
             layer_group: snapshots_group,
             list: snapshots_list,
-            list_name: "snapshots",
-            create_checkbox: true
+            list_name: snapshots_group_id,
+            create_checkbox: snapshots_create_checkbox
+        });
+        saveMarker(feature, layer, {
+            list_id: snapshots_group_id
         });
     }
 }).addTo(snapshots_group);
-marker.get('snapshots').set('group', snapshots_group);
-marker.get('snapshots').set('name', snapshots_group_name);
+marker.get(snapshots_group_id).set('group', snapshots_group);
+marker.get(snapshots_group_id).set('name', snapshots_group_name);
+
+if (snapshots_create_checkbox) {
+    setColumnCount(marker.get(snapshots_group_id), snapshots_list);
+}
+
+// Add as a default layer
+// This needs the display name because the layer control don't report ids
+default_layers.push(snapshots_group_name);

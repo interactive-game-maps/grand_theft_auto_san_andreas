@@ -12,24 +12,49 @@ html, body, #map {
     list-style: none;
     padding: 0%;
     display: grid;
-    grid-template-columns: repeat(3, auto);
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .collectibles_list {
+        grid-template-columns: repeat(1, auto) !important;
+    }
 }
 
 .collectibles_list li {
     display: flex;
-    justify-content: space-around;
     align-content: center;
+    border-bottom: 1px solid #dddddd;
+}
+
+.collectibles_list li:last-child {
+    border-bottom: 0;
+}
+
+.collectibles_list li input:checked + label {
+    background: #dddddd;
+    text-decoration: line-through;
+}
+
+.collectibles_list li input[type="checkbox"] {
+    margin: 10px;
+}
+
+.collectibles_list li label {
+    margin: 0;
+    padding: 10px;
+    transition: background 0.2s;
+    flex: 1;
+    /* font-family:'helvetica neue'; */
+    font-size: 12px;
+    font-weight: 200;
+    border-left: 1px solid #dddddd;
 }
 
 .collectibles_list li button {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 10%;
-}
-
-.collectibles_list li:nth-child(even) {
-    background-color: dimgray;
+    padding: 10px;
 }
 
 .leaflet-container {
@@ -58,4 +83,16 @@ html, body, #map {
 
 .popup-title {
     text-align: center;
+}
+
+.flex-grow-0 {
+    flex-grow: 0;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.sidebar-image {
+    width: 100%;
 }

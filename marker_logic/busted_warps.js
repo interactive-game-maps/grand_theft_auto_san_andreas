@@ -1,5 +1,7 @@
-var busted_warps_group = L.layerGroup();
 var busted_warps_group_name = 'Busted Warps';
+var busted_warps_group_id = 'busted_Warps';
+
+var busted_warps_group = L.layerGroup();
 
 var busted_geoJson = L.geoJSON(busted_warps, {
     pointToLayer: (feature, latlng) => {
@@ -22,15 +24,20 @@ var busted_geoJson = L.geoJSON(busted_warps, {
 
         layer.on({
             mouseover: highlightFeature,
-            mouseout: resetHighlight,
-            click: zoomToFeature
+            mouseout: (e) => {
+                busted_geoJson.resetStyle(e.target);
+            },
+            click: (e) => {
+                zoomToFeature(busted_warps_group_id, e.target.feature.properties.id);
+                history.replaceState({}, "", "index.html?list=" + busted_warps_group_id + "&id=" + e.target.feature.properties.id);
+            }
+        });
+
+        saveMarker(feature, layer, {
+            list_id: busted_warps_group_id
         });
     }
-});
-busted_geoJson.addTo(busted_warps_group)
+}).addTo(busted_warps_group)
 
-if (!marker.has('busted_warps')) {
-    marker.set('busted_warps', new Map());
-}
-marker.get('busted_warps').set('group', busted_warps_group);
-marker.get('busted_warps').set('name', busted_warps_group_name);
+marker.get(busted_warps_group_id).set('group', busted_warps_group);
+marker.get(busted_warps_group_id).set('name', busted_warps_group_name);

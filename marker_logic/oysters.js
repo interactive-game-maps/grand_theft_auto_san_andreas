@@ -1,18 +1,9 @@
-// Create list
-var oysters_list = document.createElement('ul');
-oysters_list.className = 'collectibles_list';
-
-// Add list to sidebar
 var oysters_group_name = 'Oysters';
-sidebar.addPanel({
-    id: 'oysters',
-    tab: '🦪',
-    title: oysters_group_name,
-    pane: '<p></p>' // placeholder to get a proper pane
-});
-document.getElementById('oysters').appendChild(oysters_list);
+var oysters_group_id = 'oysters';
+var oysters_create_checkbox = true;
 
-// Create marker group
+var oysters_list = createSidebarTab(oysters_group_id, oysters_group_name, '🦪');
+
 var oysters_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
@@ -33,13 +24,24 @@ L.geoJSON(oysters, {
         });
     },
     onEachFeature: (feature, layer) => {
-        onEachFeature(feature, layer, {
+        addPopup(feature, layer, {
             layer_group: oysters_group,
             list: oysters_list,
-            list_name: "oysters",
-            create_checkbox: true
+            list_id: oysters_group_id,
+            create_checkbox: oysters_create_checkbox
+        });
+        saveMarker(feature, layer, {
+            list_id: oysters_group_id
         });
     }
 }).addTo(oysters_group);
-marker.get('oysters').set('group', oysters_group);
-marker.get('oysters').set('name', oysters_group_name);
+marker.get(oysters_group_id).set('group', oysters_group);
+marker.get(oysters_group_id).set('name', oysters_group_name);
+
+if (oysters_create_checkbox) {
+    setColumnCount(marker.get(oysters_group_id), oysters_list);
+}
+
+// Add as a default layer
+// This needs the display name because the layer control don't report ids
+default_layers.push(oysters_group_name);

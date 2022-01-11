@@ -1,18 +1,9 @@
-// Create list
-var horseshoes_list = document.createElement('ul');
-horseshoes_list.className = 'collectibles_list';
-
-// Add list to sidebar
 var horseshoes_group_name = 'Horseshoes';
-sidebar.addPanel({
-    id: 'horseshoes',
-    tab: '<i class="fas fa-horse"></i>',
-    title: horseshoes_group_name,
-    pane: '<p></p>' // placeholder to get a proper pane
-});
-document.getElementById('horseshoes').appendChild(horseshoes_list);
+var horseshoes_group_id = 'horseshoes';
+var horseshoes_create_checkbox = true;
 
-// Create marker group
+var horseshoes_list = createSidebarTab(horseshoes_group_id, horseshoes_group_name, '<i class="fas fa-horse"></i>');
+
 var horseshoes_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
@@ -33,13 +24,24 @@ L.geoJSON(horseshoes, {
         });
     },
     onEachFeature: (feature, layer) => {
-        onEachFeature(feature, layer, {
+        addPopup(feature, layer, {
             layer_group: horseshoes_group,
             list: horseshoes_list,
-            list_name: "horseshoes",
-            create_checkbox: true
+            list_id: horseshoes_group_id,
+            create_checkbox: horseshoes_create_checkbox
+        });
+        saveMarker(feature, layer, {
+            list_id: horseshoes_group_id
         });
     }
 }).addTo(horseshoes_group);
-marker.get('horseshoes').set('group', horseshoes_group);
-marker.get('horseshoes').set('name', horseshoes_group_name);
+marker.get(horseshoes_group_id).set('group', horseshoes_group);
+marker.get(horseshoes_group_id).set('name', horseshoes_group_name);
+
+if (horseshoes_create_checkbox) {
+    setColumnCount(marker.get(horseshoes_group_id), horseshoes_list);
+}
+
+// Add as a default layer
+// This needs the display name because the layer control don't report ids
+default_layers.push(horseshoes_group_name);

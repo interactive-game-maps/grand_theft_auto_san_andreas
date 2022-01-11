@@ -1,5 +1,7 @@
-var death_warps_group = L.layerGroup();
 var death_warps_group_name = 'Death Warps';
+var death_warps_group_id = 'death_warps';
+
+var death_warps_group = L.layerGroup();
 
 var deaths_geoJson = L.geoJSON(death_warps, {
     pointToLayer: (feature, latlng) => {
@@ -29,15 +31,20 @@ var deaths_geoJson = L.geoJSON(death_warps, {
 
         layer.on({
             mouseover: highlightFeature,
-            mouseout: resetHighlight,
-            click: zoomToFeature
+            mouseout: (e) => {
+                deaths_geoJson.resetStyle(e.target);
+            },
+            click: (e) => {
+                zoomToFeature(death_warps_group_id, e.target.feature.properties.id);
+                history.replaceState({}, "", "index.html?list=" + death_warps_group_id + "&id=" + e.target.feature.properties.id);
+            }
+        });
+
+        saveMarker(feature, layer, {
+            list_id: death_warps_group_id
         });
     }
-});
-deaths_geoJson.addTo(death_warps_group);
+}).addTo(death_warps_group);
 
-if (!marker.has('death_warps')) {
-    marker.set('death_warps', new Map());
-}
-marker.get('death_warps').set('group', death_warps_group);
-marker.get('death_warps').set('name', death_warps_group_name);
+marker.get(death_warps_group_id).set('group', death_warps_group);
+marker.get(death_warps_group_id).set('name', death_warps_group_name);

@@ -1,18 +1,9 @@
-// Create list
-var stunt_jumps_list = document.createElement('ul');
-stunt_jumps_list.className = 'collectibles_list';
-
-// Add list to sidebar
 var stunt_jumps_group_name = 'Unique Stunt Jumps';
-sidebar.addPanel({
-    id: 'stunt_jumps',
-    tab: '<i class="fas fa-car"></i>',
-    title: stunt_jumps_group_name,
-    pane: '<p></p>' // placeholder to get a proper pane
-});
-document.getElementById('stunt_jumps').appendChild(stunt_jumps_list);
+var stunt_jumps_group_id = 'stunt_jumps';
+var stunt_jumps_create_checkbox = true;
 
-// Create marker group
+var stunt_jumps_list = createSidebarTab(stunt_jumps_group_id, stunt_jumps_group_name, '<i class="fas fa-car"></i>');
+
 var stunt_jumps_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
@@ -33,13 +24,20 @@ L.geoJSON(stunt_jumps, {
         });
     },
     onEachFeature: (feature, layer) => {
-        onEachFeature(feature, layer, {
+        addPopup(feature, layer, {
             layer_group: stunt_jumps_group,
             list: stunt_jumps_list,
-            list_name: "stunt_jumps",
-            create_checkbox: true
+            list_id: stunt_jumps_group_id,
+            create_checkbox: stunt_jumps_create_checkbox
+        });
+        saveMarker(feature, layer, {
+            list_id: stunt_jumps_group_id
         });
     }
 }).addTo(stunt_jumps_group);
-marker.get('stunt_jumps').set('group', stunt_jumps_group);
-marker.get('stunt_jumps').set('name', stunt_jumps_group_name);
+marker.get(stunt_jumps_group_id).set('group', stunt_jumps_group);
+marker.get(stunt_jumps_group_id).set('name', stunt_jumps_group_name);
+
+if (stunt_jumps_create_checkbox) {
+    setColumnCount(marker.get(stunt_jumps_group_id), stunt_jumps_list);
+}
