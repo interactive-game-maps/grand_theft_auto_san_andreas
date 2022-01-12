@@ -265,11 +265,11 @@ tiled_map.addTo(map);
         if (event.id == 'attributions') return;
 
         map.addLayer(marker.get(event.id).get('group'));
-        history.replaceState({}, "", "index.html?list=" + event.id);
+        history.replaceState({}, "", "?list=" + event.id);
     });
 
     sidebar.on('closing', () => {
-        history.replaceState({}, "", "index.html");
+        history.replaceState({}, "", "/grand_theft_auto_san_andreas");
     })
 }
 

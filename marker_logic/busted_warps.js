@@ -29,7 +29,7 @@ var busted_geoJson = L.geoJSON(busted_warps, {
             },
             click: (e) => {
                 zoomToFeature(busted_warps_group_id, e.target.feature.properties.id);
-                history.replaceState({}, "", "index.html?list=" + busted_warps_group_id + "&id=" + e.target.feature.properties.id);
+                history.replaceState({}, "", "?list=" + busted_warps_group_id + "&id=" + e.target.feature.properties.id);
             }
         });
 

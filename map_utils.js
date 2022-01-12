@@ -22,7 +22,7 @@ function add_checkbox(feature, list, list_id, layer_group) {
         locate_button.addEventListener('click', () => {
             map.setView(marker.get(list_id).get(feature.properties.id)[0].getLatLng());
             // rewrite url for easy copy pasta
-            history.replaceState({}, "", "index.html?list=" + list_id + "&id=" + feature.properties.id);
+            history.replaceState({}, "", "?list=" + list_id + "&id=" + feature.properties.id);
         });
         locate_button.className = 'flex-grow-0';
 
@@ -184,11 +184,11 @@ function addPopup(feature, layer, args = {}) {
 
             layer.on('popupopen', (event) => {
                 // rewrite url for easy copy pasta
-                history.replaceState({}, "", "index.html?list=" + params.list_id + "&id=" + feature.properties.id);
+                history.replaceState({}, "", "?list=" + params.list_id + "&id=" + feature.properties.id);
             });
 
             layer.on('popupclose', (event) => {
-                history.replaceState({}, "", "index.html");
+                history.replaceState({}, "", "/grand_theft_auto_san_andreas");
             });
 
             return html;

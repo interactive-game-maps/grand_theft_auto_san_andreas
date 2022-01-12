@@ -45,7 +45,7 @@ var los_santos_races_geojson = L.geoJSON(los_santos_races, {
             },
             click: (e) => {
                 zoomToFeature(race_tournaments_group_id, e.target.feature.properties.id);
-                history.replaceState({}, "", "index.html?list=" + race_tournaments_group_id + "&id=" + e.target.feature.properties.id);
+                history.replaceState({}, "", "?list=" + race_tournaments_group_id + "&id=" + e.target.feature.properties.id);
             }
         });
 
@@ -93,7 +93,7 @@ var san_fierro_races_geojson = L.geoJSON(san_fierro_races, {
             },
             click: (e) => {
                 zoomToFeature(race_tournaments_group_id, e.target.feature.properties.id);
-                history.replaceState({}, "", "index.html?list=" + race_tournaments_group_id + "&id=" + e.target.feature.properties.id);
+                history.replaceState({}, "", "?list=" + race_tournaments_group_id + "&id=" + e.target.feature.properties.id);
             }
         });
 
@@ -141,7 +141,7 @@ var las_venturas_races_geojson = L.geoJSON(las_venturas_races, {
             },
             click: (e) => {
                 zoomToFeature(race_tournaments_group_id, e.target.feature.properties.id);
-                history.replaceState({}, "", "index.html?list=" + race_tournaments_group_id + "&id=" + e.target.feature.properties.id);
+                history.replaceState({}, "", "?list=" + race_tournaments_group_id + "&id=" + e.target.feature.properties.id);
             }
         });
 
@@ -189,7 +189,7 @@ var air_races_geojson = L.geoJSON(air_races, {
             },
             click: (e) => {
                 zoomToFeature(race_tournaments_group_id, e.target.feature.properties.id);
-                history.replaceState({}, "", "index.html?list=" + race_tournaments_group_id + "&id=" + e.target.feature.properties.id);
+                history.replaceState({}, "", "?list=" + race_tournaments_group_id + "&id=" + e.target.feature.properties.id);
             }
         });
 
