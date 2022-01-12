@@ -1,5 +1,7 @@
 // Helper functions
 function getPopupMedia(feature, html) {
+    const POPUP_WIDTH = 500;
+
     if (feature.properties.image_id) {
         var prefix = 'https://static.wikia.nocookie.net/gtawiki/images/';
         var suffix = '.jpg';
@@ -122,7 +124,6 @@ function addPopup(feature, layer, args = {}) {
         create_checkbox: false
     };
     var params = { ...defaults, ...args } // right-most object overwrites
-    const POPUP_WIDTH = 500;
 
     // only bind for markers
     if (feature.geometry.type == "Point") {
@@ -200,7 +201,7 @@ function addPopup(feature, layer, args = {}) {
             });
 
             layer.on('popupclose', (event) => {
-                history.replaceState({}, "", `/${website_subdir}`);
+                history.replaceState({}, "", `/${website_subdir}/`);
             });
 
             return html;
