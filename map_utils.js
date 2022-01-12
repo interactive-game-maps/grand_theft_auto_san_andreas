@@ -1,12 +1,12 @@
 // Helper functions
-function getPopupMedia(feature, html) {
+function getPopupMedia(feature, list_id, html) {
     const POPUP_WIDTH = 500;
 
     if (feature.properties.image_id) {
         var prefix = 'https://static.wikia.nocookie.net/gtawiki/images/';
         var suffix = '.jpg';
-        if (params.list_id == "horseshoes"
-            || params.list_id == "oysters") {
+        if (list_id == "horseshoes"
+            || list_id == "oysters") {
             prefix = 'https://static.wikigta.org/en/images/';
             suffix = '.JPG'
         }
@@ -14,7 +14,7 @@ function getPopupMedia(feature, html) {
         var image_link = document.createElement('a');
         image_link.className = 'popup-media';
         if (feature.properties.image_link) {
-            switch (params.list_id) {
+            switch (list_id) {
                 case 'tags':
                     image_link.href = `https://gta.fandom.com/wiki/${feature.properties.image_link}`;
                     break;
@@ -142,7 +142,7 @@ function addPopup(feature, layer, args = {}) {
 
             html.appendChild(title);
 
-            html = getPopupMedia(feature, html);
+            html = getPopupMedia(feature, params.list_id, html);
 
             if (feature.properties.description) {
                 var description = document.createElement('p');
