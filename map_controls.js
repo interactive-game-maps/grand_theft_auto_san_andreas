@@ -49,13 +49,13 @@ L.control.layers(baseMaps, overlayMaps, {
     });
 
     var custom_layers = {};
-    if (localStorage.getItem('custom_layers')) {
-        JSON.parse(localStorage.getItem('custom_layers')).forEach(element => {
-            if (!localStorage.getItem(element)) {
+    if (localStorage.getItem(`${website_subdir}:custom_layers`)) {
+        JSON.parse(localStorage.getItem(`${website_subdir}:custom_layers`)).forEach(element => {
+            if (!localStorage.getItem(`${website_subdir}:${element}`)) {
                 return;
             }
 
-            var custom_layer = L.geoJSON(JSON.parse(localStorage.getItem(element)), {
+            var custom_layer = L.geoJSON(JSON.parse(localStorage.getItem(`${website_subdir}:${element}`)), {
                 onEachFeature: (feature, layer) => {
                     create_editable_popup(layer);
                 },
@@ -76,19 +76,19 @@ L.control.layers(baseMaps, overlayMaps, {
             user_layers.push(e.name);
         }
 
-        localStorage.setItem('user_layers', JSON.stringify(user_layers));
+        localStorage.setItem(`${website_subdir}:user_layers`, JSON.stringify(user_layers));
     });
     map.on('overlayremove ', e => {
         user_layers = user_layers.filter((value, index, array) => {
             return value != e.name;
         });
 
-        localStorage.setItem('user_layers', JSON.stringify(user_layers));
+        localStorage.setItem(`${website_subdir}:user_layers`, JSON.stringify(user_layers));
     });
 }
 
 // Show remembered layers
-var user_layers = JSON.parse(localStorage.getItem('user_layers'));
+var user_layers = JSON.parse(localStorage.getItem(`${website_subdir}:user_layers`));
 if (!user_layers) {
     user_layers = default_layers;
 }
@@ -116,7 +116,7 @@ marker.forEach((v, k) => {
         // iterate over all features with that ID
         value.forEach(item => {
             // Remove if checked
-            if (localStorage.getItem(k + ":" + key)) {
+            if (localStorage.getItem(`${website_subdir}:${k}:${key}`)) {
                 v.get("group").removeLayer(item);
             }
         });
