@@ -12,6 +12,7 @@ var stunt_jumps_icon = L.Icon.Default.extend({
     options: {
         imagePath: './',
         iconUrl: 'marker/stunt_jumps.png',
+        iconRetinaUrl: 'marker/stunt_jumps.png',
         shadowUrl: 'marker/shadow.png'
     }
 });

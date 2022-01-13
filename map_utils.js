@@ -76,6 +76,12 @@ function add_checkbox(feature, list, list_id, layer_group) {
         locate_button.innerHTML = icon.outerHTML;
         locate_button.addEventListener('click', () => {
             map.setView(marker.get(list_id).get(feature.properties.id)[0].getLatLng());
+
+            // Close sidebar if it spans over the complete view
+            if (window.matchMedia('(max-device-width: 767px)').matches) {
+                sidebar.close();
+            }
+
             // rewrite url for easy copy pasta
             history.replaceState({}, "", "?list=" + list_id + "&id=" + feature.properties.id);
         });

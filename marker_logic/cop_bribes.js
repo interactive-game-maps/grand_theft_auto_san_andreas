@@ -12,6 +12,7 @@ var cop_bribes_icon = L.Icon.Default.extend({
     options: {
         imagePath: './',
         iconUrl: 'marker/cop_bribes.png',
+        iconRetinaUrl: 'marker/cop_bribes.png',
         shadowUrl: 'marker/shadow.png'
     }
 });

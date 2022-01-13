@@ -22,7 +22,7 @@ var map = L.map('map', {
 // ./gdal2tiles.py -l -p raster -w none -z 2-5 full_map.jpg map_tiles
 var tiled_map = new L.tileLayer('map_tiles/{z}/{x}/{y}.png', {
     minNativeZoom: 2,
-    maxNativeZoom: 5,
+    maxNativeZoom: L.Browser.retina ? 4 : 5, // 1 level LOWER for high pixel ratio device.
     attribution: '<a href="https://old.reddit.com/r/sanandreas/comments/9856u1/high_resolution_map_for_grand_theft_auto_san/">Map from TheCynicalAutist</a>, <a href="https://ehgames.com/gta/maplist/">Marker locations from ehgames.com</a>',
     noWrap: true,
     detectRetina: true

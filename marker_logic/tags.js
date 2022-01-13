@@ -12,6 +12,7 @@ var tags_icon = L.Icon.Default.extend({
     options: {
         imagePath: './',
         iconUrl: 'marker/tags.png',
+        iconRetinaUrl: 'marker/tags.png',
         shadowUrl: 'marker/shadow.png'
     }
 });

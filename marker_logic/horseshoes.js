@@ -12,6 +12,7 @@ var horseshoes_icon = L.Icon.Default.extend({
     options: {
         imagePath: './',
         iconUrl: 'marker/horseshoes.png',
+        iconRetinaUrl: 'marker/horseshoes.png',
         shadowUrl: 'marker/shadow.png'
     }
 });

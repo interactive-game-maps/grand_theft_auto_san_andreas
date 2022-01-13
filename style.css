@@ -14,7 +14,7 @@ html, body, #map {
     display: grid;
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (max-width: 1199px) {
     .collectibles_list {
         grid-template-columns: repeat(1, auto) !important;
     }

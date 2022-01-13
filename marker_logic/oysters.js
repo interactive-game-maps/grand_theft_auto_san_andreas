@@ -12,6 +12,7 @@ var oysters_icon = L.Icon.Default.extend({
     options: {
         imagePath: './',
         iconUrl: 'marker/oysters.png',
+        iconRetinaUrl: 'marker/oysters.png',
         shadowUrl: 'marker/shadow.png'
     }
 });

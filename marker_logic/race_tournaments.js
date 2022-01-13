@@ -13,6 +13,7 @@ var race_tournaments_icon = L.Icon.extend({
         iconAnchor: [15, 15],
         iconSize: [30, 30],
         iconUrl: 'marker/race_tournaments.png',
+        iconRetinaUrl: 'marker/race_tournaments.png',
         tooltipAnchor: [0, 15]
     }
 })

@@ -12,6 +12,7 @@ var snapshots_icon = L.Icon.Default.extend({
     options: {
         imagePath: './',
         iconUrl: 'marker/snapshots.png',
+        iconRetinaUrl: 'marker/snapshots.png',
         shadowUrl: 'marker/shadow.png'
     }
 });
