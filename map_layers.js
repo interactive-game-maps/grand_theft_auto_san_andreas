@@ -1,10 +1,10 @@
 var website = 'https://github.com/interactive-game-maps/grand_theft_auto_san_andreas';
 var website_subdir = 'grand_theft_auto_san_andreas';
 var attribution = `
-            <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-            <div>Icons made by <a href="https://gtaforums.com/topic/893039-remastered-radar-icons-sa/" title="CRRPGMykael">CRRPGMykael</a> from <a href="https://gtaforums.com/" title="GTAFORUMS">https://gtaforums.com/</a></div>
+            <div>Marker locations from <a href="https://ehgames.com/gta/maplist/">ehgames.com</a>.</div>
             <div>Spray tag and Snapshot images from <a href="https://gta.fandom.com/wiki/" title="https://gta.fandom.com/">https://gta.fandom.com/</a></div>
             <div>Horseshoe and Oyster images from <a href="http://en.wikigta.org/wiki/Main_Page" title="http://en.wikigta.org/wiki/Main_Page">http://en.wikigta.org/wiki/Main_Page</a></div>
+            <div>Icons made by <a href="https://gtaforums.com/topic/893039-remastered-radar-icons-sa/" title="CRRPGMykael">CRRPGMykael</a> from <a href="https://gtaforums.com/" title="GTAFORUMS">https://gtaforums.com/</a></div>
             <div>Icons made by <a href="https://fontawesome.com/" title="Font Awesome">Font Awesome</a> under <a href="https://fontawesome.com/license">CCA4</a>.</div>
             `
 
@@ -23,7 +23,7 @@ var map = L.map('map', {
 var tiled_map = new L.tileLayer('map_tiles/{z}/{x}/{y}.png', {
     minNativeZoom: 2,
     maxNativeZoom: L.Browser.retina ? 4 : 5, // 1 level LOWER for high pixel ratio device.
-    attribution: '<a href="https://old.reddit.com/r/sanandreas/comments/9856u1/high_resolution_map_for_grand_theft_auto_san/">Map from TheCynicalAutist</a>, <a href="https://ehgames.com/gta/maplist/">Marker locations from ehgames.com</a>',
+    attribution: 'Map from <a href="https://old.reddit.com/r/sanandreas/comments/9856u1/high_resolution_map_for_grand_theft_auto_san/">TheCynicalAutist</a>',
     noWrap: true,
     detectRetina: true
 });
@@ -37,11 +37,7 @@ tiled_map.addTo(map);
 
 { // Edit toolbar
     // Disable general editing
-    // L.PM.setOptIn(true);
-
-    // edit_layer.pm.applyOptionsToAllChilds({
-    //     allowEditing: true
-    // });
+    L.PM.setOptIn(true);
 
     map.pm.Toolbar.createCustomControl({
         name: 'add_layer',
@@ -50,18 +46,32 @@ tiled_map.addTo(map);
         className: 'fas fa-plus',
         toggle: false,
         onClick: () => {
-            if (!create_custom_layer()) {
+            if (!createCustomLayer()) {
                 return;
             }
 
             var active_custom_layers = custom_layer_controls.getOverlays({
                 only_active: true
             });
-
-            var active_custom_layer = custom_layers[Object.keys(active_custom_layers)[0]]
+            var active_custom_layer = custom_layers[Object.keys(active_custom_layers)[0]];
+            map.off('pm:create');
 
             // Disable current active layer
             map.removeLayer(active_custom_layer);
+            L.PM.setOptIn(true);
+            L.PM.reInitLayer(active_custom_layer);
+
+            active_custom_layers = custom_layer_controls.getOverlays({
+                only_active: true
+            });
+            active_custom_layer = custom_layers[Object.keys(active_custom_layers)[0]];
+
+            L.PM.setOptIn(true);
+            L.PM.reInitLayer(active_custom_layer);
+
+            map.on('pm:create', e => {
+                createEditablePopup(e.layer);
+            });
         }
     });
     map.pm.Toolbar.createCustomControl({
@@ -87,7 +97,7 @@ tiled_map.addTo(map);
             delete custom_layers[Object.keys(active_custom_layers)[0]];
 
             // Remove layer from controls
-            show_custom_layer_controls();
+            showCustomLayerControls();
             edit_mode = false;
             map.pm.toggleControls();
 
@@ -203,7 +213,7 @@ tiled_map.addTo(map);
                 });
 
                 if (Object.keys(active_custom_layers).length < 1) {
-                    if (!create_custom_layer()) {
+                    if (!createCustomLayer()) {
                         return;
                     }
                 } else if (Object.keys(active_custom_layers).length > 1) {
@@ -217,19 +227,36 @@ tiled_map.addTo(map);
 
                 var active_custom_layer = custom_layers[Object.keys(active_custom_layers)[0]];
 
+                // Enable general editing for new markers
+                L.PM.setOptIn(false);
+                L.PM.reInitLayer(active_custom_layer);
+
                 map.pm.setGlobalOptions({
-                    layerGroup: active_custom_layer
+                    layerGroup: active_custom_layer,
+                    markerStyle: {
+                        icon: getCustomIcon(Object.keys(active_custom_layers)[0].substring(0, 2))
+                    }
                 });
 
                 map.on('pm:create', e => {
-                    active_custom_layer.eachLayer(layer => {
-                        create_editable_popup(layer);
-                    });
+                    createEditablePopup(e.layer);
                 });
 
                 edit_mode = true;
-                hide_custom_layer_controls();
+                hideCustomLayerControls();
+                map.off('click', moveShareMarker);
+                setHistoryState();
             } else {
+                var active_custom_layers = custom_layer_controls.getOverlays({
+                    only_active: true
+                });
+
+                var active_custom_layer = custom_layers[Object.keys(active_custom_layers)[0]];
+
+                // Disable general editing for new markers
+                L.PM.setOptIn(true);
+                L.PM.reInitLayer(active_custom_layer);
+
                 // make sure editing is disabled
                 map.pm.disableDraw();
                 map.pm.disableGlobalEditMode();
@@ -239,7 +266,10 @@ tiled_map.addTo(map);
                 map.pm.disableGlobalRotateMode();
 
                 edit_mode = false;
-                show_custom_layer_controls();
+                showCustomLayerControls();
+
+                map.off('pm:create');
+                map.on('click', moveShareMarker);
             }
             map.pm.toggleControls();
         }
@@ -272,11 +302,11 @@ tiled_map.addTo(map);
         if (event.id == 'attributions') return;
 
         map.addLayer(marker.get(event.id).get('group'));
-        history.replaceState({}, "", "?list=" + event.id);
+        setHistoryState(event.id);
     });
 
     sidebar.on('closing', () => {
-        history.replaceState({}, "", `/${website_subdir}/`);
+        setHistoryState();
     })
 }
 

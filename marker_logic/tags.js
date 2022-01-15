@@ -8,19 +8,10 @@ var tags_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
 
-var tags_icon = L.Icon.Default.extend({
-    options: {
-        imagePath: './',
-        iconUrl: 'marker/tags.png',
-        iconRetinaUrl: 'marker/tags.png',
-        shadowUrl: 'marker/shadow.png'
-    }
-});
-
 L.geoJSON(tags, {
     pointToLayer: (feature, latlng) => {
         return L.marker(latlng, {
-            icon: new tags_icon,
+            icon: getCustomIcon('fa-spray-can'),
             riseOnHover: true
         });
     },

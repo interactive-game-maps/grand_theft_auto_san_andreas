@@ -12,14 +12,7 @@ var deaths_geoJson = L.geoJSON(death_warps, {
         }
         else {
             return L.marker(latlng, {
-                // Simple symbols and text/numbers on markers: https://github.com/coryasilva/Leaflet.ExtraMarkers
-                icon: L.ExtraMarkers.icon({
-                    icon: 'fa-hospital',
-                    prefix: 'fas',
-                    iconColor: '#ff0000',
-                    shape: 'circle',
-                    markerColor: 'white'
-                }),
+                icon: getCustomIcon('fa-hospital'),
                 interactive: false
             });
         }

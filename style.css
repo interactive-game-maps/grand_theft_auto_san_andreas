@@ -96,3 +96,19 @@ html, body, #map {
 .sidebar-image {
     width: 100%;
 }
+
+.map-marker-foreground {
+    width: 20px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.map-marker-foreground-wrapper {
+    display: table;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+}

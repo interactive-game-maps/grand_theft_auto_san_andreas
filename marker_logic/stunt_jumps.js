@@ -8,19 +8,10 @@ var stunt_jumps_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
 
-var stunt_jumps_icon = L.Icon.Default.extend({
-    options: {
-        imagePath: './',
-        iconUrl: 'marker/stunt_jumps.png',
-        iconRetinaUrl: 'marker/stunt_jumps.png',
-        shadowUrl: 'marker/shadow.png'
-    }
-});
-
 L.geoJSON(stunt_jumps, {
     pointToLayer: (feature, latlng) => {
         return L.marker(latlng, {
-            icon: new stunt_jumps_icon,
+            icon: getCustomIcon('fa-car'),
             riseOnHover: true
         });
     },

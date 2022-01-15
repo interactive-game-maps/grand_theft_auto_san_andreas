@@ -2,26 +2,16 @@ var race_tournaments_group_name = 'Race Tournaments';
 var race_tournaments_group_id = 'race_tournaments';
 var race_tournaments_create_checkbox = true;
 
-var race_tournaments_list = createSidebarTab(race_tournaments_group_id, race_tournaments_group_name, '🏁');
+var race_tournaments_list = createSidebarTab(race_tournaments_group_id, race_tournaments_group_name, `<img class="sidebar-image" src="images/icons/${race_tournaments_group_id}.png" />`);
 
 var race_tournaments_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
 
-var race_tournaments_icon = L.Icon.extend({
-    options: {
-        iconAnchor: [15, 15],
-        iconSize: [30, 30],
-        iconUrl: 'marker/race_tournaments.png',
-        iconRetinaUrl: 'marker/race_tournaments.png',
-        tooltipAnchor: [0, 15]
-    }
-})
-
 var los_santos_races_geojson = L.geoJSON(los_santos_races, {
     pointToLayer: (feature, latlng) => {
         return L.marker(latlng, {
-            icon: new race_tournaments_icon
+            icon: getCustomIcon(race_tournaments_group_id)
         });
     },
     onEachFeature: (feature, layer) => {
@@ -69,7 +59,7 @@ var los_santos_races_geojson = L.geoJSON(los_santos_races, {
 var san_fierro_races_geojson = L.geoJSON(san_fierro_races, {
     pointToLayer: (feature, latlng) => {
         return L.marker(latlng, {
-            icon: new race_tournaments_icon
+            icon: getCustomIcon(race_tournaments_group_id)
         });
     },
     onEachFeature: (feature, layer) => {
@@ -117,7 +107,7 @@ var san_fierro_races_geojson = L.geoJSON(san_fierro_races, {
 var las_venturas_races_geojson = L.geoJSON(las_venturas_races, {
     pointToLayer: (feature, latlng) => {
         return L.marker(latlng, {
-            icon: new race_tournaments_icon
+            icon: getCustomIcon(race_tournaments_group_id)
         });
     },
     onEachFeature: (feature, layer) => {
@@ -165,7 +155,7 @@ var las_venturas_races_geojson = L.geoJSON(las_venturas_races, {
 var air_races_geojson = L.geoJSON(air_races, {
     pointToLayer: (feature, latlng) => {
         return L.marker(latlng, {
-            icon: new race_tournaments_icon
+            icon: getCustomIcon(race_tournaments_group_id)
         });
     },
     onEachFeature: (feature, layer) => {

@@ -8,19 +8,10 @@ var oysters_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
 
-var oysters_icon = L.Icon.Default.extend({
-    options: {
-        imagePath: './',
-        iconUrl: 'marker/oysters.png',
-        iconRetinaUrl: 'marker/oysters.png',
-        shadowUrl: 'marker/shadow.png'
-    }
-});
-
 L.geoJSON(oysters, {
     pointToLayer: (feature, latlng) => {
         return L.marker(latlng, {
-            icon: new oysters_icon,
+            icon: getCustomIcon('🦪'),
             riseOnHover: true
         });
     },

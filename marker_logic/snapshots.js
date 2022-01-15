@@ -8,19 +8,10 @@ var snapshots_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
 
-var snapshots_icon = L.Icon.Default.extend({
-    options: {
-        imagePath: './',
-        iconUrl: 'marker/snapshots.png',
-        iconRetinaUrl: 'marker/snapshots.png',
-        shadowUrl: 'marker/shadow.png'
-    }
-});
-
 L.geoJSON(snapshots, {
     pointToLayer: (feature, latlng) => {
         return L.marker(latlng, {
-            icon: new snapshots_icon,
+            icon: getCustomIcon('fa-camera'),
             riseOnHover: true
         });
     },

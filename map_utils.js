@@ -54,7 +54,7 @@ function getPopupMedia(feature, list_id, html) {
     return html;
 }
 
-function add_checkbox(feature, list, list_id, layer_group) {
+function addCheckbox(feature, list, list_id, layer_group) {
     if (!document.getElementById(list_id + ':' + feature.properties.id)) {
         var list_entry = document.createElement('li');
         list_entry.className = 'flex-grow-1';
@@ -83,7 +83,7 @@ function add_checkbox(feature, list, list_id, layer_group) {
             }
 
             // rewrite url for easy copy pasta
-            history.replaceState({}, "", "?list=" + list_id + "&id=" + feature.properties.id);
+            setHistoryState(list_id, feature.properties.id);
         });
         locate_button.className = 'flex-grow-0';
 
@@ -134,7 +134,7 @@ function addPopup(feature, layer, args = {}) {
     // only bind for markers
     if (feature.geometry.type == "Point") {
         if (params.create_checkbox) {
-            add_checkbox(feature, params.list, params.list_id, params.layer_group);
+            addCheckbox(feature, params.list, params.list_id, params.layer_group);
         }
 
         layer.bindPopup(() => {
@@ -203,11 +203,16 @@ function addPopup(feature, layer, args = {}) {
 
             layer.on('popupopen', (event) => {
                 // rewrite url for easy copy pasta
-                history.replaceState({}, "", "?list=" + params.list_id + "&id=" + feature.properties.id);
+                setHistoryState(params.list_id, feature.properties.id);
+                map.off('click', moveShareMarker);
             });
 
             layer.on('popupclose', (event) => {
-                history.replaceState({}, "", `/${website_subdir}/`);
+                setHistoryState();
+
+                window.setTimeout(() => {
+                    map.on('click', moveShareMarker);
+                }, 300);
             });
 
             return html;
@@ -254,11 +259,11 @@ function zoomToFeature(list, id) {
     });
 }
 
-function hide_custom_layer_controls() {
+function hideCustomLayerControls() {
     map.removeControl(custom_layer_controls);
 }
 
-function show_custom_layer_controls() {
+function showCustomLayerControls() {
     if (Object.keys(custom_layers).length > 0) {
         // Don't know why I have to create a new control but adding the old one is giving me an exception
         custom_layer_controls = new L.control.layers(null, custom_layers, {
@@ -268,7 +273,7 @@ function show_custom_layer_controls() {
     }
 }
 
-function create_custom_layer() {
+function createCustomLayer() {
     // Create new layer
     var layer_id = prompt("Unique new layer name");
 
@@ -292,7 +297,7 @@ function create_custom_layer() {
     return true;
 }
 
-function create_editable_popup(layer) {
+function createEditablePopup(layer) {
     layer.bindPopup(() => {
         var html = document.createElement('div');
 
@@ -417,6 +422,19 @@ function create_editable_popup(layer) {
 
         return html;
     });
+
+    layer.on('popupopen', (event) => {
+        setHistoryState();
+        map.off('click', moveShareMarker);
+    });
+
+    layer.on('popupclose', (event) => {
+        if (edit_mode) return;
+
+        window.setTimeout(() => {
+            map.on('click', moveShareMarker);
+        }, 300);
+    });
 }
 
 // https://stackoverflow.com/a/18197341
@@ -506,4 +524,82 @@ function setColumnCount(group, list) {
     }
 
     list.setAttribute('style', `grid-template-columns: repeat(${columns}, auto)`);
+}
+
+function getCustomIcon(icon_id, mode = "normal") {
+    if (!icon_id) {
+        return L.divIcon({
+            className: 'map-marker',
+            html: `
+            <img class="map-marker-background" src="images/icons/marker_${mode}.svg" />
+            `,
+            iconSize: [25, 41],
+            popupAnchor: [1, -34],
+            iconAnchor: [12, 41],
+            tooltipAnchor: [0, 0]
+        });
+    }
+
+    if (icon_id.startsWith('fa-')) {
+        return L.divIcon({
+            className: 'map-marker',
+            html: `
+            <img class="map-marker-background" src="images/icons/marker_${mode}.svg" />
+            <div class="map-marker-foreground-wrapper"><i class="fas ${icon_id} map-marker-foreground"></i></div>
+            `,
+            iconSize: [25, 41],
+            popupAnchor: [1, -34],
+            iconAnchor: [12, 41],
+            tooltipAnchor: [0, 0]
+        });
+    } else if (icon_id.length > 2) {
+        return L.divIcon({
+            className: 'map-marker',
+            html: `
+                <img class="map-marker-background" src="images/icons/marker_${mode}.svg" />
+                <div class="map-marker-foreground-wrapper"><img class='map-marker-foreground' src='images/icons/${icon_id}.png' /></div>
+                `,
+            iconSize: [25, 41],
+            popupAnchor: [1, -34],
+            iconAnchor: [12, 41],
+            tooltipAnchor: [0, 0]
+        });
+    } else if (icon_id.length < 3) {
+        return L.divIcon({
+            className: 'map-marker',
+            html: `
+            <img class="map-marker-background" src="images/icons/marker_${mode}.svg" />
+            <div class="map-marker-foreground-wrapper"><p class="map-marker-foreground">${icon_id}</p></div>
+            `,
+            iconSize: [25, 41],
+            popupAnchor: [1, -34],
+            iconAnchor: [12, 41],
+            tooltipAnchor: [0, 0]
+        });
+    }
+}
+
+function setHistoryState(list_id = undefined, marker_id = undefined) {
+    if (list_id && marker_id) {
+        history.replaceState({}, "", `?list=${list_id}&id=${marker_id}`);
+    } else if (list_id) {
+        history.replaceState({}, "", `?list=${list_id}`);
+    } else {
+        // CORS is driving me crazy
+        // https://stackoverflow.com/a/3920899
+        switch (window.location.protocol) {
+            case 'http:':
+            case 'https:':
+                //remote file over http or https
+                history.replaceState({}, "", `/${website_subdir}/`);
+                break;
+            case 'file:':
+                //local file
+                history.replaceState({}, "", `index.html`);
+                break;
+            default:
+            //some other protocol
+        }
+    }
+    share_marker.remove();
 }

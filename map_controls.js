@@ -56,8 +56,14 @@ L.control.layers(baseMaps, overlayMaps, {
             }
 
             var custom_layer = L.geoJSON(JSON.parse(localStorage.getItem(`${website_subdir}:${element}`)), {
+                pointToLayer: (feature, latlng) => {
+                    return L.marker(latlng, {
+                        icon: getCustomIcon(element.substring(0, 2)),
+                        riseOnHover: true
+                    });
+                },
                 onEachFeature: (feature, layer) => {
-                    create_editable_popup(layer);
+                    createEditablePopup(layer);
                 },
                 pmIgnore: false
             });
@@ -69,7 +75,7 @@ L.control.layers(baseMaps, overlayMaps, {
     custom_layer_controls = new L.control.layers(null, custom_layers, {
         collapsed: false
     });
-    show_custom_layer_controls();
+    showCustomLayerControls();
 
     map.on('overlayadd', e => {
         if (!user_layers.includes(e.name)) {
@@ -123,10 +129,59 @@ marker.forEach((v, k) => {
     });
 });
 
+{ // clicking sets a marker that can be shared
+    var share_marker = L.marker([0, 0], {
+        icon: getCustomIcon('fa-share-alt'),
+        riseOnHover: true,
+        draggable: true,
+        pmIgnore: true
+    });
+    share_marker.on('moveend', e => {
+        history.replaceState({}, "", `?share=${e.target._latlng.lat},${e.target._latlng.lng}`);
+    });
+    share_marker.bindPopup(() => {
+        var html = document.createElement('div');
+
+        var title = document.createElement('h2');
+        title.className = 'popup-title';
+        title.innerHTML = 'Share marker';
+        html.appendChild(title);
+
+        var button = document.createElement('button');
+        button.innerHTML = 'Remove';
+        button.className = 'popup-checkbox is-fullwidth';
+        html.appendChild(button);
+
+        button.addEventListener('click', () => {
+            setHistoryState();
+        });
+
+        return html;
+    });
+
+    function moveShareMarker(e) {
+        share_marker.setLatLng(e.latlng);
+        share_marker.addTo(map);
+        history.replaceState({}, "", `?share=${e.latlng.lat},${e.latlng.lng}`);
+    }
+    map.on('click', moveShareMarker);
+}
+
 // Search in url for marker and locate them
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-if (urlParams.has('list')) {
+if (urlParams.has('share')) {
+    const share = urlParams.get('share');
+
+    let latlng = share.split(",");
+    share_marker.setLatLng([latlng[0], latlng[1]]);
+    share_marker.addTo(map);
+    let bounds = [];
+    bounds.push([share_marker._latlng.lat, share_marker._latlng.lng]);
+    map.fitBounds(bounds, {
+        maxZoom: 8
+    });
+} else if (urlParams.has('list')) {
     const list = urlParams.get('list');
 
     // make group visible
@@ -149,15 +204,6 @@ if (urlParams.has('list')) {
         const id = urlParams.get('id');
         if (marker.has(list) && marker.get(list).has(id)) {
             zoomToFeature(list, id);
-
-            marker.get(list).get(id).forEach(item => {
-                if (item._latlngs) {
-                    item.setStyle({
-                        color: 'blue',
-                        opacity: 1.0
-                    });
-                }
-            });
         }
 
         // TODO: unhide?

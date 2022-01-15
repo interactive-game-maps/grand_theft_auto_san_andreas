@@ -8,19 +8,10 @@ var horseshoes_group = L.markerClusterGroup({
     maxClusterRadius: 40
 });
 
-var horseshoes_icon = L.Icon.Default.extend({
-    options: {
-        imagePath: './',
-        iconUrl: 'marker/horseshoes.png',
-        iconRetinaUrl: 'marker/horseshoes.png',
-        shadowUrl: 'marker/shadow.png'
-    }
-});
-
 L.geoJSON(horseshoes, {
     pointToLayer: (feature, latlng) => {
         return L.marker(latlng, {
-            icon: new horseshoes_icon,
+            icon: getCustomIcon('fa-horse'),
             riseOnHover: true
         });
     },
