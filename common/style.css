@@ -1,0 +1,154 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+html, body, #map {
+    height: 100%;
+    width: 100%;
+}
+
+/* || Collectibles sidebar listing */
+
+.collectibles_list {
+    list-style: none;
+    padding: 0%;
+    display: grid;
+}
+
+@media (max-width: 1199px) {
+    .collectibles_list {
+        grid-template-columns: repeat(1, auto) !important;
+    }
+}
+
+.collectibles_list li {
+    display: flex;
+    align-content: center;
+    border-bottom: 1px solid #dddddd;
+}
+
+.collectibles_list li:last-child {
+    border-bottom: 0;
+}
+
+.collectibles_list li input:checked + label {
+    background: #dddddd;
+    text-decoration: line-through;
+}
+
+.collectibles_list li input[type="checkbox"] {
+    margin: 10px;
+}
+
+.collectibles_list li label {
+    margin: 0;
+    padding: 10px;
+    transition: background 0.2s;
+    flex: 1;
+    /* font-family:'helvetica neue'; */
+    font-size: 12px;
+    font-weight: 200;
+    border-left: 1px solid #dddddd;
+}
+
+.collectibles_list li button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.leaflet-container {
+    background: #738aaf;
+}
+
+.is-fullwidth {
+    display: flex;
+    width: 100%;
+}
+
+.popup-checkbox {
+    border-width: 1px;
+    padding: calc(0.5em - 1px) 0;
+    white-space: nowrap;
+    justify-content: center;
+    text-align: center;
+    appearance: none;
+    align-items: center;
+    border-radius: 4px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-color: #b5b5b5;
+    cursor: pointer;
+}
+
+.popup-title {
+    text-align: center;
+}
+
+.flex-grow-0 {
+    flex-grow: 0;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.sidebar-image {
+    width: 100%;
+}
+
+/* || Place icons in the middle of the marker */
+
+.map-marker-foreground {
+    width: 20px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.map-marker-foreground-wrapper {
+    display: table;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+}
+
+/* || Firefox warning about will-change */
+
+/* https://github.com/Leaflet/Leaflet/issues/4686#issuecomment-476738312 */
+.leaflet-fade-anim .leaflet-tile,.leaflet-zoom-anim .leaflet-zoom-animated {
+    will-change: auto !important;
+}
+
+/* || Allow scrolling through sidebar tabs */
+
+.leaflet-sidebar-tabs {
+    display: flex;
+    overflow-y: scroll;
+    flex-flow: column;
+    scrollbar-width: none;
+}
+
+.leaflet-sidebar-tabs > ul {
+    flex: 1 0 auto;
+    position: unset;
+}
+
+.leaflet-sidebar-tabs > ul + ul {
+    flex: 0 0 auto;
+}
+
+/* || Styling adjustments for sidebar content */
+
+.leaflet-sidebar-header {
+    position: sticky;
+    top: 0px;
+}
+
+.leaflet-sidebar-content {
+    scrollbar-width: none;
+}
