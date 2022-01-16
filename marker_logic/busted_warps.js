@@ -21,8 +21,9 @@ var busted_geoJson = L.geoJSON(busted_warps, {
                 busted_geoJson.resetStyle(e.target);
             },
             click: (e) => {
+                preventShareMarker();
                 zoomToFeature(busted_warps_group_id, e.target.feature.properties.id);
-                history.replaceState({}, "", "?list=" + busted_warps_group_id + "&id=" + e.target.feature.properties.id);
+                setHistoryState(busted_warps_group_id, e.target.feature.properties.id);
             }
         });
 
