@@ -138,6 +138,7 @@ marker.forEach((v, k) => {
     });
     share_marker.on('moveend', e => {
         highlightMarkerRemove(share_marker);
+        highlightedMarker.splice(highlightedMarker.indexOf(share_marker), 1);
         history.replaceState({}, "", `?share=${e.target._latlng.lng},${e.target._latlng.lat}`);
     });
     share_marker.bindPopup(() => {

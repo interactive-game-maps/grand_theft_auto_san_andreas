@@ -195,31 +195,65 @@ function highlightMarker(element) {
 }
 
 function highlightMarkerRemove(element) {
-    if (highlightedMarker.includes(element)) {
-        highlightedMarker.splice(highlightedMarker.indexOf(element), 1);
+    var icon = element.getIcon();
+    icon.options.html = icon.options.html.replace('<div class="map-marker-ping"></div>', '');
+    element.setIcon(icon);
 
-        var icon = element.getIcon();
-        icon.options.html = icon.options.html.replace('<div class="map-marker-ping"></div>', '');
-        element.setIcon(icon);
-    }
+    return true;
 }
 
 function highlightFeatureRemoveAll() {
     highlightedMarker.forEach(element => {
         if (element._latlngs) {
-            // highlightLayerRemove(, element);
+            geoJSONs.forEach(json => {
+                if (json.hasLayer(element)) {
+                    highlightLayerRemove(json, element);
+                }
+            });
         } else {
             highlightMarkerRemove(element);
         }
     });
 
-    geoJSONs.forEach(geojson => {
-        highlightLayerRemove(geojson);
-    });
-
     highlightedMarker = [];
 
     map.off('click', highlightFeatureRemoveAll);
+}
+
+// https://stackoverflow.com/a/24813338
+function* reverseKeys(arr) {
+    var key = arr.length - 1;
+
+    while (key >= 0) {
+        yield key;
+        key -= 1;
+    }
+}
+
+// https://stackoverflow.com/a/24813338
+function highlightFeatureIdRemove(list, id, geojson = undefined) {
+    for (const index of reverseKeys(highlightedMarker)) {
+        var element = highlightedMarker[index];
+        if (marker.get(list).get(id).includes(element)) {
+            if (element._latlngs) {
+                if (!geojson) {
+                    geoJSONs.forEach(json => {
+                        if (json.hasLayer(element)) {
+                            geojson = json;
+                        }
+
+                    });
+                }
+                if (highlightLayerRemove(geojson, element)) {
+                    highlightedMarker.splice(index, 1);
+                }
+            } else {
+                if (highlightMarkerRemove(element)) {
+                    highlightedMarker.splice(index, 1);
+                }
+            }
+        }
+    }
 }
 
 function highlightFeatureId(list, id) {
@@ -249,8 +283,18 @@ function highlightLayer(layer) {
     }
 }
 
-function highlightLayerRemove(geojson, layer = undefined) {
-    geojson.resetStyle(layer);
+function highlightLayerRemove(geojson = undefined, layer = undefined) {
+    if (!geojson && layer) {
+        geoJSONs.forEach(geo => {
+            if (geo.hasLayer(layer)) {
+                geo.resetStyle(layer);
+            }
+        });
+    } else {
+        geojson.resetStyle(layer);
+    }
+
+    return true;
 }
 
 function zoomToBounds(bounds) {
@@ -264,14 +308,21 @@ function zoomToFeature(list, id) {
         // Multiple markers
         zoomToBounds(getOuterBounds(list, id));
     } else {
-        // Single marker
-        marker_cluster.zoomToShowLayer(marker.get(list).get(id)[0], () => {
-            // Zoom in further if we can
-            if (map.getZoom() < MAX_ZOOM) {
-                zoomToBounds(getOuterBounds(list, id));
-            }
-        });
-
+        var element = marker.get(list).get(id)[0];
+        if (element._latlngs) {
+            // Polygon
+            zoomToBounds(getOuterBounds(list, id));
+        } else {
+            // Single marker
+            marker_cluster.zoomToShowLayer(element, () => {
+                // Zoom in further if we can
+                window.setTimeout(() => {
+                    if (map.getZoom() < MAX_ZOOM) {
+                        zoomToBounds(getOuterBounds(list, id));
+                    }
+                }, 300);
+            });
+        }
     }
 }
 
