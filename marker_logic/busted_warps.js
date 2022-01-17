@@ -11,16 +11,14 @@ var busted_geoJson = L.geoJSON(busted_warps, {
         });
     },
     onEachFeature: (feature, layer) => {
-        if (feature.geometry.type == "Point") {
-            return;
-        }
-
         layer.on({
-            mouseover: highlightFeature,
-            mouseout: (e) => {
-                busted_geoJson.resetStyle(e.target);
+            mouseover: e => {
+                highlightFeatureId(busted_warps_group_id, e.target.feature.properties.id)
             },
-            click: (e) => {
+            mouseout: e => {
+                highlightFeatureRemoveAll();
+            },
+            click: e => {
                 preventShareMarker();
                 zoomToFeature(busted_warps_group_id, e.target.feature.properties.id);
                 setHistoryState(busted_warps_group_id, e.target.feature.properties.id);
@@ -32,6 +30,7 @@ var busted_geoJson = L.geoJSON(busted_warps, {
         });
     }
 }).addTo(busted_warps_group)
+geoJSONs.push(busted_geoJson);
 
 marker.get(busted_warps_group_id).set('group', busted_warps_group);
 marker.get(busted_warps_group_id).set('name', busted_warps_group_name);

@@ -4,9 +4,7 @@ var tags_create_checkbox = true;
 
 var tags_list = createSidebarTab(tags_group_id, tags_group_name, '<i class="fas fa-spray-can"></i>');
 
-var tags_group = L.markerClusterGroup({
-    maxClusterRadius: 40
-});
+var tags_group = L.featureGroup.subGroup(marker_cluster);
 
 L.geoJSON(tags, {
     pointToLayer: (feature, latlng) => {

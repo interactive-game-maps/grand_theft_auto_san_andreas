@@ -54,16 +54,18 @@ function getPopupMedia(feature, list_id, html) {
     return html;
 }
 
-highlightFeature = function highlightFeature(e) {
-    var layer = e.target;
+highlightLayer = function highlightLayer(layer) {
+    if (!highlightedMarker.includes(layer)) {
+        layer.setStyle({
+            color: 'blue',
+            opacity: 1.0,
+            fillOpacity: 0.7
+        });
 
-    layer.setStyle({
-        color: 'blue',
-        opacity: 1.0,
-        fillOpacity: 0.7
-    });
+        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+            layer.bringToFront();
+        }
 
-    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-        layer.bringToFront();
+        highlightedMarker.push(layer);
     }
 }

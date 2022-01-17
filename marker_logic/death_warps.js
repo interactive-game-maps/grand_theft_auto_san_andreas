@@ -9,8 +9,7 @@ var deaths_geoJson = L.geoJSON(death_warps, {
             return L.circle(latlng, feature.properties.radius, {
                 color: "#00ff00"
             });
-        }
-        else {
+        } else {
             return L.marker(latlng, {
                 icon: getCustomIcon('fa-hospital'),
                 interactive: false
@@ -18,16 +17,18 @@ var deaths_geoJson = L.geoJSON(death_warps, {
         }
     },
     onEachFeature: (feature, layer) => {
-        if (feature.geometry.type == "Point") {
+        if (feature.properties.radius) {
             return;
         }
 
         layer.on({
-            mouseover: highlightFeature,
-            mouseout: (e) => {
-                deaths_geoJson.resetStyle(e.target);
+            mouseover: e => {
+                highlightFeatureId(death_warps_group_id, e.target.feature.properties.id);
             },
-            click: (e) => {
+            mouseout: e => {
+                highlightFeatureRemoveAll();
+            },
+            click: e => {
                 preventShareMarker();
                 zoomToFeature(death_warps_group_id, e.target.feature.properties.id);
                 setHistoryState(death_warps_group_id, e.target.feature.properties.id);
@@ -39,6 +40,7 @@ var deaths_geoJson = L.geoJSON(death_warps, {
         });
     }
 }).addTo(death_warps_group);
+geoJSONs.push(deaths_geoJson);
 
 marker.get(death_warps_group_id).set('group', death_warps_group);
 marker.get(death_warps_group_id).set('name', death_warps_group_name);

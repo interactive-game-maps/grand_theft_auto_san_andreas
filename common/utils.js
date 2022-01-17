@@ -29,8 +29,8 @@ function addCheckbox(feature, html_list, list_id, layer_group) {
             // rewrite url for easy copy pasta
             setHistoryState(list_id, feature.properties.id);
 
-            highlightMarkerRemoveAll();
-            highlightFeatureID(list_id, feature.properties.id);
+            highlightFeatureRemoveAll();
+            highlightFeatureId(list_id, feature.properties.id);
             zoomToFeature(list_id, feature.properties.id);
         });
         locate_button.className = 'flex-grow-0';
@@ -191,7 +191,7 @@ function highlightMarker(element) {
         highlightedMarker.push(element);
     }
 
-    map.on('click', highlightMarkerRemoveAll);
+    map.on('click', highlightFeatureRemoveAll);
 }
 
 function highlightMarkerRemove(element) {
@@ -204,23 +204,29 @@ function highlightMarkerRemove(element) {
     }
 }
 
-function highlightMarkerRemoveAll() {
+function highlightFeatureRemoveAll() {
     highlightedMarker.forEach(element => {
-        highlightMarkerRemove(element);
+        if (element._latlngs) {
+            // highlightLayerRemove(, element);
+        } else {
+            highlightMarkerRemove(element);
+        }
     });
 
-    map.off('click', highlightMarkerRemoveAll);
+    geoJSONs.forEach(geojson => {
+        highlightLayerRemove(geojson);
+    });
+
+    highlightedMarker = [];
+
+    map.off('click', highlightFeatureRemoveAll);
 }
 
-function highlightFeatureID(list, id) {
+function highlightFeatureId(list, id) {
     marker.get(list).get(id).forEach(element => {
         if (element._latlngs) {
             // Polygons
-            element.setStyle({
-                // color: 'blue',
-                opacity: 1.0,
-                fillOpacity: 0.8
-            });
+            highlightLayer(element);
         } else {
             // Marker
             highlightMarker(element);
@@ -228,17 +234,23 @@ function highlightFeatureID(list, id) {
     });
 }
 
-function highlightFeatureEvent(e) {
-    var layer = e.target;
+function highlightLayer(layer) {
+    if (!highlightedMarker.includes(layer)) {
+        layer.setStyle({
+            opacity: 1.0,
+            fillOpacity: 0.7
+        });
 
-    layer.setStyle({
-        opacity: 1.0,
-        fillOpacity: 0.7
-    });
+        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+            layer.bringToFront();
+        }
 
-    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-        layer.bringToFront();
+        highlightedMarker.push(layer);
     }
+}
+
+function highlightLayerRemove(geojson, layer = undefined) {
+    geojson.resetStyle(layer);
 }
 
 function zoomToBounds(bounds) {

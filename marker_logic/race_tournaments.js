@@ -4,9 +4,7 @@ var race_tournaments_create_checkbox = true;
 
 var race_tournaments_list = createSidebarTab(race_tournaments_group_id, race_tournaments_group_name, `<img class="sidebar-image" src="images/icons/${race_tournaments_group_id}.png" />`);
 
-var race_tournaments_group = L.markerClusterGroup({
-    maxClusterRadius: 40
-});
+var race_tournaments_group = L.featureGroup.subGroup(marker_cluster);
 
 var los_santos_races_geojson = L.geoJSON(los_santos_races, {
     pointToLayer: (feature, latlng) => {
@@ -26,15 +24,16 @@ var los_santos_races_geojson = L.geoJSON(los_santos_races, {
         });
 
         layer.on({
-            mouseover: (e) => {
-                if (e.target.feature.geometry.type != "Point") {
-                    highlightFeature(e);
+            mouseover: e => {
+                highlightFeatureId(race_tournaments_group_id, e.target.feature.properties.id);
+            },
+            mouseout: e => {
+                highlightFeatureRemoveAll();
+            },
+            click: e => {
+                if (e.target.feature.geometry.type == "Point") {
+                    return;
                 }
-            },
-            mouseout: (e) => {
-                los_santos_races_geojson.resetStyle(e.target);
-            },
-            click: (e) => {
                 preventShareMarker();
                 zoomToFeature(race_tournaments_group_id, e.target.feature.properties.id);
                 setHistoryState(race_tournaments_group_id, e.target.feature.properties.id);
@@ -56,6 +55,7 @@ var los_santos_races_geojson = L.geoJSON(los_santos_races, {
         };
     }
 }).addTo(race_tournaments_group);
+geoJSONs.push(los_santos_races_geojson);
 
 var san_fierro_races_geojson = L.geoJSON(san_fierro_races, {
     pointToLayer: (feature, latlng) => {
@@ -75,15 +75,16 @@ var san_fierro_races_geojson = L.geoJSON(san_fierro_races, {
         });
 
         layer.on({
-            mouseover: (e) => {
-                if (e.target.feature.geometry.type != "Point") {
-                    highlightFeature(e);
+            mouseover: e => {
+                highlightFeatureId(race_tournaments_group_id, e.target.feature.properties.id);
+            },
+            mouseout: e => {
+                highlightFeatureRemoveAll();
+            },
+            click: e => {
+                if (e.target.feature.geometry.type == "Point") {
+                    return;
                 }
-            },
-            mouseout: (e) => {
-                san_fierro_races_geojson.resetStyle(e.target);
-            },
-            click: (e) => {
                 preventShareMarker();
                 zoomToFeature(race_tournaments_group_id, e.target.feature.properties.id);
                 setHistoryState(race_tournaments_group_id, e.target.feature.properties.id);
@@ -105,6 +106,7 @@ var san_fierro_races_geojson = L.geoJSON(san_fierro_races, {
         };
     }
 }).addTo(race_tournaments_group);
+geoJSONs.push(san_fierro_races_geojson);
 
 var las_venturas_races_geojson = L.geoJSON(las_venturas_races, {
     pointToLayer: (feature, latlng) => {
@@ -124,15 +126,16 @@ var las_venturas_races_geojson = L.geoJSON(las_venturas_races, {
         });
 
         layer.on({
-            mouseover: (e) => {
-                if (e.target.feature.geometry.type != "Point") {
-                    highlightFeature(e);
+            mouseover: e => {
+                highlightFeatureId(race_tournaments_group_id, e.target.feature.properties.id);
+            },
+            mouseout: e => {
+                highlightFeatureRemoveAll();
+            },
+            click: e => {
+                if (e.target.feature.geometry.type == "Point") {
+                    return;
                 }
-            },
-            mouseout: (e) => {
-                las_venturas_races_geojson.resetStyle(e.target);
-            },
-            click: (e) => {
                 preventShareMarker();
                 zoomToFeature(race_tournaments_group_id, e.target.feature.properties.id);
                 setHistoryState(race_tournaments_group_id, e.target.feature.properties.id);
@@ -154,6 +157,7 @@ var las_venturas_races_geojson = L.geoJSON(las_venturas_races, {
         };
     }
 }).addTo(race_tournaments_group);
+geoJSONs.push(las_venturas_races_geojson);
 
 var air_races_geojson = L.geoJSON(air_races, {
     pointToLayer: (feature, latlng) => {
@@ -173,15 +177,16 @@ var air_races_geojson = L.geoJSON(air_races, {
         });
 
         layer.on({
-            mouseover: (e) => {
-                if (e.target.feature.geometry.type != "Point") {
-                    highlightFeature(e);
+            mouseover: e => {
+                highlightFeatureId(race_tournaments_group_id, e.target.feature.properties.id);
+            },
+            mouseout: e => {
+                highlightFeatureRemoveAll();
+            },
+            click: e => {
+                if (e.target.feature.geometry.type == "Point") {
+                    return;
                 }
-            },
-            mouseout: (e) => {
-                air_races_geojson.resetStyle(e.target);
-            },
-            click: (e) => {
                 preventShareMarker();
                 zoomToFeature(race_tournaments_group_id, e.target.feature.properties.id);
                 setHistoryState(race_tournaments_group_id, e.target.feature.properties.id);
@@ -203,6 +208,7 @@ var air_races_geojson = L.geoJSON(air_races, {
         };
     }
 }).addTo(race_tournaments_group);
+geoJSONs.push(air_races_geojson);
 
 marker.get(race_tournaments_group_id).set('group', race_tournaments_group);
 marker.get(race_tournaments_group_id).set('name', race_tournaments_group_name);

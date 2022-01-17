@@ -23,7 +23,9 @@ var busted_warps = {
         },
         {
             "type": "Feature",
-            "properties": {},
+            "properties": {
+                "id": "1"
+            },
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -53,7 +55,9 @@ var busted_warps = {
         },
         {
             "type": "Feature",
-            "properties": {},
+            "properties": {
+                "id": "2"
+            },
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -85,7 +89,9 @@ var busted_warps = {
         },
         {
             "type": "Feature",
-            "properties": {},
+            "properties": {
+                "id": "3"
+            },
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -112,7 +118,9 @@ var busted_warps = {
         },
         {
             "type": "Feature",
-            "properties": {},
+            "properties": {
+                "id": "4"
+            },
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -139,7 +147,9 @@ var busted_warps = {
         },
         {
             "type": "Feature",
-            "properties": {},
+            "properties": {
+                "id": "5"
+            },
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -166,7 +176,9 @@ var busted_warps = {
         },
         {
             "type": "Feature",
-            "properties": {},
+            "properties": {
+                "id": "6"
+            },
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -199,7 +211,9 @@ var busted_warps = {
         },
         {
             "type": "Feature",
-            "properties": {},
+            "properties": {
+                "id": "7"
+            },
             "geometry": {
                 "type": "Point",
                 "coordinates": [

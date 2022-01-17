@@ -203,7 +203,7 @@ if (urlParams.has('share')) {
     } else {
         const id = urlParams.get('id');
         if (marker.has(list) && marker.get(list).has(id)) {
-            highlightFeatureID(list, id);
+            highlightFeatureId(list, id);
             zoomToFeature(list, id);
         }
 

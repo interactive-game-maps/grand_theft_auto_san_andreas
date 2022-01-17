@@ -21,6 +21,8 @@ var common_attribution = `
 // Save currently highlighted marker for easy access
 var highlightedMarker = [];
 
+var geoJSONs = [];
+
 { // Edit toolbar
     // Disable general editing
     L.PM.setOptIn(true);
