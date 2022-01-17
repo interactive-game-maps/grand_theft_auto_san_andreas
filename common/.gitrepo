@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:interactive-game-maps/common.git
 	branch = master
-	commit = 71b3337903786a44b5c5b5899264782bff0b5ad5
-	parent = d4568cc5c7b91fa45101938b84125e5478cf69d0
+	commit = 13212d6852bfdfcc65eb9fdc867e9ff938eea1c6
+	parent = e68499879e4c28113106b3c003ecbac072e50e29
 	method = merge
 	cmdver = 0.4.3
