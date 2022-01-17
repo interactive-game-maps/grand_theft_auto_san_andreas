@@ -19,8 +19,6 @@ function addCheckbox(feature, html_list, list_id, layer_group) {
         var locate_button = document.createElement('button');
         locate_button.innerHTML = icon.outerHTML;
         locate_button.addEventListener('click', () => {
-            map.setView(marker.get(list_id).get(feature.properties.id)[0].getLatLng());
-
             // Close sidebar if it spans over the complete view
             if (window.matchMedia('(max-device-width: 767px)').matches) {
                 sidebar.close();
@@ -314,7 +312,7 @@ function zoomToFeature(list, id) {
             zoomToBounds(getOuterBounds(list, id));
         } else {
             // Single marker
-            marker_cluster.zoomToShowLayer(element, () => {
+            marker.get(list).get('group').zoomToShowLayer(element, () => {
                 // Zoom in further if we can
                 window.setTimeout(() => {
                     if (map.getZoom() < MAX_ZOOM) {

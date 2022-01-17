@@ -3,8 +3,9 @@ var horseshoes_group_id = 'horseshoes';
 var horseshoes_create_checkbox = true;
 
 var horseshoes_list = createSidebarTab(horseshoes_group_id, horseshoes_group_name, '<i class="fas fa-horse"></i>');
-
-var horseshoes_group = L.featureGroup.subGroup(marker_cluster);
+var horseshoes_group = L.markerClusterGroup({
+    maxClusterRadius: 20
+});
 
 L.geoJSON(horseshoes, {
     pointToLayer: (feature, latlng) => {

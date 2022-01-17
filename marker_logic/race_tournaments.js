@@ -3,8 +3,9 @@ var race_tournaments_group_id = 'race_tournaments';
 var race_tournaments_create_checkbox = true;
 
 var race_tournaments_list = createSidebarTab(race_tournaments_group_id, race_tournaments_group_name, `<img class="sidebar-image" src="images/icons/${race_tournaments_group_id}.png" />`);
-
-var race_tournaments_group = L.featureGroup.subGroup(marker_cluster);
+var race_tournaments_group = L.markerClusterGroup({
+    maxClusterRadius: 20
+});
 
 var los_santos_races_geojson = L.geoJSON(los_santos_races, {
     pointToLayer: (feature, latlng) => {

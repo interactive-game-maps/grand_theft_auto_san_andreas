@@ -3,8 +3,9 @@ var snapshots_group_id = 'snapshots';
 var snapshots_create_checkbox = true;
 
 var snapshots_list = createSidebarTab(snapshots_group_id, snapshots_group_name, '<i class="fas fa-camera"></i>');
-
-var snapshots_group = L.featureGroup.subGroup(marker_cluster);
+var snapshots_group = L.markerClusterGroup({
+    maxClusterRadius: 20
+});
 
 L.geoJSON(snapshots, {
     pointToLayer: (feature, latlng) => {

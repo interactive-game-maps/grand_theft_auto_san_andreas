@@ -3,8 +3,9 @@ var stunt_jumps_group_id = 'stunt_jumps';
 var stunt_jumps_create_checkbox = true;
 
 var stunt_jumps_list = createSidebarTab(stunt_jumps_group_id, stunt_jumps_group_name, '<i class="fas fa-car"></i>');
-
-var stunt_jumps_group = L.featureGroup.subGroup(marker_cluster);
+var stunt_jumps_group = L.markerClusterGroup({
+    maxClusterRadius: 20
+});
 
 var stunt_jumps_geojson = L.geoJSON(stunt_jumps, {
     pointToLayer: (feature, latlng) => {

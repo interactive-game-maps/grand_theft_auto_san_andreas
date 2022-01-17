@@ -1,6 +1,7 @@
 var death_warps_group_name = 'Death Warps';
 var death_warps_group_id = 'death_warps';
 
+// A cluster group would cluster our radius point!
 var death_warps_group = L.layerGroup();
 
 var deaths_geoJson = L.geoJSON(death_warps, {

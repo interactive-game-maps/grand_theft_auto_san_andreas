@@ -1,7 +1,9 @@
 var busted_warps_group_name = 'Busted Warps';
 var busted_warps_group_id = 'busted_Warps';
 
-var busted_warps_group = L.layerGroup();
+var busted_warps_group = L.markerClusterGroup({
+    maxClusterRadius: 20
+});
 
 var busted_geoJson = L.geoJSON(busted_warps, {
     pointToLayer: (feature, latlng) => {
