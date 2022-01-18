@@ -3,9 +3,7 @@ var tags_group_id = 'tags';
 var tags_create_checkbox = true;
 
 var tags_list = createSidebarTab(tags_group_id, tags_group_name, '<i class="fas fa-spray-can"></i>');
-var tags_group = L.markerClusterGroup({
-    maxClusterRadius: 20
-});
+var tags_group = L.featureGroup.subGroup(marker_cluster);
 
 L.geoJSON(tags, {
     pointToLayer: (feature, latlng) => {
@@ -25,7 +23,10 @@ L.geoJSON(tags, {
             list_id: tags_group_id
         });
     }
-}).addTo(tags_group);
+}).getLayers().forEach(layer => {
+    tags_group.addLayer(layer);
+});
+
 marker.get(tags_group_id).set('group', tags_group);
 marker.get(tags_group_id).set('name', tags_group_name);
 

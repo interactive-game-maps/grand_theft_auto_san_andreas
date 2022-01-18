@@ -3,9 +3,7 @@ var oysters_group_id = 'oysters';
 var oysters_create_checkbox = true;
 
 var oysters_list = createSidebarTab(oysters_group_id, oysters_group_name, '🦪');
-var oysters_group = L.markerClusterGroup({
-    maxClusterRadius: 20
-});
+var oysters_group = L.featureGroup.subGroup(marker_cluster);
 
 L.geoJSON(oysters, {
     pointToLayer: (feature, latlng) => {
@@ -25,7 +23,10 @@ L.geoJSON(oysters, {
             list_id: oysters_group_id
         });
     }
-}).addTo(oysters_group);
+}).getLayers().forEach(layer => {
+    oysters_group.addLayer(layer);
+});
+
 marker.get(oysters_group_id).set('group', oysters_group);
 marker.get(oysters_group_id).set('name', oysters_group_name);
 

@@ -3,9 +3,7 @@ var cop_bribes_group_id = 'cop_bribes';
 var cop_bribes_create_checkbox = true;
 
 var cop_bribes_list = createSidebarTab(cop_bribes_group_id, cop_bribes_group_name, '⭐');
-var cop_bribes_group = L.markerClusterGroup({
-    maxClusterRadius: 20
-});
+var cop_bribes_group = L.featureGroup.subGroup(marker_cluster);
 
 L.geoJSON(cop_bribes, {
     pointToLayer: (feature, latlng) => {
@@ -25,7 +23,10 @@ L.geoJSON(cop_bribes, {
             list_id: cop_bribes_group_id
         });
     }
-}).addTo(cop_bribes_group);
+}).getLayers().forEach(layer => {
+    cop_bribes_group.addLayer(layer);
+});
+
 marker.get(cop_bribes_group_id).set('group', cop_bribes_group);
 marker.get(cop_bribes_group_id).set('name', cop_bribes_group_name);
 

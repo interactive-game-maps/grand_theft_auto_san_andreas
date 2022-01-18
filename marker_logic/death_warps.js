@@ -4,7 +4,7 @@ var death_warps_group_id = 'death_warps';
 // A cluster group would cluster our radius point!
 var death_warps_group = L.layerGroup();
 
-var deaths_geoJson = L.geoJSON(death_warps, {
+var deaths_warps_geojson = L.geoJSON(death_warps, {
     pointToLayer: (feature, latlng) => {
         if (feature.properties.radius) {
             return L.circle(latlng, feature.properties.radius, {
@@ -40,8 +40,13 @@ var deaths_geoJson = L.geoJSON(death_warps, {
             list_id: death_warps_group_id
         });
     }
-}).addTo(death_warps_group);
-geoJSONs.push(deaths_geoJson);
+});
+
+death_warps_geojson.getLayers().forEach(layer => {
+    death_warps_group.addLayer(layer);
+});
+
+geoJSONs.push(deaths_geojson);
 
 marker.get(death_warps_group_id).set('group', death_warps_group);
 marker.get(death_warps_group_id).set('name', death_warps_group_name);

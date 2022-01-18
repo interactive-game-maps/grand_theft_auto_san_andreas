@@ -3,9 +3,7 @@ var race_tournaments_group_id = 'race_tournaments';
 var race_tournaments_create_checkbox = true;
 
 var race_tournaments_list = createSidebarTab(race_tournaments_group_id, race_tournaments_group_name, `<img class="sidebar-image" src="images/icons/${race_tournaments_group_id}.png" />`);
-var race_tournaments_group = L.markerClusterGroup({
-    maxClusterRadius: 20
-});
+var race_tournaments_group = L.featureGroup.subGroup(marker_cluster);
 
 var los_santos_races_geojson = L.geoJSON(los_santos_races, {
     pointToLayer: (feature, latlng) => {
@@ -55,7 +53,12 @@ var los_santos_races_geojson = L.geoJSON(los_santos_races, {
             opacity: 0.9
         };
     }
-}).addTo(race_tournaments_group);
+});
+
+los_santos_races_geojson.getLayers().forEach(layer => {
+    race_tournaments_group.addLayer(layer);
+});
+
 geoJSONs.push(los_santos_races_geojson);
 
 var san_fierro_races_geojson = L.geoJSON(san_fierro_races, {
@@ -106,7 +109,12 @@ var san_fierro_races_geojson = L.geoJSON(san_fierro_races, {
             opacity: 0.9
         };
     }
-}).addTo(race_tournaments_group);
+});
+
+san_fierro_races_geojson.getLayers().forEach(layer => {
+    race_tournaments_group.addLayer(layer);
+});
+
 geoJSONs.push(san_fierro_races_geojson);
 
 var las_venturas_races_geojson = L.geoJSON(las_venturas_races, {
@@ -157,7 +165,12 @@ var las_venturas_races_geojson = L.geoJSON(las_venturas_races, {
             opacity: 0.9
         };
     }
-}).addTo(race_tournaments_group);
+});
+
+las_venturas_races_geojson.getLayers().forEach(layer => {
+    race_tournaments_group.addLayer(layer);
+});
+
 geoJSONs.push(las_venturas_races_geojson);
 
 var air_races_geojson = L.geoJSON(air_races, {
@@ -208,7 +221,12 @@ var air_races_geojson = L.geoJSON(air_races, {
             opacity: 0.9
         };
     }
-}).addTo(race_tournaments_group);
+});
+
+air_races_geojson.getLayers().forEach(layer => {
+    race_tournaments_group.addLayer(layer);
+});
+
 geoJSONs.push(air_races_geojson);
 
 marker.get(race_tournaments_group_id).set('group', race_tournaments_group);

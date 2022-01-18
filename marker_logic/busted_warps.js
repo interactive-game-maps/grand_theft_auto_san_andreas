@@ -1,11 +1,9 @@
 var busted_warps_group_name = 'Busted Warps';
 var busted_warps_group_id = 'busted_Warps';
 
-var busted_warps_group = L.markerClusterGroup({
-    maxClusterRadius: 20
-});
+var busted_warps_group = L.featureGroup.subGroup(marker_cluster);
 
-var busted_geoJson = L.geoJSON(busted_warps, {
+var busted_warps_geojson = L.geoJSON(busted_warps, {
     pointToLayer: (feature, latlng) => {
         return L.marker(latlng, {
             icon: getCustomIcon('fa-star'),
@@ -31,8 +29,13 @@ var busted_geoJson = L.geoJSON(busted_warps, {
             list_id: busted_warps_group_id
         });
     }
-}).addTo(busted_warps_group)
-geoJSONs.push(busted_geoJson);
+});
+
+busted_warps_geojson.getLayers().forEach(layer => {
+    busted_warps_group.addLayer(layer);
+});
+
+geoJSONs.push(busted_warps_geojson);
 
 marker.get(busted_warps_group_id).set('group', busted_warps_group);
 marker.get(busted_warps_group_id).set('name', busted_warps_group_name);
