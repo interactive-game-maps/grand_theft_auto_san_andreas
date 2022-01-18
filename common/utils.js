@@ -48,8 +48,6 @@ function addCheckbox(feature, html_list, list_id, layer_group) {
             // if not a marker try to assign to the same checkbox as the corresponding marker
             document.getElementById(list_id + ':' + feature.properties.id).addEventListener('change', (element) => {
                 if (element.target.checked) {
-                    // check popup checkbox
-                    checkbox.checked = true;
                     // save to localStorage
                     localStorage.setItem(`${website_subdir}:${list_id}:${feature.properties.id}`, true);
                     // remove all with ID from map
@@ -57,8 +55,6 @@ function addCheckbox(feature, html_list, list_id, layer_group) {
                         layer_group.removeLayer(e);
                     });
                 } else {
-                    // uncheck popup checkbox
-                    checkbox.checked = false;
                     // remove from localStorage
                     localStorage.removeItem(`${website_subdir}:${list_id}:${feature.properties.id}`);
                     // add all with ID to map
@@ -312,7 +308,7 @@ function zoomToFeature(list, id) {
             zoomToBounds(getOuterBounds(list, id));
         } else {
             // Single marker
-            marker.get(list).get('group').zoomToShowLayer(element, () => {
+            marker_cluster.zoomToShowLayer(element, () => {
                 // Zoom in further if we can
                 window.setTimeout(() => {
                     if (map.getZoom() < MAX_ZOOM) {
