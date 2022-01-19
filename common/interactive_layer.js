@@ -1,12 +1,11 @@
 class InteractiveLayer {
     #create_checkbox;
     #create_feature_popup;
-    #sidebar_icon_html;
     #features;
     #highlighted_features;
-    #highlight_polygon_style;
+    #highlight_polygon_styles;
     #sidebar_list_html;
-    #geojsonFeature;
+    #geojsonFeatures;
 
     constructor(id, geojson, args) {
         let defaults = {
@@ -25,7 +24,8 @@ class InteractiveLayer {
             highlight_polygon_style: {
                 opacity: 1.0,
                 fillOpacity: 0.7
-            }
+            },
+            polygon_style: feature => { return {}; }
         };
 
         let params = { ...defaults, ...args };
@@ -34,24 +34,55 @@ class InteractiveLayer {
         this.name = params.name;
         this.#create_checkbox = params.create_checkbox;
         this.#create_feature_popup = params.create_feature_popup;
-        this.#sidebar_icon_html = params.sidebar_icon_html;
         this.#features = new Map();
         this.#highlighted_features = new Array();
-        this.#highlight_polygon_style = params.highlight_polygon_style;
         this.feature_group = params.feature_group;
         this.marker_cluster = marker_cluster;
         this.#sidebar_list_html = undefined;
+        this.#geojsonFeatures = new Array();
+        this.#highlight_polygon_styles = new Map();
 
         if (!this.feature_group instanceof L.FeatureGroup.SubGroup) {
             this.marker_cluster = params.feature_group;
         }
 
         if (this.#create_checkbox) {
-            this.#createSidebarTab();
+            this.#createSidebarTab(params.sidebar_icon_html);
         }
 
-        this.#geojsonFeature = L.geoJSON(geojson, {
+        this.addGeoJson(geojson, {
             pointToLayer: params.pointToLayer,
+            onEachFeature: params.onEachFeature,
+            polygon_style: params.polygon_style,
+            highlight_polygon_style: params.highlight_polygon_style
+        })
+
+        if (this.#create_checkbox && this.#sidebar_list_html) {
+            this.#setSidebarColumnCount();
+        }
+    }
+
+    addGeoJson(geojson, args) {
+        let defaults = {
+            pointToLayer: (feature, latlng) => {
+                return L.marker(latlng, {
+                    icon: getCustomIcon(id.substring(0, 2)),
+                    riseOnHover: true
+                });
+            },
+            onEachFeature: (feature, layer) => { },
+            highlight_polygon_style: {
+                opacity: 1.0,
+                fillOpacity: 0.7
+            },
+            polygon_style: feature => { return {}; }
+        };
+
+        let params = { ...defaults, ...args };
+        var onEachFeature = params.onEachFeature.bind(this);
+
+        var geojson_feature = (L.geoJSON(geojson, {
+            pointToLayer: params.pointToLayer.bind(this),
             onEachFeature: (feature, layer) => {
                 if (this.#create_checkbox) {
                     this.#createSidebarCheckbox(feature);
@@ -61,17 +92,21 @@ class InteractiveLayer {
                     this.#createFeaturePopup(feature, layer);
                 }
 
-                params.onEachFeature(feature, layer);
+                onEachFeature(feature, layer);
 
                 this.#setFeature(feature.properties.id, layer);
+            },
+            style: params.polygon_style
+        }));
+
+        this.#geojsonFeatures.push(geojson_feature);
+        this.#highlight_polygon_styles.set(geojson_feature, params.highlight_polygon_style);
+
+        this.#geojsonFeatures.forEach(layer => {
+            if (!this.feature_group.hasLayer(layer)) {
+                layer.addTo(this.feature_group);
             }
         });
-
-        this.#geojsonFeature.addTo(this.feature_group);
-
-        if (this.#create_checkbox && this.#sidebar_list_html) {
-            this.#setSidebarColumnCount();
-        }
     }
 
     showLayer() {
@@ -152,8 +187,7 @@ class InteractiveLayer {
 
     highlightFeature(id) {
         this.getFeatures(id).forEach(feature => {
-            if (feature._latlngs) {
-                // Polygons
+            if (feature instanceof L.Path) {
                 this.#highlightPolygon(feature);
             } else {
                 // Marker
@@ -175,7 +209,7 @@ class InteractiveLayer {
                 continue;
             }
 
-            if (feature._latlngs) {
+            if (feature instanceof L.Path) {
                 this.#removePolygonHighlight(feature);
                 this.#highlighted_features.splice(index, 1);
             } else {
@@ -214,7 +248,16 @@ class InteractiveLayer {
             return;
         }
 
-        feature.setStyle(this.#highlight_polygon_style);
+        this.#highlight_polygon_styles.forEach((style, geojson) => {
+            if (geojson.hasLayer(feature)) {
+                if (style instanceof Function) {
+                    feature.setStyle(style(feature.feature));
+                } else {
+                    feature.setStyle(style);
+                }
+            }
+        });
+
 
         if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
             feature.bringToFront();
@@ -224,16 +267,28 @@ class InteractiveLayer {
     }
 
     #removePolygonHighlight(feature = undefined) {
-        if (feature && !this.#highlighted_features.includes(feature)) {
+        if (feature) {
+            if (!this.#highlighted_features.includes(feature)) {
+                return;
+            }
+
+            this.#geojsonFeatures.forEach(geojson => {
+                if (geojson.hasLayer(feature)) {
+                    geojson.resetStyle(feature);
+                    return;
+                }
+            });
             return;
         }
 
-        this.#geojsonFeature.resetStyle(feature);
+        this.#geojsonFeatures.forEach(geojson => {
+            geojson.resetStyle(feature);
+        });
     }
 
     removeAllHighlights() {
         this.#highlighted_features.forEach(feature => {
-            if (feature._latlngs) {
+            if (feature instanceof L.Path) {
                 this.#removePolygonHighlight(feature);
             } else {
                 this.#removePointHighlight(feature);
@@ -415,14 +470,21 @@ class InteractiveLayer {
         });
     }
 
-    #createSidebarTab() {
+    #createSidebarTab(icon_html) {
         var list = document.createElement('ul');
         list.className = 'collectibles_list';
+
+        var icon = icon_html;
+
+        if (icon_html instanceof Function) {
+            icon = icon_html.bind(this);
+            icon = icon();
+        }
 
         // Add list to sidebar
         sidebar.addPanel({
             id: this.id,
-            tab: this.#sidebar_icon_html,
+            tab: icon,
             title: this.name,
             pane: '<p></p>' // placeholder to get a proper pane
         });
@@ -440,7 +502,7 @@ class InteractiveLayer {
         } else {
             var feature = features[0];
 
-            if (feature._latlngs || !this.marker_cluster.hasLayer(feature)) {
+            if (feature instanceof L.Path || !this.marker_cluster.hasLayer(feature)) {
                 // Polygon or not visible
                 zoomToBounds(this.getFeatureBounds(id));
             } else {

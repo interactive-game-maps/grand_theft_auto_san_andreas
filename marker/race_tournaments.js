@@ -21,7 +21,8 @@ var los_santos_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "Little Loop"
+                "id": "Little Loop",
+                "video_id": "BfxmFhIp6CI"
             },
             "geometry": {
                 "type": "LineString",
@@ -57,7 +58,8 @@ var los_santos_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "Backroad Wanderer"
+                "id": "Backroad Wanderer",
+                "video_id": "Bp6sf4DEZMA"
             },
             "geometry": {
                 "type": "LineString",
@@ -101,7 +103,8 @@ var los_santos_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "City Circuit"
+                "id": "City Circuit",
+                "video_id": "rkBKECbTVz4"
             },
             "geometry": {
                 "type": "LineString",
@@ -145,7 +148,8 @@ var los_santos_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "Vinewood"
+                "id": "Vinewood",
+                "video_id": "yQUQO6M2-XU"
             },
             "geometry": {
                 "type": "LineString",
@@ -191,7 +195,8 @@ var los_santos_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "Freeway"
+                "id": "Freeway",
+                "video_id": "-FnucThVynU"
             },
             "geometry": {
                 "type": "LineString",
@@ -239,7 +244,8 @@ var los_santos_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "Into The Country"
+                "id": "Into The Country",
+                "video_id": "WbziFy1mosg"
             },
             "geometry": {
                 "type": "LineString",
@@ -298,7 +304,8 @@ var san_fierro_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "Dirtbike Danger"
+                "id": "Dirtbike Danger",
+                "video_id": "FtaSyMtcOl4"
             },
             "geometry": {
                 "type": "LineString",
@@ -342,7 +349,8 @@ var san_fierro_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "Bandito County"
+                "id": "Bandito County",
+                "video_id": "wgGEPyia4xw"
             },
             "geometry": {
                 "type": "LineString",
@@ -387,7 +395,8 @@ var san_fierro_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "Go-Go Karting"
+                "id": "Go-Go Karting",
+                "video_id": "ZyXcunfA9fY"
             },
             "geometry": {
                 "type": "LineString",
@@ -428,7 +437,8 @@ var san_fierro_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "San Fierro Fastlane"
+                "id": "San Fierro Fastlane",
+                "video_id": "pluUX4w_5V4"
             },
             "geometry": {
                 "type": "LineString",
@@ -469,7 +479,8 @@ var san_fierro_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "San Fierro Hills"
+                "id": "San Fierro Hills",
+                "video_id": "G7Qka1ltDKE"
             },
             "geometry": {
                 "type": "LineString",
@@ -534,7 +545,8 @@ var san_fierro_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "Country Endurance"
+                "id": "Country Endurance",
+                "video_id": "twfFH8SWF4U"
             },
             "geometry": {
                 "type": "LineString",
@@ -608,7 +620,8 @@ var las_venturas_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "SF to LV"
+                "id": "SF to LV",
+                "video_id": "IwR96GDKj58"
             },
             "geometry": {
                 "type": "LineString",
@@ -660,7 +673,8 @@ var las_venturas_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "Dam Rider"
+                "id": "Dam Rider",
+                "video_id": "OocgIy9GzeI"
             },
             "geometry": {
                 "type": "LineString",
@@ -710,7 +724,8 @@ var las_venturas_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "Desert Tricks"
+                "id": "Desert Tricks",
+                "video_id": "pKhHNQj6Zu4"
             },
             "geometry": {
                 "type": "LineString",
@@ -762,7 +777,8 @@ var las_venturas_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "LV Ringroad"
+                "id": "LV Ringroad",
+                "video_id": "aThjKULwnGs"
             },
             "geometry": {
                 "type": "LineString",
@@ -816,7 +832,8 @@ var air_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "World War Ace"
+                "id": "World War Ace",
+                "video_id": "1HiluBnHnFE"
             },
             "geometry": {
                 "type": "LineString",
@@ -876,7 +893,8 @@ var air_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "Barnstorming"
+                "id": "Barnstorming",
+                "video_id": "-RFDYSP8ChY"
             },
             "geometry": {
                 "type": "LineString",
@@ -963,7 +981,8 @@ var air_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "Military Service"
+                "id": "Military Service",
+                "video_id": "5N1W9rHBuss"
             },
             "geometry": {
                 "type": "LineString",
@@ -1059,7 +1078,8 @@ var air_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "Chopper Checkpoint"
+                "id": "Chopper Checkpoint",
+                "video_id": "ixYa5B0Y_JI"
             },
             "geometry": {
                 "type": "LineString",
@@ -1111,7 +1131,8 @@ var air_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "Whirly Bird Waypoint"
+                "id": "Whirly Bird Waypoint",
+                "video_id": "wZzk5g0VbIY"
             },
             "geometry": {
                 "type": "LineString",
@@ -1163,7 +1184,8 @@ var air_races = {
         {
             "type": "Feature",
             "properties": {
-                "id": "Heli Hell"
+                "id": "Heli Hell",
+                "video_id": "-5qFPpZY380"
             },
             "geometry": {
                 "type": "LineString",

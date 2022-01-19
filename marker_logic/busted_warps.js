@@ -1,41 +1,37 @@
-var busted_warps_group_name = 'Busted Warps';
-var busted_warps_group_id = 'busted_Warps';
-
-var busted_warps_group = L.featureGroup.subGroup(marker_cluster);
-
-var busted_warps_geojson = L.geoJSON(busted_warps, {
+var busted_warps_layer = new InteractiveLayer('busted_warps', busted_warps, {
+    name: "Busted warps",
+    feature_group: L.layerGroup(),
+    highlight_polygon_style: {
+        color: 'blue',
+        opacity: 1.0,
+        fillOpacity: 0.5
+    },
+    polygon_style: {
+        color: 'blue',
+        opacity: 0.7,
+        fillOpacity: 0.2
+    },
     pointToLayer: (feature, latlng) => {
         return L.marker(latlng, {
             icon: getCustomIcon('fa-star'),
-            interactive: false
+            riseOnHover: true
         });
     },
     onEachFeature: (feature, layer) => {
         layer.on({
             mouseover: e => {
-                highlightFeatureId(busted_warps_group_id, e.target.feature.properties.id)
+                busted_warps_layer.highlightFeature(feature.properties.id);
             },
             mouseout: e => {
-                highlightFeatureRemoveAll();
+                busted_warps_layer.removeHighlightFeature(feature.properties.id);
             },
             click: e => {
-                preventShareMarker();
-                zoomToFeature(busted_warps_group_id, e.target.feature.properties.id);
-                setHistoryState(busted_warps_group_id, e.target.feature.properties.id);
+                share_marker.prevent();
+                busted_warps_layer.zoomToFeature(feature.properties.id);
+                setHistoryState(busted_warps_layer.id, feature.properties.id);
             }
-        });
-
-        saveMarker(feature, layer, {
-            list_id: busted_warps_group_id
         });
     }
 });
 
-busted_warps_geojson.getLayers().forEach(layer => {
-    busted_warps_group.addLayer(layer);
-});
-
-geoJSONs.push(busted_warps_geojson);
-
-marker.get(busted_warps_group_id).set('group', busted_warps_group);
-marker.get(busted_warps_group_id).set('name', busted_warps_group_name);
+interactive_layers.set(busted_warps_layer.id, busted_warps_layer);

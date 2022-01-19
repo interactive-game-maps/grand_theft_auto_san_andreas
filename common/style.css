@@ -102,19 +102,19 @@ html, body, #map {
 /* || Place icons in the middle of the marker */
 
 .map-marker-foreground {
-    width: 20px;
+    width: 15px;
     display: table-cell;
-    vertical-align: middle;
+    vertical-align: bottom;
     text-align: center;
 }
 
 .map-marker-foreground-wrapper {
     display: table;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     position: absolute;
-    top: 2px;
-    left: 2px;
+    top: 3px;
+    left: 5px;
 }
 
 /* || Firefox warning about will-change */

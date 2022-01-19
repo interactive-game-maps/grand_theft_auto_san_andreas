@@ -37,7 +37,7 @@ var busted_warps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "2"
+                "id": "Las Venturas"
             },
             "geometry": {
                 "type": "Polygon",
@@ -56,7 +56,7 @@ var busted_warps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "2"
+                "id": "Las Venturas"
             },
             "geometry": {
                 "type": "Point",
@@ -69,7 +69,7 @@ var busted_warps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "3"
+                "id": "Los Santos"
             },
             "geometry": {
                 "type": "Polygon",
@@ -90,7 +90,7 @@ var busted_warps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "3"
+                "id": "Los Santos"
             },
             "geometry": {
                 "type": "Point",
@@ -132,7 +132,7 @@ var busted_warps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "5"
+                "id": "San Fierro"
             },
             "geometry": {
                 "type": "Polygon",
@@ -148,7 +148,7 @@ var busted_warps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "5"
+                "id": "San Fierro"
             },
             "geometry": {
                 "type": "Point",

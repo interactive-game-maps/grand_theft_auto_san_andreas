@@ -65,6 +65,7 @@ var death_warps = {
         {
             "type": "Feature",
             "properties": {
+                "id": "Katie",
                 "radius": 48
             },
             "geometry": {
@@ -77,7 +78,9 @@ var death_warps = {
         },
         {
             "type": "Feature",
-            "properties": {},
+            "properties": {
+                "id": "Katie"
+            },
             "geometry": {
                 "type": "Point",
                 "coordinates": [
@@ -118,7 +121,7 @@ var death_warps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "4"
+                "id": "San Fierro"
             },
             "geometry": {
                 "type": "Polygon",
@@ -142,7 +145,7 @@ var death_warps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "4"
+                "id": "San Fierro"
             },
             "geometry": {
                 "type": "Point",
@@ -225,7 +228,7 @@ var death_warps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "7"
+                "id": "Las Venturas"
             },
             "geometry": {
                 "type": "Polygon",
@@ -242,7 +245,7 @@ var death_warps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "7"
+                "id": "Las Venturas"
             },
             "geometry": {
                 "type": "Point",

@@ -21,7 +21,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "1"
+                "id": "1",
+                "video_id": "jUQWlu7QyQQ"
             },
             "geometry": {
                 "type": "Polygon",
@@ -68,7 +69,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "2"
+                "id": "2",
+                "video_id": "01AwXG6QGZ0"
             },
             "geometry": {
                 "type": "Polygon",
@@ -115,7 +117,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "3"
+                "id": "3",
+                "video_id": "gRMKsVeNBCc"
             },
             "geometry": {
                 "type": "Polygon",
@@ -162,7 +165,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "4"
+                "id": "4",
+                "video_id": "mLlERXAnv6I"
             },
             "geometry": {
                 "type": "Polygon",
@@ -209,7 +213,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "5"
+                "id": "5",
+                "video_id": "nVuTKzGBHgA"
             },
             "geometry": {
                 "type": "Polygon",
@@ -256,7 +261,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "6"
+                "id": "6",
+                "video_id": "I4ZcvSsQz1c"
             },
             "geometry": {
                 "type": "Polygon",
@@ -303,7 +309,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "7"
+                "id": "7",
+                "video_id": "cddahTSvYes"
             },
             "geometry": {
                 "type": "Polygon",
@@ -350,7 +357,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "8"
+                "id": "8",
+                "video_id": "LbBJySpuyho"
             },
             "geometry": {
                 "type": "Polygon",
@@ -397,7 +405,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "9"
+                "id": "9",
+                "video_id": "fPEEl6eNvQc"
             },
             "geometry": {
                 "type": "Polygon",
@@ -444,7 +453,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "10"
+                "id": "10",
+                "video_id": "lBsGcqrsKzc"
             },
             "geometry": {
                 "type": "Polygon",
@@ -491,7 +501,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "11"
+                "id": "11",
+                "video_id": "-hMWp-D9HIA"
             },
             "geometry": {
                 "type": "Polygon",
@@ -538,7 +549,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "12"
+                "id": "12",
+                "video_id": "baj-yMu19GY"
             },
             "geometry": {
                 "type": "Polygon",
@@ -585,7 +597,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "13"
+                "id": "13",
+                "video_id": "dhH_LtY6l1w"
             },
             "geometry": {
                 "type": "Polygon",
@@ -632,7 +645,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "14"
+                "id": "14",
+                "video_id": "JGc-3VcehzQ"
             },
             "geometry": {
                 "type": "Polygon",
@@ -679,7 +693,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "15"
+                "id": "15",
+                "video_id": "wV76KjKdtHU"
             },
             "geometry": {
                 "type": "Polygon",
@@ -726,7 +741,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "16"
+                "id": "16",
+                "video_id": "guuhEgyhTgE"
             },
             "geometry": {
                 "type": "Polygon",
@@ -773,7 +789,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "17"
+                "id": "17",
+                "video_id": "t5uEILtABbE"
             },
             "geometry": {
                 "type": "Polygon",
@@ -820,7 +837,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "18"
+                "id": "18",
+                "video_id": "dHEc39CjdF8"
             },
             "geometry": {
                 "type": "Polygon",
@@ -867,7 +885,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "19"
+                "id": "19",
+                "video_id": "hf1QU3gDurk"
             },
             "geometry": {
                 "type": "Polygon",
@@ -914,7 +933,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "20"
+                "id": "20",
+                "video_id": "TxXtoiQetTg"
             },
             "geometry": {
                 "type": "Polygon",
@@ -961,7 +981,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "21"
+                "id": "21",
+                "video_id": "2eCa3Pl6QBU"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1008,7 +1029,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "22"
+                "id": "22",
+                "video_id": "_UbQFD9uD7M"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1055,7 +1077,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "23"
+                "id": "23",
+                "video_id": "0SeMPYLF7o0"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1102,7 +1125,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "24"
+                "id": "24",
+                "video_id": "wR_xsYxjQHw"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1149,7 +1173,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "25"
+                "id": "25",
+                "video_id": "5Q8Y4wA1208"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1196,7 +1221,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "26"
+                "id": "26",
+                "video_id": "3G_dcqgbQR8"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1243,7 +1269,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "27"
+                "id": "27",
+                "video_id": "DeRltEv11Zg"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1290,7 +1317,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "28"
+                "id": "28",
+                "video_id": "Sp2mozG451c"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1337,7 +1365,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "29"
+                "id": "29",
+                "video_id": "1_Gdh7nJGXk"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1384,7 +1413,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "30"
+                "id": "30",
+                "video_id": "YYNhWq1oOyw"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1431,7 +1461,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "31"
+                "id": "31",
+                "video_id": "QNiRbRbj1r8"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1478,7 +1509,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "32"
+                "id": "32",
+                "video_id": "jBOhJv1ntdQ"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1525,7 +1557,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "33"
+                "id": "33",
+                "video_id": "e59dhd0-3TQ"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1572,7 +1605,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "34"
+                "id": "34",
+                "video_id": "AFD0HjFbYIc"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1619,7 +1653,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "35"
+                "id": "35",
+                "video_id": "Miwqgz5fWtU"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1666,7 +1701,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "36"
+                "id": "36",
+                "video_id": "yOhFaEaOBWc"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1713,7 +1749,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "37"
+                "id": "37",
+                "video_id": "UTFMUWaxORU"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1760,7 +1797,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "38"
+                "id": "38",
+                "video_id": "r_C5LZPORkg"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1807,7 +1845,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "39"
+                "id": "39",
+                "video_id": "EK73_RMRt-k"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1854,7 +1893,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "40"
+                "id": "40",
+                "video_id": "Cam7w8q_ZRY"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1901,7 +1941,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "41"
+                "id": "41",
+                "video_id": "rvxz_brmHIY"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1948,7 +1989,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "42"
+                "id": "42",
+                "video_id": "Eq-jg5p3GxU"
             },
             "geometry": {
                 "type": "Polygon",
@@ -1995,7 +2037,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "43"
+                "id": "43",
+                "video_id": "PZIYWBcwBS4"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2042,7 +2085,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "44"
+                "id": "44",
+                "video_id": "VT42vR1YD-A"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2089,7 +2133,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "45"
+                "id": "45",
+                "video_id": "OyxHvM1sLeE"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2136,7 +2181,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "46"
+                "id": "46",
+                "video_id": "moBC_tMom_I"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2183,7 +2229,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "47"
+                "id": "47",
+                "video_id": "6z-0eHP-XbU"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2230,7 +2277,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "48"
+                "id": "48",
+                "video_id": "zhZrxY-4KzY"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2277,7 +2325,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "49"
+                "id": "49",
+                "video_id": "c8wwQrB07NU"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2324,7 +2373,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "50"
+                "id": "50",
+                "video_id": "WYRX_TdHGY0"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2371,7 +2421,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "51"
+                "id": "51",
+                "video_id": "62pbtjdb1go"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2418,7 +2469,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "52"
+                "id": "52",
+                "video_id": "_Cvnbs0ShCE"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2465,7 +2517,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "53"
+                "id": "53",
+                "video_id": "LGQR5RWDEpk"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2512,7 +2565,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "54"
+                "id": "54",
+                "video_id": "0l1VHGtbtow"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2559,7 +2613,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "55"
+                "id": "55",
+                "video_id": "WbwPjchaqLE"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2606,7 +2661,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "56"
+                "id": "56",
+                "video_id": "JZ30TN1Fh6s"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2653,7 +2709,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "57"
+                "id": "57",
+                "video_id": "RJXWU4KwrxM"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2700,7 +2757,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "58"
+                "id": "58",
+                "video_id": "xeqTBBpf_Fc"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2747,7 +2805,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "59"
+                "id": "59",
+                "video_id": "cFXOzxlwLN0"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2794,7 +2853,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "60"
+                "id": "60",
+                "video_id": "qjdKO3S_Fag"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2841,7 +2901,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "61"
+                "id": "61",
+                "video_id": "AR0Y76LPffk"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2888,7 +2949,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "62"
+                "id": "62",
+                "video_id": "XVVFkjFUy-w"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2935,7 +2997,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "63"
+                "id": "63",
+                "video_id": "SROEX6DQ4Hs"
             },
             "geometry": {
                 "type": "Polygon",
@@ -2982,7 +3045,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "64"
+                "id": "64",
+                "video_id": "uXjGyC3FiHs"
             },
             "geometry": {
                 "type": "Polygon",
@@ -3029,7 +3093,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "65"
+                "id": "65",
+                "video_id": "bZok4h_dbTs"
             },
             "geometry": {
                 "type": "Polygon",
@@ -3076,7 +3141,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "66"
+                "id": "66",
+                "video_id": "GMiIImgXjA4"
             },
             "geometry": {
                 "type": "Polygon",
@@ -3123,7 +3189,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "67"
+                "id": "67",
+                "video_id": "zoX_YQ2BmRs"
             },
             "geometry": {
                 "type": "Polygon",
@@ -3170,7 +3237,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "68"
+                "id": "68",
+                "video_id": "iaISvNpOjeo"
             },
             "geometry": {
                 "type": "Polygon",
@@ -3217,7 +3285,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "69"
+                "id": "69",
+                "video_id": "xDqeOblxUJY"
             },
             "geometry": {
                 "type": "Polygon",
@@ -3264,7 +3333,8 @@ var stunt_jumps = {
         {
             "type": "Feature",
             "properties": {
-                "id": "70"
+                "id": "70",
+                "video_id": "X3RQdjtWEi8"
             },
             "geometry": {
                 "type": "Polygon",
