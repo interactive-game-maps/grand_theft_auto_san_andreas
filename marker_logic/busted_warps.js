@@ -11,24 +11,24 @@ var busted_warps_layer = new InteractiveLayer('busted_warps', busted_warps, {
         opacity: 0.7,
         fillOpacity: 0.2
     },
-    pointToLayer: (feature, latlng) => {
+    pointToLayer: function (feature, latlng) {
         return L.marker(latlng, {
             icon: getCustomIcon('fa-star'),
             riseOnHover: true
         });
     },
-    onEachFeature: (feature, layer) => {
+    onEachFeature: function (feature, layer) {
         layer.on({
-            mouseover: e => {
-                busted_warps_layer.highlightFeature(feature.properties.id);
+            mouseover: event => {
+                this.highlightFeature(feature.properties.id);
             },
-            mouseout: e => {
-                busted_warps_layer.removeHighlightFeature(feature.properties.id);
+            mouseout: event => {
+                this.removeHighlightFeature(feature.properties.id);
             },
-            click: e => {
+            click: event => {
                 share_marker.prevent();
-                busted_warps_layer.zoomToFeature(feature.properties.id);
-                setHistoryState(busted_warps_layer.id, feature.properties.id);
+                this.zoomToFeature(feature.properties.id);
+                setHistoryState(this.id, feature.properties.id);
             }
         });
     }

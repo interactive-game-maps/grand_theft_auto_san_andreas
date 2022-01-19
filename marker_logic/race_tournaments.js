@@ -17,12 +17,6 @@ var race_tournaments_layer = new InteractiveLayer('race_tournaments', los_santos
             opacity: 0.9
         }
     },
-    pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, {
-            icon: getCustomIcon(this.id),
-            riseOnHover: true
-        });
-    },
     onEachFeature: function (feature, layer) {
         if (feature.geometry.type == "Point") {
             layer.bindTooltip(feature.properties.id, {
@@ -32,13 +26,13 @@ var race_tournaments_layer = new InteractiveLayer('race_tournaments', los_santos
         }
 
         layer.on({
-            mouseover: e => {
+            mouseover: event => {
                 this.highlightFeature(feature.properties.id);
             },
-            mouseout: e => {
+            mouseout: event => {
                 this.removeHighlightFeature(feature.properties.id);
             },
-            click: e => {
+            click: event => {
                 this.zoomToFeature(feature.properties.id);
             }
         });
@@ -52,12 +46,6 @@ race_tournaments_layer.addGeoJson(san_fierro_races, {
         opacity: 0.9
     },
     highlight_polygon_style: race_tournaments_highlight,
-    pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, {
-            icon: getCustomIcon(this.id),
-            riseOnHover: true
-        });
-    },
     onEachFeature: function (feature, layer) {
         if (feature.geometry.type == "Point") {
             layer.bindTooltip(feature.properties.id, {
@@ -67,13 +55,13 @@ race_tournaments_layer.addGeoJson(san_fierro_races, {
         }
 
         layer.on({
-            mouseover: e => {
+            mouseover: event => {
                 this.highlightFeature(feature.properties.id);
             },
-            mouseout: e => {
+            mouseout: event => {
                 this.removeHighlightFeature(feature.properties.id);
             },
-            click: e => {
+            click: event => {
                 this.zoomToFeature(feature.properties.id);
             }
         });
@@ -87,12 +75,6 @@ race_tournaments_layer.addGeoJson(las_venturas_races, {
         opacity: 0.9
     },
     highlight_polygon_style: race_tournaments_highlight,
-    pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, {
-            icon: getCustomIcon(this.id),
-            riseOnHover: true
-        });
-    },
     onEachFeature: function (feature, layer) {
         if (feature.geometry.type == "Point") {
             layer.bindTooltip(feature.properties.id, {
@@ -102,13 +84,13 @@ race_tournaments_layer.addGeoJson(las_venturas_races, {
         }
 
         layer.on({
-            mouseover: e => {
+            mouseover: event => {
                 this.highlightFeature(feature.properties.id);
             },
-            mouseout: e => {
+            mouseout: event => {
                 this.removeHighlightFeature(feature.properties.id);
             },
-            click: e => {
+            click: event => {
                 this.zoomToFeature(feature.properties.id);
             }
         });
@@ -122,12 +104,6 @@ race_tournaments_layer.addGeoJson(air_races, {
         opacity: 0.9
     },
     highlight_polygon_style: race_tournaments_highlight,
-    pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, {
-            icon: getCustomIcon(this.id),
-            riseOnHover: true
-        });
-    },
     onEachFeature: function (feature, layer) {
         if (feature.geometry.type == "Point") {
             layer.bindTooltip(feature.properties.id, {
@@ -137,13 +113,13 @@ race_tournaments_layer.addGeoJson(air_races, {
         }
 
         layer.on({
-            mouseover: e => {
+            mouseover: event => {
                 this.highlightFeature(feature.properties.id);
             },
-            mouseout: e => {
+            mouseout: event => {
                 this.removeHighlightFeature(feature.properties.id);
             },
-            click: e => {
+            click: event => {
                 this.zoomToFeature(feature.properties.id);
             }
         });

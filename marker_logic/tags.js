@@ -2,8 +2,9 @@ var tags_layer = new InteractiveLayer('tags', tags, {
     name: "Spray Tags",
     create_checkbox: true,
     create_feature_popup: true,
+    is_default: true,
     sidebar_icon_html: '<i class="fas fa-spray-can"></i>',
-    pointToLayer: (feature, latlng) => {
+    pointToLayer: function (feature, latlng) {
         return L.marker(latlng, {
             icon: getCustomIcon('fa-spray-can'),
             riseOnHover: true
@@ -12,5 +13,3 @@ var tags_layer = new InteractiveLayer('tags', tags, {
 });
 
 interactive_layers.set(tags_layer.id, tags_layer);
-
-default_layers.push(tags_layer.name);

@@ -3,7 +3,7 @@ var cop_bribes_layer = new InteractiveLayer('cop_bribes', cop_bribes, {
     create_checkbox: true,
     create_feature_popup: true,
     sidebar_icon_html: '⭐',
-    pointToLayer: (feature, latlng) => {
+    pointToLayer: function (feature, latlng) {
         return L.marker(latlng, {
             icon: getCustomIcon('⭐'),
             riseOnHover: true

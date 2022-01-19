@@ -3,7 +3,8 @@ var oysters_layer = new InteractiveLayer('oysters', oysters, {
     create_checkbox: true,
     create_feature_popup: true,
     sidebar_icon_html: '🦪',
-    pointToLayer: (feature, latlng) => {
+    is_default: true,
+    pointToLayer: function (feature, latlng) {
         return L.marker(latlng, {
             icon: getCustomIcon('🦪'),
             riseOnHover: true
@@ -12,5 +13,3 @@ var oysters_layer = new InteractiveLayer('oysters', oysters, {
 });
 
 interactive_layers.set(oysters_layer.id, oysters_layer);
-
-default_layers.push(oysters_layer.name);

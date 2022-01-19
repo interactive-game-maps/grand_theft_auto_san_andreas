@@ -29,7 +29,7 @@ var death_warps_layer = new InteractiveLayer('death_warps', death_warps, {
             fillOpacity: 0.2
         }
     },
-    pointToLayer: (feature, latlng) => {
+    pointToLayer: function (feature, latlng) {
         if (feature.properties.radius) {
             return L.circle(latlng, feature.properties.radius, {
                 color: 'green'
@@ -40,18 +40,18 @@ var death_warps_layer = new InteractiveLayer('death_warps', death_warps, {
             riseOnHover: true
         });
     },
-    onEachFeature: (feature, layer) => {
+    onEachFeature: function (feature, layer) {
         layer.on({
-            mouseover: e => {
-                death_warps_layer.highlightFeature(feature.properties.id);
+            mouseover: event => {
+                this.highlightFeature(feature.properties.id);
             },
-            mouseout: e => {
-                death_warps_layer.removeHighlightFeature(feature.properties.id);
+            mouseout: event => {
+                this.removeHighlightFeature(feature.properties.id);
             },
-            click: e => {
+            click: event => {
                 share_marker.prevent();
-                death_warps_layer.zoomToFeature(feature.properties.id);
-                setHistoryState(death_warps_layer.id, feature.properties.id);
+                this.zoomToFeature(feature.properties.id);
+                setHistoryState(this.id, feature.properties.id);
             }
         });
     }
