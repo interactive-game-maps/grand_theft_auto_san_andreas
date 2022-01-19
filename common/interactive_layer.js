@@ -6,20 +6,24 @@ class InteractiveLayer {
     #highlight_polygon_styles;
     #sidebar_list_html;
     #geojsonFeatures;
+    #is_default;
 
     constructor(id, geojson, args) {
         let defaults = {
             name: id,
             create_checkbox: false,
             create_sidebar_tab: false,
-            sidebar_icon_html: '<i class="fas fa-gem"></i>',
-            pointToLayer: (feature, latlng) => {
+            is_default: false,
+            sidebar_icon_html: function () {
+                return `<img class="sidebar-image" src="images/icons/${this.id}.png" />`;
+            },
+            pointToLayer: function (feature, latlng) {
                 return L.marker(latlng, {
-                    icon: getCustomIcon(id.substring(0, 2)),
+                    icon: getCustomIcon(this.id),
                     riseOnHover: true
                 });
             },
-            onEachFeature: (feature, layer) => { },
+            onEachFeature: function (feature, layer) { },
             feature_group: L.featureGroup.subGroup(marker_cluster),
             highlight_polygon_style: {
                 opacity: 1.0,
@@ -41,6 +45,7 @@ class InteractiveLayer {
         this.#sidebar_list_html = undefined;
         this.#geojsonFeatures = new Array();
         this.#highlight_polygon_styles = new Map();
+        this.#is_default = params.is_default;
 
         if (!this.feature_group instanceof L.FeatureGroup.SubGroup) {
             this.marker_cluster = params.feature_group;
@@ -64,13 +69,13 @@ class InteractiveLayer {
 
     addGeoJson(geojson, args) {
         let defaults = {
-            pointToLayer: (feature, latlng) => {
+            pointToLayer: function (feature, latlng) {
                 return L.marker(latlng, {
-                    icon: getCustomIcon(id.substring(0, 2)),
+                    icon: getCustomIcon(this.id),
                     riseOnHover: true
                 });
             },
-            onEachFeature: (feature, layer) => { },
+            onEachFeature: function (feature, layer) { },
             highlight_polygon_style: {
                 opacity: 1.0,
                 fillOpacity: 0.7
@@ -119,6 +124,10 @@ class InteractiveLayer {
         }
 
         this.#features.get(id).push(feature);
+    }
+
+    isDefault() {
+        return this.#is_default;
     }
 
     /**

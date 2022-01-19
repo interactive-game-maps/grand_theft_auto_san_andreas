@@ -33,7 +33,12 @@ map.on('overlayremove ', event => {
 // Show remembered layers
 var user_layers = JSON.parse(localStorage.getItem(`${website_subdir}:user_layers`));
 if (!user_layers) {
-    user_layers = default_layers;
+    user_layers = [];
+    interactive_layers.forEach((layer, id) => {
+        if (layer.isDefault()) {
+            user_layers.push(layer.name);
+        }
+    });
 }
 interactive_layers.forEach((layer, id) => {
     if (user_layers.includes(layer.name)) {
