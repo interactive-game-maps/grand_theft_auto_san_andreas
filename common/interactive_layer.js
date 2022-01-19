@@ -224,7 +224,7 @@ class InteractiveLayer {
     }
 
     #removePolygonHighlight(feature = undefined) {
-        if (feature && this.#highlighted_features.includes(feature)) {
+        if (feature && !this.#highlighted_features.includes(feature)) {
             return;
         }
 
