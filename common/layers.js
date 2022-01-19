@@ -1,5 +1,5 @@
 // global list to access marker later on
-var marker = new Map();
+var interactive_layers = new Map();
 
 // initialize default layers variable where the layers can be added to later on
 var default_layers = [];
@@ -14,13 +14,9 @@ var common_attribution = `
 `
 
 var marker_cluster = L.markerClusterGroup({
+    spiderfyOnMaxZoom: true,
     maxClusterRadius: 20
 }).addTo(map);
-
-// Save currently highlighted marker for easy access
-var highlightedMarker = [];
-
-var geoJSONs = [];
 
 { // Edit toolbar
     // Disable general editing
@@ -33,32 +29,7 @@ var geoJSONs = [];
         className: 'fas fa-plus',
         toggle: false,
         onClick: () => {
-            if (!createCustomLayer()) {
-                return;
-            }
-
-            var active_custom_layers = custom_layer_controls.getOverlays({
-                only_active: true
-            });
-            var active_custom_layer = custom_layers[Object.keys(active_custom_layers)[0]];
-            map.off('pm:create');
-
-            // Disable current active layer
-            map.removeLayer(active_custom_layer);
-            L.PM.setOptIn(true);
-            L.PM.reInitLayer(active_custom_layer);
-
-            active_custom_layers = custom_layer_controls.getOverlays({
-                only_active: true
-            });
-            active_custom_layer = custom_layers[Object.keys(active_custom_layers)[0]];
-
-            L.PM.setOptIn(true);
-            L.PM.reInitLayer(active_custom_layer);
-
-            map.on('pm:create', e => {
-                createEditablePopup(e.layer);
-            });
+            custom_layers.createLayer();
         }
     });
     map.pm.Toolbar.createCustomControl({
@@ -68,33 +39,7 @@ var geoJSONs = [];
         className: 'fas fa-trash',
         toggle: false,
         onClick: () => {
-            if (!confirm('Really delete the current custom marker layer?')) {
-                return;
-            }
-
-            // should be only one because we're in edit mode
-            var active_custom_layers = custom_layer_controls.getOverlays({
-                only_active: true
-            });
-            var active_custom_layer = custom_layers[Object.keys(active_custom_layers)[0]]
-
-            localStorage.removeItem(`${website_subdir}:${Object.keys(active_custom_layers)[0]}`);
-            custom_layer_controls.removeLayer(active_custom_layer);
-            map.removeLayer(active_custom_layer);
-            delete custom_layers[Object.keys(active_custom_layers)[0]];
-
-            // Remove layer from controls
-            showCustomLayerControls();
-            edit_mode = false;
-            map.pm.toggleControls();
-
-            // make sure editing is disabled
-            map.pm.disableDraw();
-            map.pm.disableGlobalEditMode();
-            map.pm.disableGlobalDragMode();
-            map.pm.disableGlobalRemovalMode();
-            map.pm.disableGlobalCutMode();
-            map.pm.disableGlobalRotateMode();
+            custom_layers.removeLayer();
         }
     });
     map.pm.Toolbar.createCustomControl({
@@ -104,15 +49,7 @@ var geoJSONs = [];
         className: 'fas fa-file-download',
         toggle: false,
         onClick: () => {
-            // should be only one because we're in edit mode
-            var active_custom_layers = custom_layer_controls.getOverlays({
-                only_active: true
-            });
-
-            var active_custom_layer = custom_layers[Object.keys(active_custom_layers)[0]]
-
-            console.log(active_custom_layer.toGeoJSON());
-            download(Object.keys(active_custom_layers)[0] + '.json', JSON.stringify(active_custom_layer.toGeoJSON(), null, '    '));
+            custom_layers.exportLayer();
         }
     });
     map.pm.addControls({
@@ -120,41 +57,7 @@ var geoJSONs = [];
         drawCircleMarker: false,
         oneBlock: false
     });
-    map.pm.toggleControls(); // hide as default
-
-    // Save manual edits before leaving
-    window.onbeforeunload = () => {
-        var array = [];
-
-        if (Object.keys(custom_layers).length < 1) {
-            localStorage.removeItem(`${website_subdir}:custom_layers`);
-            return;
-        }
-
-        Object.keys(custom_layers).forEach(key => {
-            localStorage.setItem(`${website_subdir}:${key}`, JSON.stringify(custom_layers[key].toGeoJSON()));
-            array.push(key);
-        });
-
-        localStorage.setItem(`${website_subdir}:custom_layers`, JSON.stringify(array));
-    };
-
-    // The unload method seems unreliable so also save every 5 minutes
-    var interval = window.setInterval(() => {
-        var array = [];
-
-        if (Object.keys(custom_layers).length < 1) {
-            localStorage.removeItem(`${website_subdir}:custom_layers`);
-            return;
-        }
-
-        Object.keys(custom_layers).forEach(key => {
-            localStorage.setItem(`${website_subdir}:${key}`, JSON.stringify(custom_layers[key].toGeoJSON()));
-            array.push(key);
-        });
-
-        localStorage.setItem(`${website_subdir}:custom_layers`, JSON.stringify(array));
-    }, 300000);
+    map.pm.toggleControls(); // hide by default
 }
 
 {// Add sidebar to map
@@ -175,7 +78,7 @@ var geoJSONs = [];
                 return;
             }
 
-            custom_layers = {};
+            window.onbeforeunload = () => { };
 
             for (var key in localStorage) {
                 if (key.startsWith(`${website_subdir}:`)) {
@@ -194,71 +97,11 @@ var geoJSONs = [];
         title: 'Add or edit marker',
         position: 'bottom',
         button: () => {
-            if (!edit_mode) {
-                var active_custom_layers = custom_layer_controls.getOverlays({
-                    only_active: true
-                });
-
-                if (Object.keys(active_custom_layers).length < 1) {
-                    if (!createCustomLayer()) {
-                        return;
-                    }
-                } else if (Object.keys(active_custom_layers).length > 1) {
-                    alert('Please select only one custom layer to edit');
-                    return;
-                }
-
-                active_custom_layers = custom_layer_controls.getOverlays({
-                    only_active: true
-                });
-
-                var active_custom_layer = custom_layers[Object.keys(active_custom_layers)[0]];
-
-                // Enable general editing for new markers
-                L.PM.setOptIn(false);
-                L.PM.reInitLayer(active_custom_layer);
-
-                map.pm.setGlobalOptions({
-                    layerGroup: active_custom_layer,
-                    markerStyle: {
-                        icon: getCustomIcon(Object.keys(active_custom_layers)[0].substring(0, 2))
-                    }
-                });
-
-                map.on('pm:create', e => {
-                    createEditablePopup(e.layer);
-                });
-
-                edit_mode = true;
-                hideCustomLayerControls();
-                map.off('click', moveShareMarker);
-                setHistoryState();
+            if (!CustomLayers.edit_mode) {
+                custom_layers.enableEditing();
             } else {
-                var active_custom_layers = custom_layer_controls.getOverlays({
-                    only_active: true
-                });
-
-                var active_custom_layer = custom_layers[Object.keys(active_custom_layers)[0]];
-
-                // Disable general editing for new markers
-                L.PM.setOptIn(true);
-                L.PM.reInitLayer(active_custom_layer);
-
-                // make sure editing is disabled
-                map.pm.disableDraw();
-                map.pm.disableGlobalEditMode();
-                map.pm.disableGlobalDragMode();
-                map.pm.disableGlobalRemovalMode();
-                map.pm.disableGlobalCutMode();
-                map.pm.disableGlobalRotateMode();
-
-                edit_mode = false;
-                showCustomLayerControls();
-
-                map.off('pm:create');
-                map.on('click', moveShareMarker);
+                custom_layers.disableEditing();
             }
-            map.pm.toggleControls();
         }
     });
 
@@ -288,7 +131,7 @@ var geoJSONs = [];
     sidebar.on('content', (event) => {
         if (event.id == 'attributions') return;
 
-        map.addLayer(marker.get(event.id).get('group'));
+        map.addLayer(interactive_layers.get(event.id).feature_group);
         setHistoryState(event.id);
     });
 
