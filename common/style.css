@@ -168,22 +168,38 @@ html, body, #map {
     margin: 11px 0px 0px -12px;
     transform: rotateX(55deg);
     z-index: -2;
+    animation: pulsate_inner 2s ease-out;
+    animation-iteration-count: infinite;
 }
-.map-marker-ping:after {
+
+.map-marker-ping::before {
     content: "";
     border-radius: 50%;
     height: 40px;
     width: 40px;
     position: absolute;
     margin: -13px 0 0 -13px;
-    animation: pulsate 1s ease-out;
+    animation: pulsate_outer 1s ease-out;
+    animation-iteration-count: infinite;
+    opacity: 0;
+    box-shadow: 0 0 1px 2px #ffffff;
+}
+
+.map-marker-ping::after {
+    content: "";
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    margin: -13px 0 0 -13px;
+    animation: pulsate_outer 1s ease-out;
     animation-iteration-count: infinite;
     opacity: 0;
     box-shadow: 0 0 1px 2px #000000;
-    animation-delay: 1.1s;
+    animation-delay: 0.1s;
 }
 
-@keyframes pulsate {
+@keyframes pulsate_outer {
     0% {
         transform: scale(0.1, 0.1);
         opacity: 0;
@@ -196,5 +212,15 @@ html, body, #map {
     100% {
         transform: scale(1.2, 1.2);
         opacity: 0;
+    }
+}
+
+@keyframes pulsate_inner {
+    50% {
+        background-color: white;
+    }
+
+    100% {
+        background-color: black;
     }
 }
