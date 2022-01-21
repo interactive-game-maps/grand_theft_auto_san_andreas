@@ -409,12 +409,12 @@ class InteractiveMap {
         // https://github.com/Leaflet/Leaflet/issues/5484#issuecomment-299949921
         document.querySelector(".leaflet-popup-pane").addEventListener("load", function (event) {
             var tagName = event.target.tagName,
-                popup = map._popup; // Last open Popup.
+                popup = this.#map._popup; // Last open Popup.
 
             if (tagName === "IMG" && popup && !popup._updated) {
                 popup._updated = true; // Assumes only 1 image per Popup.
                 popup.update();
             }
-        }, true); // Capture the load event, because it does not bubble.
+        }.bind(this), true); // Capture the load event, because it does not bubble.
     }
 }
