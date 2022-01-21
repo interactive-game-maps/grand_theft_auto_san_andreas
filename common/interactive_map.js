@@ -171,8 +171,7 @@ class InteractiveMap {
      */
     zoomToBounds(bounds) {
         this.#map.fitBounds(bounds, {
-            maxZoom: this.MAX_ZOOM,
-            paddingTopLeft: [500, 0]
+            maxZoom: this.MAX_ZOOM
         });
     }
 
@@ -293,7 +292,7 @@ class InteractiveMap {
         });
 
         this.#sidebar.on('closing', () => {
-            Utils.setHistoryState();
+            Utils.setHistoryState(undefined, undefined, this.#website_subdir);
         })
     }
 

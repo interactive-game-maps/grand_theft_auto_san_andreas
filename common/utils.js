@@ -95,7 +95,7 @@ class Utils {
      * @param {string} list_id Group ID
      * @param {string} feature_id Feature ID
      */
-    static setHistoryState(list_id = undefined, feature_id = undefined) {
+    static setHistoryState(list_id = undefined, feature_id = undefined, website_subdir = '') {
         if (list_id && feature_id) {
             history.replaceState({}, "", `?list=${list_id}&id=${feature_id}`);
         } else if (list_id) {

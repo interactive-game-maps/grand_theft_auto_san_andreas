@@ -526,7 +526,7 @@ class InteractiveLayer {
 
             layer.on('popupclose', event => {
                 Utils.share_marker.prevent();
-                Utils.setHistoryState();
+                Utils.setHistoryState(undefined, undefined, this.#website_subdir);
             });
 
             return html;

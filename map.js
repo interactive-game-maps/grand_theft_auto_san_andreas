@@ -17,12 +17,12 @@ interactive_map.addTileLayer("Ingame map", {
     attribution: '<a href="https://imgur.com/vt0tq1n">Map</a> <a href="https://old.reddit.com/r/sanandreas/comments/9856u1/high_resolution_map_for_grand_theft_auto_san/">from</a> <a href="https://old.reddit.com/user/TheCynicalAutist">TheCynicalAutist</a>'
 });
 
-interactive_map.addTileLayer("Sattelite map", {
-    minNativeZoom: 2,
-    maxNativeZoom: 4,
-    attribution: '<a href="GTASnP.com">GTASnP.com</a>',
-    tileSize: 192,
-}, 'https://a.maps.gtasnp.com/sa-satellite/{z}_{x}_{y}.png')
+interactive_map.addTileLayer("Satellite map", {
+    minNativeZoom: 0,
+    maxNativeZoom: 5,
+    attribution: 'Map by <a href="https://ian-albert.com/games/grand_theft_auto_san_andreas_maps/">Ian Albert</a>',
+    tileSize: 262,
+}, 'satellite_tiles/{z}/{x}/{y}.png')
 
 interactive_map.addInteractiveLayer(getTagsLayer());
 interactive_map.addInteractiveLayer(getSnapshotsLayer());

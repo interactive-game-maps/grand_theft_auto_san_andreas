@@ -149,7 +149,7 @@ class CustomLayers {
         CustomLayers.edit_mode = true;
         this.hideControls();
         Utils.share_marker.turnOff();
-        Utils.setHistoryState();
+        Utils.setHistoryState(undefined, undefined, this.#website_subdir);
 
         this.#map.on('pm:create', event => {
             this.#createPopup(event.layer);
@@ -398,7 +398,7 @@ class CustomLayers {
         });
 
         layer.on('popupopen', event => {
-            Utils.setHistoryState();
+            Utils.setHistoryState(undefined, undefined, this.#website_subdir);
             Utils.share_marker.turnOff();
         });
 
