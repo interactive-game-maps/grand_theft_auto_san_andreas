@@ -1,18 +1,23 @@
 class CustomLayers {
     #custom_layers;
     #custom_layer_controls;
+    #website_subdir = '';
     static edit_mode = false;
+    #map;
+    #interactive_map;
 
-    constructor() {
+    constructor(interactive_map) {
         this.#custom_layers = new Map();
+        this.#map = interactive_map.getMap();
+        this.#interactive_map = interactive_map;
+        this.#website_subdir = interactive_map.getWebsiteSubdir();
 
         this.#loadFromStorage();
 
-        this.#extendDefaultLayerControl();
+        this.#extendDefaultLayerControl(this.#map);
         this.#custom_layer_controls = new L.control.layers(null, Object.fromEntries(this.#custom_layers), {
             collapsed: false
         });
-        this.showControls();
 
         // Save manual edits before leaving
         window.onbeforeunload = this.#saveToStorage.bind(this);
@@ -21,18 +26,18 @@ class CustomLayers {
     }
 
     #loadFromStorage() {
-        if (localStorage.getItem(`${website_subdir}:custom_layers`)) {
-            JSON.parse(localStorage.getItem(`${website_subdir}:custom_layers`)).forEach(id => {
-                if (!localStorage.getItem(`${website_subdir}:${id}`)) {
+        if (localStorage.getItem(`${this.#website_subdir}:custom_layers`)) {
+            JSON.parse(localStorage.getItem(`${this.#website_subdir}:custom_layers`)).forEach(id => {
+                if (!localStorage.getItem(`${this.#website_subdir}:${id}`)) {
                     return;
                 }
 
-                var geojson = JSON.parse(localStorage.getItem(`${website_subdir}:${id}`));
+                var geojson = JSON.parse(localStorage.getItem(`${this.#website_subdir}:${id}`));
 
-                var layer = L.geoJSON(geojson, {
+                var geojson_layer = L.geoJSON(geojson, {
                     pointToLayer: (feature, latlng) => {
                         return L.marker(latlng, {
-                            icon: getCustomIcon(id.substring(0, 2)),
+                            icon: Utils.getCustomIcon(id.substring(0, 2)),
                             riseOnHover: true
                         });
                     },
@@ -41,7 +46,7 @@ class CustomLayers {
                     },
                     pmIgnore: false
                 });
-                this.#custom_layers.set(id, layer);
+                this.#custom_layers.set(id, geojson_layer);
             });
         }
     }
@@ -54,16 +59,16 @@ class CustomLayers {
         var array = new Array();
 
         if (this.getCount() < 1) {
-            localStorage.removeItem(`${website_subdir}:custom_layers`);
+            localStorage.removeItem(`${this.#website_subdir}:custom_layers`);
             return;
         }
 
         this.#custom_layers.forEach((layer, id) => {
-            localStorage.setItem(`${website_subdir}:${id}`, JSON.stringify(layer.toGeoJSON()));
+            localStorage.setItem(`${this.#website_subdir}:${id}`, JSON.stringify(layer.toGeoJSON()));
             array.push(id);
         });
 
-        localStorage.setItem(`${website_subdir}:custom_layers`, JSON.stringify(array));
+        localStorage.setItem(`${this.#website_subdir}:custom_layers`, JSON.stringify(array));
     }
 
     #getActiveLayerCount() {
@@ -96,14 +101,14 @@ class CustomLayers {
             this.#custom_layer_controls = new L.control.layers(null, Object.fromEntries(this.#custom_layers), {
                 collapsed: false
             });
-            map.addControl(this.#custom_layer_controls);
+            this.#map.addControl(this.#custom_layer_controls);
         } else {
             this.hideControls();
         }
     }
 
     hideControls() {
-        map.removeControl(this.#custom_layer_controls);
+        this.#map.removeControl(this.#custom_layer_controls);
     }
 
     hasLayer(id) {
@@ -133,20 +138,20 @@ class CustomLayers {
         L.PM.setOptIn(false);
         L.PM.reInitLayer(active_layer);
 
-        map.pm.toggleControls();
-        map.pm.setGlobalOptions({
+        this.#map.pm.toggleControls();
+        this.#map.pm.setGlobalOptions({
             layerGroup: active_layer,
             markerStyle: {
-                icon: getCustomIcon(this.#getActiveLayerId().substring(0, 2))
+                icon: Utils.getCustomIcon(this.#getActiveLayerId().substring(0, 2))
             }
         });
 
         CustomLayers.edit_mode = true;
         this.hideControls();
-        share_marker.turnOff();
-        setHistoryState();
+        Utils.share_marker.turnOff();
+        Utils.setHistoryState();
 
-        map.on('pm:create', event => {
+        this.#map.on('pm:create', event => {
             this.#createPopup(event.layer);
         });
     }
@@ -159,18 +164,18 @@ class CustomLayers {
             L.PM.reInitLayer(active_layer);
         }
 
-        map.pm.disableDraw();
-        map.pm.disableGlobalEditMode();
-        map.pm.disableGlobalDragMode();
-        map.pm.disableGlobalRemovalMode();
-        map.pm.disableGlobalCutMode();
-        map.pm.disableGlobalRotateMode();
-        map.pm.toggleControls();
+        this.#map.pm.disableDraw();
+        this.#map.pm.disableGlobalEditMode();
+        this.#map.pm.disableGlobalDragMode();
+        this.#map.pm.disableGlobalRemovalMode();
+        this.#map.pm.disableGlobalCutMode();
+        this.#map.pm.disableGlobalRotateMode();
+        this.#map.pm.toggleControls();
 
         CustomLayers.edit_mode = false;
         this.showControls();
-        map.off('pm:create');
-        share_marker.turnOn();
+        this.#map.off('pm:create');
+        Utils.share_marker.turnOn();
     }
 
     createLayer() {
@@ -178,7 +183,7 @@ class CustomLayers {
 
         var layer_id = prompt("Unique new layer name");
 
-        if (layer_id == null || layer_id == '' || layer_id in custom_layers) {
+        if (layer_id == null || layer_id == '' || layer_id in this.#custom_layers) {
             return false;
         }
 
@@ -192,13 +197,19 @@ class CustomLayers {
         this.#custom_layer_controls.addOverlay(new_layer, layer_id);
 
         // Display new layer and active
-        new_layer.addTo(map);
+        new_layer.addTo(this.#map);
 
-        map.pm.setGlobalOptions({
-            layerGroup: new_layer
+        this.#map.pm.setGlobalOptions({
+            layerGroup: new_layer,
+            markerStyle: {
+                icon: Utils.getCustomIcon(layer_id.substring(0, 2))
+            }
         });
 
+        this.#interactive_map.addUserLayer(layer_id);
+
         if (CustomLayers.edit_mode) {
+            this.#interactive_map.removeUserLayer(this.#getActiveLayerId());
             this.#switchLayer(active_layer, new_layer);
         }
 
@@ -207,17 +218,17 @@ class CustomLayers {
 
     #switchLayer(old_layer, new_layer) {
         // We should be in edit mode here
-        map.off('pm:create');
+        this.#map.off('pm:create');
 
         // Disable current active layer
-        map.removeLayer(old_layer);
+        this.#map.removeLayer(old_layer);
         L.PM.setOptIn(true);
         L.PM.reInitLayer(old_layer);
 
         L.PM.setOptIn(false);
         L.PM.reInitLayer(new_layer);
 
-        map.on('pm:create', event => {
+        this.#map.on('pm:create', event => {
             this.#createPopup(event.layer);
         });
     }
@@ -236,17 +247,14 @@ class CustomLayers {
 
         if (active_layer) {
             var active_layer_id = this.#getActiveLayerId();
-            localStorage.removeItem(`${website_subdir}:${active_layer_id}`);
+            localStorage.removeItem(`${this.#website_subdir}:${active_layer_id}`);
             this.#custom_layer_controls.removeLayer(active_layer);
-            map.removeLayer(active_layer);
+            this.#map.removeLayer(active_layer);
             this.#custom_layers.delete(active_layer_id);
 
             // Manually trigger the events that should fire in 'overlayremove'
             {
-                user_layers = user_layers.filter((value, index, array) => {
-                    return value != active_layer_id;
-                });
-                localStorage.setItem(`${website_subdir}:user_layers`, JSON.stringify(user_layers));
+                this.#interactive_map.removeUserLayer(active_layer_id);
             }
         }
 
@@ -260,7 +268,7 @@ class CustomLayers {
             return;
         }
 
-        download(this.#getActiveLayerId() + '.json', JSON.stringify(active_layer.toGeoJSON(), null, '    '));
+        Utils.download(this.#getActiveLayerId() + '.json', JSON.stringify(active_layer.toGeoJSON(), null, '    '));
     }
 
     #createPopup(layer) {
@@ -298,6 +306,28 @@ class CustomLayers {
             id_p.appendChild(id_input);
             html.appendChild(id_p);
 
+            var name_p = document.createElement('p');
+
+            var name_input = document.createElement('input');
+            name_input.setAttribute('type', 'text');
+            name_input.id = layer._leaflet_id + ':name';
+
+            var name_label = document.createElement('label');
+            name_label.htmlFor = name_input.id;
+            name_label.innerHTML = 'Name: ';
+
+            if (layer.feature.properties.name) {
+                name_input.value = layer.feature.properties.name;
+            }
+
+            name_input.addEventListener('change', event => {
+                layer.feature.properties.name = event.target.value;
+            });
+
+            name_p.appendChild(name_label);
+            name_p.appendChild(name_input);
+            html.appendChild(name_p);
+
             var image_id_p = document.createElement('p');
 
             var image_id_input = document.createElement('input');
@@ -319,28 +349,6 @@ class CustomLayers {
             image_id_p.appendChild(image_id_label);
             image_id_p.appendChild(image_id_input);
             html.appendChild(image_id_p);
-
-            var image_url_p = document.createElement('p');
-
-            var image_url_input = document.createElement('input');
-            image_url_input.setAttribute('type', 'text');
-            image_url_input.id = layer._leaflet_id + ':name';
-
-            var image_url_label = document.createElement('label');
-            image_url_label.htmlFor = image_url_input.id;
-            image_url_label.innerHTML = 'Name: ';
-
-            if (layer.feature.properties.image_link) {
-                image_url_input.value = layer.feature.properties.image_link;
-            }
-
-            image_url_input.addEventListener('change', event => {
-                layer.feature.properties.image_link = event.target.value;
-            });
-
-            image_url_p.appendChild(image_url_label);
-            image_url_p.appendChild(image_url_input);
-            html.appendChild(image_url_p);
 
             var video_id_p = document.createElement('p');
 
@@ -390,18 +398,18 @@ class CustomLayers {
         });
 
         layer.on('popupopen', event => {
-            setHistoryState();
-            share_marker.turnOff();
+            Utils.setHistoryState();
+            Utils.share_marker.turnOff();
         });
 
         layer.on('popupclose', event => {
             if (CustomLayers.edit_mode) return;
 
-            share_marker.prevent();
+            Utils.share_marker.prevent();
         });
     }
 
-    #extendDefaultLayerControl() {
+    #extendDefaultLayerControl(map) {
         // Add method to layer control class
         // https://stackoverflow.com/a/51484131
         L.Control.Layers.include({

@@ -1,60 +1,63 @@
-var death_warps_layer = new InteractiveLayer('death_warps', death_warps, {
-    name: "Death warps",
-    feature_group: L.layerGroup(),
-    highlight_polygon_style: feature => {
-        if (feature.properties.id == "Katie") {
+function getDeathWarpsLayer() {
+    return new InteractiveLayer('death_warps', death_warps, {
+        name: "Death warps",
+        feature_group: L.featureGroup(),
+        polygon_style_highlight: feature => {
+            if (feature.properties.id == "Katie") {
+                return {
+                    color: 'blue',
+                    fillColor: 'green',
+                    opacity: 1.0,
+                    fillOpacity: 0.5
+                }
+            }
             return {
-                color: 'green',
+                color: 'blue',
+                fillColor: 'red',
                 opacity: 1.0,
                 fillOpacity: 0.5
             }
-        }
-        return {
-            color: 'red',
-            opacity: 1.0,
-            fillOpacity: 0.5
-        }
-    },
-    polygon_style: feature => {
-        if (feature.properties.id == "Katie") {
+        },
+        polygon_style: feature => {
+            if (feature.properties.id == "Katie") {
+                return {
+                    color: 'green',
+                    opacity: 0.8,
+                    fillOpacity: 0.2
+                }
+            }
             return {
-                color: 'green',
+                color: 'red',
                 opacity: 0.8,
                 fillOpacity: 0.2
             }
-        }
-        return {
-            color: 'red',
-            opacity: 0.8,
-            fillOpacity: 0.2
-        }
-    },
-    pointToLayer: function (feature, latlng) {
-        if (feature.properties.radius) {
-            return L.circle(latlng, feature.properties.radius, {
-                color: 'green'
+        },
+        pointToLayer: function (feature, latlng) {
+            if (feature.properties.radius) {
+                return L.circle(latlng, {
+                    radius: feature.properties.radius,
+                    color: 'green'
+                });
+            }
+            return L.marker(latlng, {
+                icon: Utils.getCustomIcon('fa-hospital'),
+                riseOnHover: true
+            });
+        },
+        onEachFeature: function (feature, layer) {
+            layer.on({
+                mouseover: event => {
+                    this.highlightFeature(feature.properties.id);
+                },
+                mouseout: event => {
+                    this.removeHighlightFeature(feature.properties.id);
+                },
+                click: event => {
+                    Utils.share_marker.prevent();
+                    this.zoomToFeature(feature.properties.id);
+                    Utils.setHistoryState(this.id, feature.properties.id);
+                }
             });
         }
-        return L.marker(latlng, {
-            icon: getCustomIcon('fa-hospital'),
-            riseOnHover: true
-        });
-    },
-    onEachFeature: function (feature, layer) {
-        layer.on({
-            mouseover: event => {
-                this.highlightFeature(feature.properties.id);
-            },
-            mouseout: event => {
-                this.removeHighlightFeature(feature.properties.id);
-            },
-            click: event => {
-                share_marker.prevent();
-                this.zoomToFeature(feature.properties.id);
-                setHistoryState(this.id, feature.properties.id);
-            }
-        });
-    }
-});
-
-interactive_layers.set(death_warps_layer.id, death_warps_layer);
+    });
+}

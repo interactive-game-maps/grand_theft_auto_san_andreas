@@ -1,6 +1,12 @@
 class ShareMarker extends L.Marker {
-    constructor(latlng, options) {
+    #interactive_map;
+    #map;
+
+    constructor(latlng, interactive_map, options) {
         super(latlng, options);
+
+        this.#interactive_map = interactive_map;
+        this.#map = this.#interactive_map.getMap();
 
         this.on('moveend', this.removeHighlight);
         this.on('moveend', event => {
@@ -21,13 +27,13 @@ class ShareMarker extends L.Marker {
             html.appendChild(button);
 
             button.addEventListener('click', () => {
-                setHistoryState();
+                Utils.setHistoryState();
             });
 
             return html;
         });
 
-        map.on('click', this.#moveEvent, this);
+        this.#map.on('click', this.#moveEvent, this);
     }
 
     highlight() {
@@ -35,7 +41,7 @@ class ShareMarker extends L.Marker {
         icon.options.html = `<div class="map-marker-ping"></div>${icon.options.html}`;
         this.setIcon(icon);
 
-        map.on('click', this.removeHighlight, this);
+        this.#map.on('click', this.removeHighlight, this);
     }
 
     removeHighlight() {
@@ -44,18 +50,18 @@ class ShareMarker extends L.Marker {
         this.setIcon(icon);
 
         this.off('moveend', this.removeHighlight);
-        map.off('click', this.removeHighlight, this);
+        this.#map.off('click', this.removeHighlight, this);
     }
 
     #moveEvent(event) {
         this.setLatLng(event.latlng);
-        this.addTo(map);
+        this.addTo(this.#map);
         history.replaceState({}, "", `?share=${event.latlng.lng},${event.latlng.lat}`);
     }
 
     move(latlng) {
         this.setLatLng([latlng[0], latlng[1]]);
-        this.addTo(map);
+        this.addTo(this.#map);
     }
 
     removeMarker() {
@@ -64,17 +70,17 @@ class ShareMarker extends L.Marker {
 
     turnOff() {
         this.removeMarker();
-        map.off('click', this.#moveEvent, this);
+        this.#map.off('click', this.#moveEvent, this);
     }
 
     turnOn() {
-        map.on('click', this.#moveEvent, this);
+        this.#map.on('click', this.#moveEvent, this);
     }
 
     prevent() {
-        map.off('click', this.#moveEvent, this);
+        this.#map.off('click', this.#moveEvent, this);
         window.setTimeout(() => {
-            map.on('click', this.#moveEvent, this);
+            this.#map.on('click', this.#moveEvent, this);
         }, 300);
     }
 
@@ -83,6 +89,6 @@ class ShareMarker extends L.Marker {
 
         bounds.push([this._latlng.lat, this._latlng.lng]);
 
-        zoomToBounds(bounds);
+        this.#interactive_map.zoomToBounds(bounds);
     }
 }

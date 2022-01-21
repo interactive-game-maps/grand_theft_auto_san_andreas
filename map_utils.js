@@ -53,19 +53,3 @@ function getPopupMedia(feature, list_id, html) {
 
     return html;
 }
-
-// highlightLayer = function highlightLayer(layer) {
-//     if (!highlightedMarker.includes(layer)) {
-//         layer.setStyle({
-//             color: 'blue',
-//             opacity: 1.0,
-//             fillOpacity: 0.7
-//         });
-
-//         if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-//             layer.bringToFront();
-//         }
-
-//         highlightedMarker.push(layer);
-//     }
-// }
