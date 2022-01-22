@@ -16,7 +16,7 @@ class InteractiveLayer {
         let defaults = {
             name: id,
             create_checkbox: false,
-            create_sidebar_tab: false,
+            create_feature_popup: false,
             is_default: false,
             sidebar_icon_html: function () {
                 return `<img class="sidebar-image" src="images/icons/${this.id}.png" />`;
