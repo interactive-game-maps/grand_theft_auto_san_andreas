@@ -1,5 +1,5 @@
-function getSnapshotsLayer() {
-    return new InteractiveLayer('snapshots', snapshots, {
+function addSnapshotsLayer(map) {
+    map.addInteractiveLayer('snapshots', snapshots, {
         name: "Snapshots",
         create_checkbox: true,
         create_feature_popup: true,

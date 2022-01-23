@@ -1,5 +1,5 @@
-function getStuntJumpsLayer() {
-    return new InteractiveLayer('stunt_jumps', stunt_jumps, {
+function addStuntJumpsLayer(map) {
+    map.addInteractiveLayer('stunt_jumps', stunt_jumps, {
         name: "Unique stunt jumps",
         create_checkbox: true,
         create_feature_popup: true,
@@ -21,7 +21,7 @@ function getStuntJumpsLayer() {
                     this.highlightFeature(feature.properties.id);
                 },
                 mouseout: e => {
-                    this.removeHighlightFeature(feature.properties.id);
+                    this.removeFeatureHighlight(feature.properties.id);
                 },
                 click: e => {
                     this.zoomToFeature(feature.properties.id);

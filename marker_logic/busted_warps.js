@@ -1,5 +1,5 @@
-function getBustedWarpsLayer() {
-    return new InteractiveLayer('busted_warps', busted_warps, {
+function addBustedWarpsLayer(map) {
+    map.addInteractiveLayer('busted_warps', busted_warps, {
         name: "Busted warps",
         feature_group: L.featureGroup(),
         polygon_style_highlight: {
@@ -25,7 +25,7 @@ function getBustedWarpsLayer() {
                     this.highlightFeature(feature.properties.id);
                 },
                 mouseout: event => {
-                    this.removeHighlightFeature(feature.properties.id);
+                    this.removeFeatureHighlight(feature.properties.id);
                 },
                 click: event => {
                     Utils.share_marker.prevent();

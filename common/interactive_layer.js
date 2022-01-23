@@ -3,6 +3,7 @@
  */
 class InteractiveLayer {
     #create_checkbox;
+    #ignore_next_resize = new Set(); // set of entries to skip initial resize call
     #feature_group;
     #geojsons = new Array();
     #highlighted_layers = new Array();
@@ -13,9 +14,28 @@ class InteractiveLayer {
     #resize_observer = new ResizeObserver(entries => {
         for (const entry of entries) {
             let feature_id = entry.target.closest('.popup-id').id.split(':')[2];
+
+            // The observer also fires when it gets added so ignore that resize 'event'
+            // or else we'll get a infinite loop
+            if (this.#ignore_next_resize.has(feature_id)) {
+                this.#ignore_next_resize.delete(feature_id);
+                continue;
+            }
+
             this.#getLayers(feature_id).forEach(layer => {
                 if (layer.isPopupOpen()) {
+                    this.#resize_observer.unobserve(entry.target);
+
+                    // This changes the content of the element and the observer looses track of it because of that
+                    // That's why we're re-adding the observer
                     layer.getPopup().update();
+
+                    // The observer also fires when it gets added so ignore that resize 'event'
+                    // or else we'll get a infinite loop
+                    this.#ignore_next_resize.add(feature_id);
+                    for (const element of document.getElementById(`popup:${this.id}:${feature_id}`).getElementsByClassName('popup-media')) {
+                        this.#resize_observer.observe(element);
+                    }
                 }
             });
         }
@@ -364,82 +384,82 @@ class InteractiveLayer {
      * @param {L.Layer} layer Resulting layer
      */
     #createFeaturePopup(feature, layer) {
-        var html = document.createElement('div');
-        html.className = 'popup-id';
-        html.id = `popup:${this.id}:${feature.properties.id}`;
+        let content = function (layer) {
+            var html = document.createElement('div');
+            html.className = 'popup-id';
+            html.id = `popup:${this.id}:${feature.properties.id}`;
 
-        var title = document.createElement('h2');
-        title.className = 'popup-title';
-        title.innerHTML = feature.properties.name ? feature.properties.name : feature.properties.id;
+            var title = document.createElement('h2');
+            title.className = 'popup-title';
+            title.innerHTML = feature.properties.name ? feature.properties.name : feature.properties.id;
 
-        html.appendChild(title);
+            html.appendChild(title);
 
-        html = getPopupMedia(feature, this.id, html);
+            html = getPopupMedia(feature, this.id, html);
 
-        if (feature.properties.description) {
-            var description = document.createElement('p');
-            description.className = 'popup-description';
-            var span = document.createElement('span');
-            span.setAttribute('style', 'white-space: pre-wrap');
-            span.appendChild(document.createTextNode(feature.properties.description));
-            description.appendChild(span);
+            if (feature.properties.description) {
+                var description = document.createElement('p');
+                description.className = 'popup-description';
+                var span = document.createElement('span');
+                span.setAttribute('style', 'white-space: pre-wrap');
+                span.appendChild(document.createTextNode(feature.properties.description));
+                description.appendChild(span);
 
-            html.appendChild(description);
-        }
-
-        // Checkbox requires a global counterpart
-        if (this.#create_checkbox && document.getElementById(this.id + ':' + feature.properties.id)) {
-            var label = document.createElement('label');
-            label.className = 'popup-checkbox is-fullwidth';
-
-            var label_text = document.createTextNode('Hide this marker');
-
-            var checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-
-            if (localStorage.getItem(`${this.#website_subdir}:${this.id}:${feature.properties.id}`)) {
-                checkbox.checked = true;
+                html.appendChild(description);
             }
 
-            checkbox.addEventListener('change', element => {
-                if (element.target.checked) {
-                    // check global checkbox
-                    document.getElementById(this.id + ':' + feature.properties.id).checked = true;
-                    // remove all with ID from map
-                    this.#getLayers(feature.properties.id).forEach(l => {
-                        this.#getGroupForEdit(l).removeLayer(l);
-                    });
-                    // save to localStorage
-                    localStorage.setItem(`${this.#website_subdir}:${this.id}:${feature.properties.id}`, true);
-                } else {
-                    // uncheck global checkbox
-                    document.getElementById(this.id + ':' + feature.properties.id).checked = false;
-                    // add all with ID to map
-                    this.#getLayers(feature.properties.id).forEach(l => {
-                        this.#addLayer(l);
-                    });
-                    // remove from localStorage
-                    localStorage.removeItem(`${this.#website_subdir}:${this.id}:${feature.properties.id}`);
+            // Checkbox requires a global counterpart
+            if (this.#create_checkbox && document.getElementById(this.id + ':' + feature.properties.id)) {
+                var label = document.createElement('label');
+                label.className = 'popup-checkbox is-fullwidth';
+
+                var label_text = document.createTextNode('Hide this marker');
+
+                var checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+
+                if (localStorage.getItem(`${this.#website_subdir}:${this.id}:${feature.properties.id}`)) {
+                    checkbox.checked = true;
                 }
-            });
 
-            label.appendChild(checkbox);
-            label.appendChild(label_text);
-            html.appendChild(label);
-        }
+                checkbox.addEventListener('change', element => {
+                    if (element.target.checked) {
+                        // check global checkbox
+                        document.getElementById(this.id + ':' + feature.properties.id).checked = true;
+                        // remove all with ID from map
+                        this.#getLayers(feature.properties.id).forEach(l => {
+                            this.#getGroupForEdit(l).removeLayer(l);
+                        });
+                        // save to localStorage
+                        localStorage.setItem(`${this.#website_subdir}:${this.id}:${feature.properties.id}`, true);
+                    } else {
+                        // uncheck global checkbox
+                        document.getElementById(this.id + ':' + feature.properties.id).checked = false;
+                        // add all with ID to map
+                        this.#getLayers(feature.properties.id).forEach(l => {
+                            this.#addLayer(l);
+                        });
+                        // remove from localStorage
+                        localStorage.removeItem(`${this.#website_subdir}:${this.id}:${feature.properties.id}`);
+                    }
+                });
 
-        // I've tried updating the original leaflet popup with the ResizeObserver but it either only responded on the first
-        // size change or was triggering constantly. With this plugin it just worked and it has the nice side effect of adjusting
-        // tip to side if not enough space is available overwise.
-        layer.bindPopup(L.responsivePopup({ offset: [10, 10], maxWidth: "auto" }).setContent(html));
+                label.appendChild(checkbox);
+                label.appendChild(label_text);
+                html.appendChild(label);
+            }
+
+            return html;
+        }.bind(this);
+
+        layer.bindPopup(content, { maxWidth: "auto" });
 
         layer.on('popupopen', event => {
             this.#interactive_map.getShareMarker().removeMarker();
             Utils.setHistoryState(this.id, feature.properties.id);
 
             // Listen for size changes and update when it does
-            var html = layer.getPopup().getElement();
-            for (const entry of html.getElementsByClassName('popup-media')) {
+            for (const entry of document.getElementById(`popup:${this.id}:${feature.properties.id}`).getElementsByClassName('popup-media')) {
                 this.#resize_observer.observe(entry);
             }
         }, this);

@@ -1,5 +1,5 @@
-function getCopBribesLayer() {
-    return new InteractiveLayer('cop_bribes', cop_bribes, {
+function addCopBribesLayer(map) {
+    map.addInteractiveLayer('cop_bribes', cop_bribes, {
         name: "Cop bribes",
         create_checkbox: true,
         create_feature_popup: true,

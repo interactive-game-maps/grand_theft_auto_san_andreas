@@ -1,5 +1,5 @@
-function getOystersLayer() {
-    return oysters_layer = new InteractiveLayer('oysters', oysters, {
+function addOystersLayer(map) {
+    map.addInteractiveLayer('oysters', oysters, {
         name: "Oysters",
         create_checkbox: true,
         create_feature_popup: true,

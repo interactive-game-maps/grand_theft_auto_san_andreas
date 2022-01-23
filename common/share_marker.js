@@ -36,6 +36,7 @@ class ShareMarker extends L.Marker {
             html.appendChild(button);
 
             button.addEventListener('click', () => {
+                this.removeMarker();
                 Utils.setHistoryState(undefined, undefined, this.#interactive_map.getWebsiteSubdir());
             });
 

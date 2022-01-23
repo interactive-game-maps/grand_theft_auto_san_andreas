@@ -1,11 +1,11 @@
 
-function getRaceTournamentsLayer() {
+function addRaceTournamentsLayer(map) {
     var race_tournaments_highlight = {
         color: 'red',
         opacity: 1.0,
     }
 
-    var race_tournaments_layer = new InteractiveLayer('race_tournaments', los_santos_races, {
+    let race_tournaments_layer = map.addInteractiveLayer('race_tournaments', los_santos_races, {
         name: "Race tournaments",
         create_checkbox: true,
         create_feature_popup: true,
@@ -32,7 +32,7 @@ function getRaceTournamentsLayer() {
                     this.highlightFeature(feature.properties.id);
                 },
                 mouseout: event => {
-                    this.removeHighlightFeature(feature.properties.id);
+                    this.removeFeatureHighlight(feature.properties.id);
                 },
                 click: event => {
                     this.zoomToFeature(feature.properties.id);
@@ -42,6 +42,7 @@ function getRaceTournamentsLayer() {
     });
 
     race_tournaments_layer.addGeoJson(san_fierro_races, {
+        create_feature_popup: true,
         polygon_style: {
             color: 'lightblue',
             weight: 7,
@@ -61,7 +62,7 @@ function getRaceTournamentsLayer() {
                     this.highlightFeature(feature.properties.id);
                 },
                 mouseout: event => {
-                    this.removeHighlightFeature(feature.properties.id);
+                    this.removeFeatureHighlight(feature.properties.id);
                 },
                 click: event => {
                     this.zoomToFeature(feature.properties.id);
@@ -71,6 +72,7 @@ function getRaceTournamentsLayer() {
     });
 
     race_tournaments_layer.addGeoJson(las_venturas_races, {
+        create_feature_popup: true,
         polygon_style: {
             color: 'orange',
             weight: 7,
@@ -90,7 +92,7 @@ function getRaceTournamentsLayer() {
                     this.highlightFeature(feature.properties.id);
                 },
                 mouseout: event => {
-                    this.removeHighlightFeature(feature.properties.id);
+                    this.removeFeatureHighlight(feature.properties.id);
                 },
                 click: event => {
                     this.zoomToFeature(feature.properties.id);
@@ -100,6 +102,7 @@ function getRaceTournamentsLayer() {
     });
 
     race_tournaments_layer.addGeoJson(air_races, {
+        create_feature_popup: true,
         polygon_style: {
             color: 'yellow',
             weight: 7,
@@ -119,7 +122,7 @@ function getRaceTournamentsLayer() {
                     this.highlightFeature(feature.properties.id);
                 },
                 mouseout: event => {
-                    this.removeHighlightFeature(feature.properties.id);
+                    this.removeFeatureHighlight(feature.properties.id);
                 },
                 click: event => {
                     this.zoomToFeature(feature.properties.id);
@@ -127,6 +130,4 @@ function getRaceTournamentsLayer() {
             });
         }
     });
-
-    return race_tournaments_layer;
 }

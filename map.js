@@ -24,14 +24,14 @@ interactive_map.addTileLayer("Satellite map", {
     tileSize: 262,
 }, 'satellite_tiles/{z}/{x}/{y}.png')
 
-interactive_map.addInteractiveLayer(getTagsLayer());
-interactive_map.addInteractiveLayer(getSnapshotsLayer());
-interactive_map.addInteractiveLayer(getsHorseshoesLayer());
-interactive_map.addInteractiveLayer(getOystersLayer());
-interactive_map.addInteractiveLayer(getStuntJumpsLayer());
-interactive_map.addInteractiveLayer(getCopBribesLayer());
-interactive_map.addInteractiveLayer(getRaceTournamentsLayer());
-interactive_map.addInteractiveLayer(getBustedWarpsLayer());
-interactive_map.addInteractiveLayer(getDeathWarpsLayer());
+addTagsLayer(interactive_map);
+addSnapshotsLayer(interactive_map);
+addHorseshoesLayer(interactive_map);
+addOystersLayer(interactive_map);
+addStuntJumpsLayer(interactive_map);
+addCopBribesLayer(interactive_map);
+addRaceTournamentsLayer(interactive_map);
+addBustedWarpsLayer(interactive_map);
+addDeathWarpsLayer(interactive_map);
 
 interactive_map.finalize();

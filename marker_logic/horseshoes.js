@@ -1,5 +1,5 @@
-function getsHorseshoesLayer() {
-    return new InteractiveLayer('horseshoes', horseshoes, {
+function addHorseshoesLayer(map) {
+    map.addInteractiveLayer('horseshoes', horseshoes, {
         name: "Horseshoes",
         create_checkbox: true,
         create_feature_popup: true,

@@ -1,5 +1,5 @@
-function getDeathWarpsLayer() {
-    return new InteractiveLayer('death_warps', death_warps, {
+function addDeathWarpsLayer(map) {
+    map.addInteractiveLayer('death_warps', death_warps, {
         name: "Death warps",
         feature_group: L.featureGroup(),
         polygon_style_highlight: feature => {
@@ -50,7 +50,7 @@ function getDeathWarpsLayer() {
                     this.highlightFeature(feature.properties.id);
                 },
                 mouseout: event => {
-                    this.removeHighlightFeature(feature.properties.id);
+                    this.removeFeatureHighlight(feature.properties.id);
                 },
                 click: event => {
                     Utils.share_marker.prevent();

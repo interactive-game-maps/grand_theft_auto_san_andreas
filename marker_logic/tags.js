@@ -1,5 +1,5 @@
-function getTagsLayer() {
-    return new InteractiveLayer('tags', tags, {
+function addTagsLayer(map) {
+    map.addInteractiveLayer('tags', tags, {
         name: "Spray Tags",
         create_checkbox: true,
         create_feature_popup: true,
