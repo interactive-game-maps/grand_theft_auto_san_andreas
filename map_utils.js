@@ -1,4 +1,6 @@
-function getPopupMedia(feature, list_id, html) {
+function getPopupMedia(feature, list_id) {
+    var html = document.createElement('div');
+
     if (feature.properties.image_id) {
         var prefix = 'https://static.wikia.nocookie.net/gtawiki/images/';
         var suffix = '.jpg';
