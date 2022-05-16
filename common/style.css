@@ -89,7 +89,7 @@ html, body, #map {
 
 .popup-media {
     max-width: min(500px, 75vw);
-    max-height: min(500px, 50vh);
+    max-height: min(500px, 25vh);
 }
 
 .flex-grow-0 {
@@ -107,7 +107,7 @@ html, body, #map {
 /* || Place icons in the middle of the marker */
 
 .map-marker-foreground {
-    width: 15px;
+    width: 15px !important;
     display: table-cell;
     vertical-align: bottom;
     text-align: center;

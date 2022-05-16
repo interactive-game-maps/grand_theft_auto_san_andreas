@@ -395,7 +395,10 @@ class InteractiveLayer {
 
             html.appendChild(title);
 
-            html = getPopupMedia(feature, this.id, html);
+            let media_html = getPopupMedia(feature, this.id);
+            if (media_html) {
+                html.appendChild(media_html);
+            }
 
             if (feature.properties.description) {
                 var description = document.createElement('p');
