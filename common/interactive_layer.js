@@ -76,6 +76,7 @@ class InteractiveLayer {
      * @param {string | function} [args.sidebar_icon_html=function () { return `<img class="sidebar-image" src="images/icons/${this.id}.png" />`; }] A html string for the sidebar icon. Can be a function which returns a html string. The function has access to values of this layer e.g. the `this.id`.
      * @param {function} [args.onEachFeature=function (feature, layer) { }] A function with stuff to do on each feature. Has access to values of this layer e.g. `this.id`. Default: `function (feature, layer) { }`
      * @param {function} [args.pointToLayer=function (feature, latlng) { return L.marker(latlng, { icon: Utils.getCustomIcon(this.id), riseOnHover: true }); }] A function describing what to do when putting a geoJSON point to a layer.
+     * @param {function} [args.coordsToLatLng=L.GeoJSON.coordsToLatLng] A function describing converting geoJSON coordinates to leaflets latlng.
      * @param {object | function} [args.polygon_style=function (feature) { return {}; }] An object or function returning an object with L.Path options. https://leafletjs.com/reference.html#path
      * @param {object | function} [args.polygon_style_highlight=function () { return { opacity: 1.0, fillOpacity: 0.7 }}] An object or function returning an object with L.Path options. https://leafletjs.com/reference.html#path
      * @param {L.LayerGroup} [args.feature_group=L.featureGroup.subGroup(this.#interactive_map.getClusterGroup())] The group all geoJson features get added to. Defaults to the default marker cluster.
@@ -90,7 +91,8 @@ class InteractiveLayer {
             pointToLayer: this.#default_pointToLayer,
             onEachFeature: this.#default_onEachFeature,
             polygon_style: this.#default_polygon_style,
-            polygon_style_highlight: this.#default_polygon_style_highlight
+            polygon_style_highlight: this.#default_polygon_style_highlight,
+            coordsToLatLng: L.GeoJSON.coordsToLatLng
         };
 
         let params = { ...defaults, ...args };
@@ -114,7 +116,8 @@ class InteractiveLayer {
             pointToLayer: params.pointToLayer,
             onEachFeature: params.onEachFeature,
             polygon_style: params.polygon_style,
-            polygon_style_highlight: params.polygon_style_highlight
+            polygon_style_highlight: params.polygon_style_highlight,
+            coordsToLatLng: params.coordsToLatLng
         });
     }
 
@@ -125,6 +128,7 @@ class InteractiveLayer {
      * @param {boolean} [args.create_feature_popup=false] Create a popup for each feature
      * @param {function} [args.onEachFeature=function (feature, layer) { }] A function with stuff to do on each feature. Has access to values of this layer e.g. `this.id`. Default: `function (feature, layer) { }`
      * @param {function} [args.pointToLayer=function (feature, latlng) { return L.marker(latlng, { icon: Utils.getCustomIcon(this.id), riseOnHover: true }); }] A function describing what to do when putting a geoJSON point to a layer.
+     * @param {function} [args.coordsToLatLng=L.GeoJSON.coordsToLatLng] A function describing converting geoJSON coordinates to leaflets latlng.
      * @param {object | function} [args.polygon_style=function (feature) { return {}; }] An object or function returning an object with L.Path options. https://leafletjs.com/reference.html#path
      * @param {object | function} [args.polygon_style_highlight=function () { return { opacity: 1.0, fillOpacity: 0.7 }}] An object or function returning an object with L.Path options. https://leafletjs.com/reference.html#path
      */
@@ -134,7 +138,8 @@ class InteractiveLayer {
             pointToLayer: this.#default_pointToLayer,
             onEachFeature: this.#default_onEachFeature,
             polygon_style: this.#default_polygon_style,
-            polygon_style_highlight: this.#default_polygon_style_highlight
+            polygon_style_highlight: this.#default_polygon_style_highlight,
+            coordsToLatLng: L.GeoJSON.coordsToLatLng
         };
 
         let params = { ...defaults, ...args };
@@ -155,6 +160,7 @@ class InteractiveLayer {
 
                 this.#setFeature(feature.properties.id, layer);
             },
+            coordsToLatLng: params.coordsToLatLng.bind(this),
             style: params.polygon_style
         });
 
