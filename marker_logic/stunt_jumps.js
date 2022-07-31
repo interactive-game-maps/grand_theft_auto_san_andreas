@@ -27,6 +27,9 @@ function addStuntJumpsLayer(map) {
                     this.zoomToFeature(feature.properties.id);
                 }
             });
+        },
+        coordsToLatLng: function (coords) {
+            return gtaCoordinatesToLeaflet(coords);
         }
     });
 }

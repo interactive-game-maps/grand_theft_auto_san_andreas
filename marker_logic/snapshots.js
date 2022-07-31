@@ -10,6 +10,9 @@ function addSnapshotsLayer(map) {
                 icon: Utils.getCustomIcon('fa-camera'),
                 riseOnHover: true
             });
+        },
+        coordsToLatLng: function (coords) {
+            return gtaCoordinatesToLeaflet(coords);
         }
     });
 }

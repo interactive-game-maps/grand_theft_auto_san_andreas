@@ -13,8 +13,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    15.5625,
-                    -117.6875
+                    -2511.28,
+                    -672.99,
+                    195.75
                 ]
             }
         },
@@ -27,8 +28,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.875,
-                    -106.125
+                    -2723.63,
+                    -314.72,
+                    55.79
                 ]
             }
         },
@@ -41,8 +43,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    40.375,
-                    -114.5
+                    -1737.71,
+                    -579.55,
+                    26.19
                 ]
             }
         },
@@ -55,8 +58,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    48.6875,
-                    -66.625
+                    -1486.08,
+                    920.04,
+                    41.37
                 ]
             }
         },
@@ -69,8 +73,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    54.875,
-                    -66.0625
+                    -1269.82,
+                    963.63,
+                    130.37
                 ]
             }
         },
@@ -83,8 +88,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    43.25,
-                    -82.6875
+                    -1650.01,
+                    422,
+                    21.17
                 ]
             }
         },
@@ -97,8 +103,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    36.75,
-                    -99.0625
+                    -1851.72,
+                    -96.73,
+                    24.37
                 ]
             }
         },
@@ -111,8 +118,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.5625,
-                    -104.0625
+                    -2732,
+                    -244,
+                    19
                 ]
             }
         },
@@ -125,8 +133,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    6.1875,
-                    -84.4375
+                    -2802.75,
+                    375.47,
+                    36.59
                 ]
             }
         },
@@ -139,8 +148,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    7.3125,
-                    -71
+                    -2773.04,
+                    783.45,
+                    67.66
                 ]
             }
         },
@@ -153,8 +163,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    10.3125,
-                    -44.0625
+                    -2680.07,
+                    1590.8,
+                    143.53
                 ]
             }
         },
@@ -167,8 +178,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    16.6875,
-                    -46.75
+                    -2476.75,
+                    1543.44,
+                    49.26
                 ]
             }
         },
@@ -181,8 +193,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    36.0625,
-                    -49.875
+                    -1879.04,
+                    1456.52,
+                    9.34
                 ]
             }
         },
@@ -195,8 +208,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    46.3125,
-                    -74.9375
+                    -1561.55,
+                    655.19,
+                    56.52
                 ]
             }
         },
@@ -209,8 +223,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    54.1875,
-                    -80.5
+                    -1325.15,
+                    494.19,
+                    26.83
                 ]
             }
         },
@@ -223,8 +238,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    34,
-                    -91.5625
+                    -1941.41,
+                    137.72,
+                    37.83
                 ]
             }
         },
@@ -237,8 +253,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    26.8125,
-                    -81.3125
+                    -2153.23,
+                    462.25,
+                    103.27
                 ]
             }
         },
@@ -251,8 +268,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    24.3125,
-                    -77.625
+                    -2243.96,
+                    577.76,
+                    49
                 ]
             }
         },
@@ -265,8 +283,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    30.5,
-                    -81.375
+                    -2051,
+                    456,
+                    167
                 ]
             }
         },
@@ -279,8 +298,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    33.6875,
-                    -75.125
+                    -1951,
+                    659,
+                    81
                 ]
             }
         },
@@ -293,8 +313,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    29.625,
-                    -66.4375
+                    -2064,
+                    926,
+                    63
                 ]
             }
         },
@@ -307,8 +328,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    20.5625,
-                    -63.6875
+                    -2357.33,
+                    1017.01,
+                    59.76
                 ]
             }
         },
@@ -321,8 +343,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    29.75,
-                    -61.875
+                    -2072,
+                    1066,
+                    74
                 ]
             }
         },
@@ -335,8 +358,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    39.875,
-                    -65.625
+                    -1744,
+                    972.46,
+                    156.89
                 ]
             }
         },
@@ -349,8 +373,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    33.9375,
-                    -67.6875
+                    -1941,
+                    883,
+                    68
                 ]
             }
         },
@@ -363,8 +388,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    37.1875,
-                    -61.625
+                    -1839.51,
+                    1086.88,
+                    101.29
                 ]
             }
         },
@@ -377,8 +403,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    41.3125,
-                    -53.6875
+                    -1704.8,
+                    1338,
+                    14
                 ]
             }
         },
@@ -391,8 +418,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    20.875,
-                    -79.0625
+                    -2346.62,
+                    536.85,
+                    86.02
                 ]
             }
         },
@@ -405,8 +433,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    17.4375,
-                    -72.3125
+                    -2443,
+                    755,
+                    49
                 ]
             }
         },
@@ -419,8 +448,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    7.625,
-                    -84.1875
+                    -2765,
+                    375,
+                    15
                 ]
             }
         },
@@ -433,8 +463,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    4.1875,
-                    -126.5625
+                    -2880.31,
+                    -935.83,
+                    40.82
                 ]
             }
         },
@@ -447,8 +478,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    29.3125,
-                    -122
+                    -2083,
+                    -808,
+                    69
                 ]
             }
         },
@@ -461,8 +493,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    33.5,
-                    -120.5625
+                    -1954,
+                    -760,
+                    53
                 ]
             }
         },
@@ -475,8 +508,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    65.375,
-                    -106.6875
+                    -964.53,
+                    -331.59,
+                    47.16
                 ]
             }
         },
@@ -489,8 +523,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    41.9375,
-                    -94.625
+                    -1689,
+                    51,
+                    38
                 ]
             }
         },
@@ -503,8 +538,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    29.25,
-                    -88.0625
+                    -2080,
+                    256.05,
+                    107
                 ]
             }
         },
@@ -517,8 +553,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    18.875,
-                    -85.625
+                    -2413,
+                    331,
+                    37
                 ]
             }
         },
@@ -531,8 +568,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    24.25,
-                    -73.4375
+                    -2244.42,
+                    731.32,
+                    61.88
                 ]
             }
         },
@@ -545,8 +583,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    17.0625,
-                    -84.3125
+                    -2462,
+                    369,
+                    59
                 ]
             }
         },
@@ -559,8 +598,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    60,
-                    -101.0625
+                    -1124.44,
+                    -153.15,
+                    18.5
                 ]
             }
         },
@@ -573,8 +613,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    55.125,
-                    -94.25
+                    -1275.78,
+                    53.68,
+                    89.07
                 ]
             }
         },
@@ -587,8 +628,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    18.0625,
-                    -95.3125
+                    -2430,
+                    38,
+                    51
                 ]
             }
         },
@@ -601,8 +643,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    12.875,
-                    -91.125
+                    -2591,
+                    162,
+                    15
                 ]
             }
         },
@@ -615,8 +658,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    12.9375,
-                    -96.875
+                    -2591,
+                    -16,
+                    17
                 ]
             }
         },
@@ -629,8 +673,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    11.4375,
-                    -96.125
+                    -2648,
+                    -5,
+                    31
                 ]
             }
         },
@@ -643,8 +688,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    13,
-                    -94.4375
+                    -2593,
+                    56,
+                    16
                 ]
             }
         },
@@ -657,8 +703,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    44.1875,
-                    -53.4375
+                    -1619.31,
+                    1341.39,
+                    11.3
                 ]
             }
         },
@@ -671,8 +718,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    22.1875,
-                    -89.8125
+                    -2307,
+                    207,
+                    42
                 ]
             }
         },
@@ -685,8 +733,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    21,
-                    -98.9375
+                    -2343,
+                    -79,
+                    38
                 ]
             }
         },
@@ -699,8 +748,9 @@ var snapshots = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    34.9375,
-                    -79.6875
+                    -1906.66,
+                    518.58,
+                    61.71
                 ]
             }
         }

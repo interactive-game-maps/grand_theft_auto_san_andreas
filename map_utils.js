@@ -51,3 +51,13 @@ function getPopupMedia(feature, list_id) {
 
     return html;
 }
+
+// takes array of coords [x,y(,z)]
+// returns L.latLng
+function gtaCoordinatesToLeaflet(coords) {
+    // The gta map 0,0 is in the middle, 6000 square
+    // 192 (our map) / 6000 (gta map) = 0.032
+    lx = (coords[0] + 3000) * 0.032;
+    ly = (coords[1] - 3000) * 0.032;
+    return L.latLng(ly, lx);
+}

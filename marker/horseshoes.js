@@ -14,8 +14,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    135.1875,
-                    -12.5625
+                    1224,
+                    2617,
+                    11
                 ]
             }
         },
@@ -29,8 +30,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    170.1875,
-                    -55.0625
+                    2323,
+                    1284,
+                    97
                 ]
             }
         },
@@ -44,8 +46,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    161,
-                    -22.5625
+                    2035,
+                    2305,
+                    18
                 ]
             }
         },
@@ -59,8 +62,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    175.6875,
-                    -23.875
+                    2491,
+                    2263,
+                    15
                 ]
             }
         },
@@ -74,8 +78,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    141.8125,
-                    -6.8125
+                    1433,
+                    2796,
+                    20
                 ]
             }
         },
@@ -89,8 +94,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    162.125,
-                    -73.375
+                    2071,
+                    712,
+                    11
                 ]
             }
         },
@@ -104,8 +110,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    167.6875,
-                    -37.3125
+                    2239,
+                    1839,
+                    18
                 ]
             }
         },
@@ -119,8 +126,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    178.75,
-                    -19.9375
+                    2583,
+                    2387,
+                    16
                 ]
             }
         },
@@ -134,8 +142,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    187.75,
-                    -68.6875
+                    2864,
+                    857,
+                    13
                 ]
             }
         },
@@ -149,8 +158,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    179.5,
-                    -25.8125
+                    2612,
+                    2200,
+                    -1
                 ]
             }
         },
@@ -164,8 +174,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    168.6875,
-                    -48.25
+                    2274,
+                    1507,
+                    24
                 ]
             }
         },
@@ -179,8 +190,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    165.875,
-                    -15.5625
+                    2184,
+                    2529,
+                    11
                 ]
             }
         },
@@ -194,8 +206,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    155.625,
-                    -22.375
+                    1863,
+                    2314,
+                    15
                 ]
             }
         },
@@ -209,8 +222,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    161.6875,
-                    -18.5
+                    2054,
+                    2434,
+                    166
                 ]
             }
         },
@@ -224,8 +238,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    147.375,
-                    -50.3125
+                    1603,
+                    1435,
+                    11
                 ]
             }
         },
@@ -239,8 +254,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    139.6875,
-                    -63.4375
+                    1362.92,
+                    1015.24,
+                    11
                 ]
             }
         },
@@ -254,8 +270,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    161.5625,
-                    -27.25
+                    2058.7,
+                    2159.1,
+                    16
                 ]
             }
         },
@@ -269,8 +286,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    159.8125,
-                    -42.75
+                    2003,
+                    1672,
+                    12
                 ]
             }
         },
@@ -284,8 +302,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    167.5,
-                    -60.0625
+                    2238,
+                    1135,
+                    49
                 ]
             }
         },
@@ -299,8 +318,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    157.9375,
-                    -64.625
+                    1934.06,
+                    988.79,
+                    22
                 ]
             }
         },
@@ -314,8 +334,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    152.5,
-                    -5.125
+                    1768,
+                    2847,
+                    9
                 ]
             }
         },
@@ -329,8 +350,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    130.9375,
-                    -61.5
+                    1084,
+                    1076,
+                    11
                 ]
             }
         },
@@ -344,8 +366,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    188.125,
-                    -15.5625
+                    2879,
+                    2522,
+                    11
                 ]
             }
         },
@@ -359,8 +382,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    171.8125,
-                    -32.0625
+                    2371,
+                    2009,
+                    15
                 ]
             }
         },
@@ -374,8 +398,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    144.3125,
-                    -42.9375
+                    1521,
+                    1690,
+                    10.6
                 ]
             }
         },
@@ -389,8 +414,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    173.375,
-                    -55.1875
+                    2417,
+                    1281,
+                    21
                 ]
             }
         },
@@ -404,8 +430,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    140.125,
-                    -22.375
+                    1376,
+                    2304,
+                    15
                 ]
             }
         },
@@ -419,8 +446,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    140.25,
-                    -37.625
+                    1393,
+                    1832,
+                    12.34
                 ]
             }
         },
@@ -434,8 +462,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    127.5625,
-                    -14.1875
+                    984,
+                    2563,
+                    12
                 ]
             }
         },
@@ -449,8 +478,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    152.1875,
-                    -76.875
+                    1767,
+                    601,
+                    13
                 ]
             }
         },
@@ -464,8 +494,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    163.1875,
-                    -63.9375
+                    2108,
+                    1003,
+                    46
                 ]
             }
         },
@@ -479,8 +510,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    182.625,
-                    -36.75
+                    2705.98,
+                    1862.52,
+                    24.41
                 ]
             }
         },
@@ -494,8 +526,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    175.875,
-                    -66.625
+                    2493,
+                    922,
+                    16
                 ]
             }
         },
@@ -509,8 +542,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    156.375,
-                    -5.3125
+                    1881,
+                    2846,
+                    11
                 ]
             }
         },
@@ -524,8 +558,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    160.625,
-                    -20.9375
+                    2020,
+                    2352,
+                    11
                 ]
             }
         },
@@ -539,8 +574,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    149.4375,
-                    -25.125
+                    1680.3,
+                    2226.86,
+                    16.11
                 ]
             }
         },
@@ -554,8 +590,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    143,
-                    -66.3125
+                    1462,
+                    936,
+                    10
                 ]
             }
         },
@@ -569,8 +606,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    168.4375,
-                    -72.3125
+                    2125.5,
+                    789.23,
+                    11.45
                 ]
             }
         },
@@ -584,8 +622,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    178.6875,
-                    -35.375
+                    2588,
+                    1902,
+                    15
                 ]
             }
         },
@@ -599,8 +638,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    125.5,
-                    -29.9375
+                    919,
+                    2070,
+                    11
                 ]
             }
         },
@@ -614,8 +654,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    165.5,
-                    -17.3125
+                    2173,
+                    2465,
+                    11
                 ]
             }
         },
@@ -629,8 +670,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    160.9375,
-                    -25.5625
+                    2031.25,
+                    2207.33,
+                    11
                 ]
             }
         },
@@ -644,8 +686,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    176.25,
-                    -59.6875
+                    2509,
+                    1144,
+                    19
                 ]
             }
         },
@@ -659,8 +702,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    166.9375,
-                    -33.3125
+                    2215,
+                    1968,
+                    11
                 ]
             }
         },
@@ -674,8 +718,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    180.125,
-                    -5.375
+                    2626,
+                    2841,
+                    11
                 ]
             }
         },
@@ -689,8 +734,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    173.875,
-                    -27
+                    2440.08,
+                    2161.07,
+                    20
                 ]
             }
         },
@@ -704,8 +750,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    146.4375,
-                    -19.4375
+                    1582,
+                    2401,
+                    19
                 ]
             }
         },
@@ -719,8 +766,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    162.5625,
-                    -35.0625
+                    2077,
+                    1912,
+                    14
                 ]
             }
         },
@@ -734,8 +782,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    126.8125,
-                    -39
+                    970,
+                    1787,
+                    11
                 ]
             }
         },
@@ -749,8 +798,9 @@ var horseshoes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    144.875,
-                    -72.1875
+                    1526.22,
+                    751,
+                    29.04
                 ]
             }
         }

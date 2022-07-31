@@ -10,6 +10,9 @@ function addHorseshoesLayer(map) {
                 icon: Utils.getCustomIcon('fa-horse'),
                 riseOnHover: true
             });
+        },
+        coordsToLatLng: function (coords) {
+            return gtaCoordinatesToLeaflet(coords);
         }
     });
 }

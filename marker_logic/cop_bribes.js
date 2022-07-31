@@ -9,6 +9,9 @@ function addCopBribesLayer(map) {
                 icon: Utils.getCustomIcon('fa-star'),
                 riseOnHover: true
             });
+        },
+        coordsToLatLng: function (coords) {
+            return gtaCoordinatesToLeaflet(coords);
         }
     });
 }

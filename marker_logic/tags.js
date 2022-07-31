@@ -10,6 +10,9 @@ function addTagsLayer(map) {
                 icon: Utils.getCustomIcon('fa-spray-can'),
                 riseOnHover: true
             });
+        },
+        coordsToLatLng: function (coords) {
+            return gtaCoordinatesToLeaflet(coords);
         }
     });
 }

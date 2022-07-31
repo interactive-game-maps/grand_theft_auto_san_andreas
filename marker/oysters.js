@@ -14,8 +14,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    127.4375,
-                    -167.25
+                    979,
+                    -2210
                 ]
             }
         },
@@ -29,8 +29,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    183.914063,
-                    -178.539062
+                    2750,
+                    -2584
                 ]
             }
         },
@@ -44,8 +44,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    136.851563,
-                    -122.132812
+                    1279,
+                    -806
                 ]
             }
         },
@@ -59,8 +59,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    190.890625,
-                    -161.859375
+                    2945.13,
+                    -2051.93
                 ]
             }
         },
@@ -74,8 +74,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    98.109375,
-                    -128.609375
+                    67,
+                    -1018
                 ]
             }
         },
@@ -89,8 +89,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    170.398438,
-                    -181.328125
+                    2327,
+                    -2662
                 ]
             }
         },
@@ -104,8 +104,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    179.59375,
-                    -176.34375
+                    2621,
+                    -2506
                 ]
             }
         },
@@ -119,8 +119,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    136.03125,
-                    -182.59375
+                    1249,
+                    -2687
                 ]
             }
         },
@@ -134,8 +134,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    119.046875,
-                    -155.359375
+                    725,
+                    -1849
                 ]
             }
         },
@@ -149,8 +149,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    119.265625,
-                    -147
+                    723,
+                    -1586
                 ]
             }
         },
@@ -164,8 +164,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    100.765625,
-                    -159.21875
+                    155,
+                    -1975
                 ]
             }
         },
@@ -179,8 +179,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    159,
-                    -134.523437
+                    1968,
+                    -1203
                 ]
             }
         },
@@ -194,8 +194,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    10.6875,
-                    -45.875
+                    -2657,
+                    1564
                 ]
             }
         },
@@ -209,8 +209,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    55.992188,
-                    -80.039062
+                    -1252,
+                    501
                 ]
             }
         },
@@ -224,8 +224,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    44.28125,
-                    -95.84375
+                    -1625,
+                    4
                 ]
             }
         },
@@ -239,8 +239,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    48.375,
-                    -48.671875
+                    -1484,
+                    1489
                 ]
             }
         },
@@ -254,8 +254,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    15.84375,
-                    -46.65625
+                    -2505.41,
+                    1543.72
                 ]
             }
         },
@@ -269,8 +269,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.710938,
-                    -111.023437
+                    -2727,
+                    -469
                 ]
             }
         },
@@ -284,8 +284,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    55.71875,
-                    -65.125
+                    -1266,
+                    966
                 ]
             }
         },
@@ -299,8 +299,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    63.75,
-                    -80.5625
+                    -1013,
+                    478
                 ]
             }
         },
@@ -314,8 +314,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    52.265625,
-                    -83.546875
+                    -1364,
+                    390
                 ]
             }
         },
@@ -329,8 +329,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    178.46875,
-                    -20.03125
+                    2578,
+                    2382
                 ]
             }
         },
@@ -344,8 +344,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    162.75,
-                    -35.484375
+                    2090,
+                    1898
                 ]
             }
         },
@@ -359,8 +359,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    163.96875,
-                    -59.375
+                    2130,
+                    1152
                 ]
             }
         },
@@ -374,8 +374,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    160.28125,
-                    -42.609375
+                    2013,
+                    1670
                 ]
             }
         },
@@ -389,8 +389,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    176.84375,
-                    -46.09375
+                    2531,
+                    1569
                 ]
             }
         },
@@ -404,8 +404,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    192,
-                    0
+                    2998,
+                    2998
                 ]
             }
         },
@@ -419,8 +419,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    69.28125,
-                    -66.78125
+                    -832,
+                    925
                 ]
             }
         },
@@ -434,8 +434,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    111.34375,
-                    -104.1875
+                    486,
+                    -253
                 ]
             }
         },
@@ -449,8 +449,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    93.625,
-                    -124.875
+                    -90,
+                    -910
                 ]
             }
         },
@@ -464,8 +464,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    96.71875,
-                    -138.59375
+                    26.43,
+                    -1320.94
                 ]
             }
         },
@@ -479,8 +479,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    89.304688,
-                    -149.945312
+                    -207,
+                    -1682
                 ]
             }
         },
@@ -494,8 +494,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    42.625,
-                    -148.25
+                    -1672,
+                    -1641
                 ]
             }
         },
@@ -509,8 +509,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    58.09375,
-                    -180.625
+                    -1175,
+                    -2639
                 ]
             }
         },
@@ -524,8 +524,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    60.375,
-                    -187.5
+                    -1097,
+                    -2858
                 ]
             }
         },
@@ -539,8 +539,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    3.625,
-                    -129.96875
+                    -2889,
+                    -1042
                 ]
             }
         },
@@ -554,8 +554,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    75.09375,
-                    -67.96875
+                    -659,
+                    874
                 ]
             }
         },
@@ -569,8 +569,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    65.140625,
-                    -12.25
+                    -955,
+                    2628
                 ]
             }
         },
@@ -584,8 +584,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    62.015625,
-                    -25.90625
+                    -1066,
+                    2197
                 ]
             }
         },
@@ -599,8 +599,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    97.375,
-                    -113.0625
+                    40,
+                    -531
                 ]
             }
         },
@@ -614,8 +614,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    71.671875,
-                    -88.140625
+                    -765,
+                    247
                 ]
             }
         },
@@ -629,8 +629,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    163.0625,
-                    -99.65625
+                    2098,
+                    -108
                 ]
             }
         },
@@ -644,8 +644,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    184.5,
-                    -81.28125
+                    2767,
+                    470
                 ]
             }
         },
@@ -659,8 +659,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    70.859375,
-                    -28.242187
+                    -783,
+                    2116
                 ]
             }
         },
@@ -674,8 +674,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    69.90625,
-                    -52.375
+                    -821,
+                    1374
                 ]
             }
         },
@@ -689,8 +689,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    28.4375,
-                    -21.492187
+                    -2110.5,
+                    2329.72
                 ]
             }
         },
@@ -704,8 +704,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    46.171875,
-                    -41.328125
+                    -1538,
+                    1708
                 ]
             }
         },
@@ -719,8 +719,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    10.25,
-                    -27.71875
+                    -2685,
+                    2153
                 ]
             }
         },
@@ -734,8 +734,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    121.359375,
-                    -2.578125
+                    796,
+                    2939
                 ]
             }
         },
@@ -749,8 +749,8 @@ var oysters = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    165.632813,
-                    -88.390625
+                    2179,
+                    235
                 ]
             }
         }

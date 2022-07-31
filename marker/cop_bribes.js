@@ -12,8 +12,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    183.828125,
-                    -53.984375
+                    2743,
+                    1316,
+                    8
                 ]
             }
         },
@@ -25,8 +26,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    165.375,
-                    -23.515625
+                    2168.66,
+                    2267.96,
+                    15.34
                 ]
             }
         },
@@ -38,8 +40,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    173.125,
-                    -51.65625
+                    2408,
+                    1389,
+                    22
                 ]
             }
         },
@@ -51,8 +54,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    161.09375,
-                    -69.484375
+                    2034,
+                    842,
+                    10
                 ]
             }
         },
@@ -64,8 +68,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    162.921875,
-                    -54.875
+                    2096,
+                    1287,
+                    10.8
                 ]
             }
         },
@@ -77,8 +82,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    159.6875,
-                    -46.84375
+                    1987,
+                    1543,
+                    16
                 ]
             }
         },
@@ -90,8 +96,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    155.609375,
-                    -66.75
+                    1854,
+                    912,
+                    10.8
                 ]
             }
         },
@@ -103,8 +110,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    177.125,
-                    -15.09375
+                    2540.38,
+                    2527.85,
+                    10.39
                 ]
             }
         },
@@ -116,8 +124,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    145.53125,
-                    -63.34375
+                    1548.02,
+                    1024.47,
+                    10.39
                 ]
             }
         },
@@ -129,8 +138,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    146.9375,
-                    -30.34375
+                    1592.91,
+                    2053.83,
+                    10.26
                 ]
             }
         },
@@ -142,8 +152,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    159.09375,
-                    -21.59375
+                    1971.29,
+                    2330.26,
+                    10.41
                 ]
             }
         },
@@ -155,8 +166,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    150.5,
-                    -39.15625
+                    1700.74,
+                    1792.7,
+                    10.41
                 ]
             }
         },
@@ -168,8 +180,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    178.5,
-                    -143.78125
+                    2581,
+                    -1491,
+                    24
                 ]
             }
         },
@@ -181,8 +194,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    169.421875,
-                    -150.53125
+                    2296,
+                    -1696,
+                    14
                 ]
             }
         },
@@ -194,8 +208,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    168.484375,
-                    -131.078125
+                    2273,
+                    -1099,
+                    38
                 ]
             }
         },
@@ -207,8 +222,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    183.265625,
-                    -129.765625
+                    2716,
+                    -1048,
+                    66
                 ]
             }
         },
@@ -220,8 +236,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    179.703125,
-                    -175.882812
+                    2614,
+                    -2496,
+                    33
                 ]
             }
         },
@@ -233,8 +250,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    133.78125,
-                    -136.078125
+                    1183.85,
+                    -1250.68,
+                    14.7
                 ]
             }
         },
@@ -246,8 +264,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    159,
-                    -133.1875
+                    1970,
+                    -1158,
+                    21
                 ]
             }
         },
@@ -259,8 +278,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    119.46875,
-                    -132.625
+                    734,
+                    -1137,
+                    18
                 ]
             }
         },
@@ -272,8 +292,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    177.578125,
-                    -174.921875
+                    2553.76,
+                    -2464.31,
+                    13.62
                 ]
             }
         },
@@ -285,8 +306,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    134.34375,
-                    -147.875
+                    1204.06,
+                    -1613.89,
+                    13.28
                 ]
             }
         },
@@ -298,8 +320,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    115.625,
-                    -142.8125
+                    611.21,
+                    -1459.63,
+                    14.01
                 ]
             }
         },
@@ -311,8 +334,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    131.6875,
-                    -119.3125
+                    1116.67,
+                    -719.91,
+                    100.17
                 ]
             }
         },
@@ -324,8 +348,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    35.109375,
-                    -111.078125
+                    -1903.1,
+                    -466.44,
+                    25.18
                 ]
             }
         },
@@ -337,8 +362,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    11.15625,
-                    -101.0625
+                    -2657,
+                    -144,
+                    4
                 ]
             }
         },
@@ -350,8 +376,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    17.4375,
-                    -101.21875
+                    -2454,
+                    -166,
+                    35
                 ]
             }
         },
@@ -363,8 +390,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    31.9375,
-                    -56.78125
+                    -2009,
+                    1227,
+                    32
                 ]
             }
         },
@@ -376,8 +404,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    28.125,
-                    -93.21875
+                    -2120,
+                    96.39,
+                    39
                 ]
             }
         },
@@ -389,8 +418,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    18.46875,
-                    -106.4375
+                    -2411,
+                    -334,
+                    37
                 ]
             }
         },
@@ -402,8 +432,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    42.0625,
-                    -81.75
+                    -1690,
+                    450,
+                    13
                 ]
             }
         },
@@ -415,8 +446,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    32.34375,
-                    -133.109375
+                    -1991.26,
+                    -1144.13,
+                    29.69
                 ]
             }
         },
@@ -428,8 +460,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    12.15625,
-                    -111.8125
+                    -2636.13,
+                    -492.83,
+                    70.09
                 ]
             }
         },
@@ -441,8 +474,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    31.40625,
-                    -85.125
+                    -2022.68,
+                    345.98,
+                    35.17
                 ]
             }
         },
@@ -454,8 +488,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    10.03125,
-                    -70.84375
+                    -2683.2,
+                    784.13,
+                    49.98
                 ]
             }
         },
@@ -467,8 +502,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    37.75,
-                    -101
+                    -1820.67,
+                    -154.12,
+                    9.4
                 ]
             }
         },
@@ -480,8 +516,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    72.265625,
-                    -94.015625
+                    -736,
+                    66,
+                    24
                 ]
             }
         },
@@ -493,8 +530,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    104.523438,
-                    -100.78125
+                    262.33,
+                    -149.12,
+                    1.58
                 ]
             }
         },
@@ -506,8 +544,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    148.757813,
-                    -87.554687
+                    1643,
+                    264,
+                    20
                 ]
             }
         },
@@ -519,8 +558,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    115.1875,
-                    -27.3125
+                    601.98,
+                    2150.38,
+                    39.41
                 ]
             }
         },
@@ -532,8 +572,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    51.1875,
-                    -161.125
+                    -1407,
+                    -2039,
+                    1
                 ]
             }
         },
@@ -545,8 +586,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    26.882813,
-                    -172.046875
+                    -2156,
+                    -2371,
+                    31
                 ]
             }
         },
@@ -558,8 +600,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    82.890625,
-                    -52.84375
+                    -419.25,
+                    1362.36,
+                    12.21
                 ]
             }
         },
@@ -571,8 +614,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    116.132813,
-                    -5.171875
+                    629.04,
+                    2842.83,
+                    25.21
                 ]
             }
         },
@@ -584,8 +628,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    118.125,
-                    -102.703125
+                    690.49,
+                    -209.59,
+                    25.6
                 ]
             }
         },
@@ -597,8 +642,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    98.9375,
-                    -100.125
+                    88.82,
+                    -125.1,
+                    0.85
                 ]
             }
         },
@@ -610,8 +656,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    102.765625,
-                    -61.15625
+                    215.69,
+                    1089.1,
+                    16.4
                 ]
             }
         },
@@ -623,8 +670,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    22.15625,
-                    -21.96875
+                    -2305.24,
+                    2310.11,
+                    4.98
                 ]
             }
         },
@@ -636,8 +684,9 @@ var cop_bribes = {
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    89.148438,
-                    -9.183594
+                    -213.61,
+                    2717.44,
+                    62.68
                 ]
             }
         }
