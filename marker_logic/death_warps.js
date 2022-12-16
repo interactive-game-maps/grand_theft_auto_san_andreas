@@ -53,7 +53,7 @@ function addDeathWarpsLayer(map) {
                     this.removeFeatureHighlight(feature.properties.id);
                 },
                 click: event => {
-                    Utils.share_marker.prevent();
+                    map.getShareMarker().prevent();
                     this.zoomToFeature(feature.properties.id);
                     Utils.setHistoryState(this.id, feature.properties.id);
                 }
