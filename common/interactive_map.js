@@ -91,8 +91,10 @@ class InteractiveMap {
             minNativeZoom: 3,
             maxNativeZoom: 5,
             noWrap: true,
-            detectRetina: true
+            detectRetina: true,
+            bounds: this.#getTileLayerBounds(url),
         }
+
         let params = { ...defaults, ...args };
         params.maxNativeZoom = L.Browser.retina ? params.maxNativeZoom - 1 : params.maxNativeZoom; // 1 level LOWER for high pixel ratio device.
 
@@ -523,5 +525,51 @@ class InteractiveMap {
         });
 
         return interactive_layer;
+    }
+
+    /**
+     * Tries to read an adjacent tilemapresource.xml and calculate the bounds for this tile layer.
+     *
+     * Falls back to 256.
+     *
+     * @param {string} url Location of the tiles
+     */
+    #getTileLayerBounds(url) {
+        if (window.location.protocol !== 'file:') {
+            // This request has to be synchronous because we can't set the tile layer bounds after initialization
+            const request = new XMLHttpRequest();
+            request.open("GET", url.replace("{z}/{x}/{y}.png", "tilemapresource.xml"), false); // `false` makes the request synchronous
+            request.send(null);
+
+            if (request.status === 200) {
+                try {
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(request.responseText, "text/xml");
+                    const boundingBox = xmlDoc.getElementsByTagName("BoundingBox")[0];
+
+                    const miny = this.#reduceTileSizeBelow256(Math.abs(boundingBox.getAttribute("miny")));
+                    const maxx = this.#reduceTileSizeBelow256(Math.abs(boundingBox.getAttribute("maxx")));
+
+                    return L.latLngBounds(L.latLng(0, 0), L.latLng(-miny, maxx));
+                } catch {
+                    console.log("Failed reading tilemapresource.xml");
+                }
+            }
+        }
+
+        return L.latLngBounds(L.latLng(0, 0), L.latLng(-256, 256)); // gdal2tiles.py never produces tiles larger than 256
+    }
+
+    /**
+     * Takes a number and halfs it until it's smaller than 256.
+     * @param {number} size Number to minify
+     * @returns number
+     */
+    #reduceTileSizeBelow256(size) {
+        while (size > 256) {
+            size = Math.floor(size / 2);
+        }
+
+        return size;
     }
 }
