@@ -95,6 +95,8 @@ class InteractiveMap {
             bounds: this.#getTileLayerBounds(url),
         }
 
+        console.log(defaults.bounds)
+
         let params = { ...defaults, ...args };
         params.maxNativeZoom = L.Browser.retina ? params.maxNativeZoom - 1 : params.maxNativeZoom; // 1 level LOWER for high pixel ratio device.
 
@@ -546,11 +548,9 @@ class InteractiveMap {
                     const parser = new DOMParser();
                     const xmlDoc = parser.parseFromString(request.responseText, "text/xml");
                     const boundingBox = xmlDoc.getElementsByTagName("BoundingBox")[0];
+                    const reducedBounds = this.#reduceTileSizeBelow256(Math.abs(boundingBox.getAttribute("miny")), Math.abs(boundingBox.getAttribute("maxx")));
 
-                    const miny = this.#reduceTileSizeBelow256(Math.abs(boundingBox.getAttribute("miny")));
-                    const maxx = this.#reduceTileSizeBelow256(Math.abs(boundingBox.getAttribute("maxx")));
-
-                    return L.latLngBounds(L.latLng(0, 0), L.latLng(-miny, maxx));
+                    return L.latLngBounds(L.latLng(0, 0), L.latLng(-reducedBounds[0], reducedBounds[1]));
                 } catch {
                     console.log("Failed reading tilemapresource.xml");
                 }
@@ -561,15 +561,17 @@ class InteractiveMap {
     }
 
     /**
-     * Takes a number and halfs it until it's smaller than 256.
-     * @param {number} size Number to minify
-     * @returns number
+     * Takes a two numbers and halfs them simultaneously until both are smaller than 256.
+     * @param {number} size1 Number to minify
+     * @param {number} size2 Number to minify similarly
+     * @returns [number, number]
      */
-    #reduceTileSizeBelow256(size) {
-        while (size > 256) {
-            size = Math.floor(size / 2);
+    #reduceTileSizeBelow256(size1, size2) {
+        while (size1 > 256 || size2 > 256) {
+            size1 = Math.floor(size1 / 2);
+            size2 = Math.floor(size2 / 2);
         }
 
-        return size;
+        return [size1, size2];
     }
 }
